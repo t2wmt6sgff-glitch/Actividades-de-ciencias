@@ -14,10 +14,16 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
   ]),
   {
-    files: ["components/ui/**/*.{ts,tsx}", "hooks/use-mobile.ts"],
+    files: ["**/*.{ts,tsx}"],
     rules: {
-      // These files are vendored verbatim from shadcn@4.17.0. Keep the
-      // registry source intact while applying the stricter rules to Site code.
+      // The supplied WebP files are already optimized and must keep their exact paths in the static export.
+      "@next/next/no-img-element": "off",
+    },
+  },
+  {
+    files: ["components/ui/**/*.{ts,tsx}"],
+    rules: {
+      // These files are vendored components and keep their upstream implementation.
       "@typescript-eslint/no-unused-vars": "off",
       "react-hooks/purity": "off",
       "react-hooks/set-state-in-effect": "off",

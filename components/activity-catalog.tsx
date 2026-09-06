@@ -99,6 +99,8 @@ export function ActivityCatalog({ initialQuery = "", lockedSection }: { initialQ
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
+    // The query string is available only in the browser after static hydration.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setQuery(params.get("q") ?? initialQuery);
     setDebouncedQuery(params.get("q") ?? initialQuery);
     setFilters(readInitialFilters(lockedSection));
