@@ -6,8 +6,8 @@ import "./globals.css";
 const subjectNames = activeSubjects.map((subject) => subject.name).join(", ");
 
 export const metadata: Metadata = {
-  title: "Actividades de Ciencias",
-  description: `${publicActivities.length} actividades de repaso de ${subjectNames} organizadas por temas.`,
+  title: "Actividades de repaso",
+  description: `${publicActivities.length} actividades de repaso organizadas por asignaturas y temas. Contenido actual: ${subjectNames}.`,
   authors: [{ name: "Alejandro Castaño Medina" }],
   creator: "Alejandro Castaño Medina",
   icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },

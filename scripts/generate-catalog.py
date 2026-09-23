@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import unicodedata
 from collections import Counter, defaultdict
 from datetime import date, datetime
 from pathlib import Path
@@ -18,8 +19,15 @@ from catalog_core import validate_catalog
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_INPUT = ROOT / "data" / "catalogo-actividades.xlsx"
 DEFAULT_CATALOG = ROOT / "data" / "generated" / "catalog.json"
+DEFAULT_SEARCH_INDEX = ROOT / "data" / "generated" / "search-index.json"
 DEFAULT_REPORT = ROOT / "data" / "generated" / "generation-report.json"
 DELIMITER = "|"
+
+LANGUAGE_SEARCH_NAMES = {
+    "es": "es español spanish",
+    "en": "en inglés ingles english",
+    "fr": "fr francés frances french",
+}
 
 
 def clean(value):
@@ -295,6 +303,39 @@ def write_json(path: Path, payload: dict) -> None:
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
+def normalize_search_text(value) -> str:
+    text = unicodedata.normalize("NFD", str(value or ""))
+    return " ".join("".join(character for character in text if unicodedata.category(character) != "Mn").casefold().split())
+
+
+def build_search_index(catalog: dict) -> dict:
+    subjects = {item["id"]: item for item in catalog["subjects"]}
+    topics = {item["id"]: item for item in catalog["topics"]}
+    activity_types = {item["id"]: item for item in catalog["activityTypes"]}
+    platforms = {item["id"]: item for item in catalog["platforms"]}
+    entries = []
+    for activity in catalog["activities"]:
+        if activity["publicationStatus"] != "published":
+            continue
+        source = activity["source"]
+        platform = platforms.get(source.get("platformId"), {}) if source["kind"] == "external" else {}
+        entries.append({
+            "id": activity["id"],
+            "title": normalize_search_text(activity["title"]),
+            "sourceTitle": normalize_search_text(activity.get("sourceTitle")),
+            "description": normalize_search_text(activity["description"]),
+            "subjects": [normalize_search_text(subjects[item]["name"]) for item in activity["subjectIds"] if item in subjects],
+            "topics": [normalize_search_text(topics[item]["name"]) for item in activity["topicIds"] if item in topics],
+            "tags": [normalize_search_text(item) for item in activity["tags"]],
+            "keywords": [normalize_search_text(item) for item in activity["keywords"]],
+            "type": normalize_search_text(activity_types.get(activity["typeId"], {}).get("name", activity["typeId"])),
+            "language": normalize_search_text(LANGUAGE_SEARCH_NAMES.get(activity["language"], activity["language"])),
+            "platform": normalize_search_text(platform.get("name", "Actividad propia")),
+            "source": normalize_search_text("external externa externo" if source["kind"] == "external" else "native nativa propia"),
+        })
+    return {"schemaVersion": 1, "entries": sorted(entries, key=lambda item: item["id"])}
+
+
 def print_problems(label: str, items: list[dict]) -> None:
     if not items:
         return
@@ -310,6 +351,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--input", type=Path, default=DEFAULT_INPUT)
     parser.add_argument("--catalog", type=Path, default=DEFAULT_CATALOG)
+    parser.add_argument("--search-index", type=Path, default=DEFAULT_SEARCH_INDEX)
     parser.add_argument("--report", type=Path, default=DEFAULT_REPORT)
     args = parser.parse_args()
 
@@ -337,6 +379,8 @@ def main() -> None:
             "activityIds": missing_created_ids,
         })
 
+    search_index = build_search_index(catalog)
+    search_index_bytes = (json.dumps(search_index, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
     report = {
         "schemaVersion": 1,
         "source": catalog["source"],
@@ -354,8 +398,18 @@ def main() -> None:
         "warnings": warnings,
         "errors": [],
         "migration": catalog["migration"],
+        "artifacts": {
+            "searchIndex": {
+                "file": "data/generated/search-index.json",
+                "sha256": hashlib.sha256(search_index_bytes).hexdigest(),
+                "bytes": len(search_index_bytes),
+                "entries": len(search_index["entries"]),
+            },
+        },
     }
     write_json(args.catalog, catalog)
+    args.search_index.parent.mkdir(parents=True, exist_ok=True)
+    args.search_index.write_bytes(search_index_bytes)
     write_json(args.report, report)
     print(json.dumps({**report["counts"], "byPlatform": report["byPlatform"], "byLanguage": report["byLanguage"]}, ensure_ascii=False, indent=2))
     print_problems("Avisos", warnings)

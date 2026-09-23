@@ -60,7 +60,7 @@ export function getTopicForSubject(subject: Subject, topicSlug: string) {
 
 export function getTopicHref(topic: Topic) {
   const subject = subjectById.get(topic.subjectId);
-  return subject ? `/asignatura/${subject.slug}/${topic.slug}` : "/actividades";
+  return subject ? `/asignatura/${subject.slug}/${topic.slug}` : "/explorar";
 }
 
 export function resolveTopicFilter(value: string) {

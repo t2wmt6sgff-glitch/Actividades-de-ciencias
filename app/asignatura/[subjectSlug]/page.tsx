@@ -16,7 +16,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ subjectSlug: string }> }): Promise<Metadata> {
   const subject = subjectBySlug.get((await params).subjectSlug);
   return subject ? {
-    title: `${subject.name} | Actividades de Ciencias`,
+    title: `${subject.name} | Actividades de repaso`,
     description: subject.description,
     alternates: { canonical: `/asignatura/${subject.slug}` },
   } : {};

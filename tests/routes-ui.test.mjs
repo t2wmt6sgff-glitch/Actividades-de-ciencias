@@ -34,12 +34,22 @@ test("mantiene cada alias de sección con canónica y navegación nueva", async 
   }
 });
 
-test("no exporta combinaciones de asignatura y tema incoherentes ni rutas de Fase 3", async () => {
+test("no exporta combinaciones de asignatura y tema incoherentes", async () => {
   await assert.rejects(access(path.join(root, "out/asignatura/no-existe/index.html")));
   await assert.rejects(access(path.join(root, "out/asignatura/ciencias/no-existe/index.html")));
   await assert.rejects(access(path.join(root, "out/asignatura/matematicas/historia/index.html")));
-  await assert.rejects(access(path.join(root, "out/explorar/index.html")));
-  await assert.rejects(access(path.join(root, "out/recientes/index.html")));
+});
+
+test("exporta Inicio, Explorar y Recientes y mantiene /actividades como alias", async () => {
+  await access(path.join(root, "out/explorar/index.html"));
+  await access(path.join(root, "out/recientes/index.html"));
+  const alias = await html("actividades");
+  assert.match(alias, /<link rel="canonical" href="\/explorar"/);
+  assert.match(alias, /<meta name="robots" content="noindex, follow"/);
+  const home = await readFile(path.join(root, "out/index.html"), "utf8");
+  assert.match(home, /Actividades de repaso/);
+  assert.match(home, /href="\/explorar\/"/);
+  assert.match(home, /href="\/recientes\/"/);
 });
 
 test("cada actividad multitema aparece en todas sus vistas sin duplicar su entidad", async () => {

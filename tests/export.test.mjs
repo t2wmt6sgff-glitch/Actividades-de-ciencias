@@ -31,6 +31,8 @@ test("exporta todas las rutas directas", async () => {
   const expected = [
     "index.html",
     "actividades/index.html",
+    "explorar/index.html",
+    "recientes/index.html",
     "sobre-el-proyecto/index.html",
     ...data.subjects.filter((subject) => subject.status === "active").map((subject) => `asignatura/${subject.slug}/index.html`),
     ...data.topics.map((topic) => {
@@ -41,7 +43,7 @@ test("exporta todas las rutas directas", async () => {
     ...data.activities.map((activity) => `actividad/${activity.slug}/index.html`),
   ];
   await Promise.all(expected.map((relative) => access(path.join(root, "out", relative))));
-  assert.equal(expected.length, 91);
+  assert.equal(expected.length, 93);
 });
 
 test("exporta las once imágenes temáticas", async () => {
@@ -58,7 +60,7 @@ test("exporta las once imágenes temáticas", async () => {
 test("incluye la autoría y los créditos en el HTML", async () => {
   const home = await readFile(path.join(root, "out/index.html"), "utf8");
   const about = await readFile(path.join(root, "out/sobre-el-proyecto/index.html"), "utf8");
-  assert.match(home, /Actividades, recopilación y web creadas por/);
+  assert.match(home, /actividades de Ciencias creadas y recopiladas por/);
   assert.match(home, /Alejandro Castaño Medina/);
   assert.match(about, /Creador de las actividades y autor de esta web/);
   assert.match(about, /Licencia gratuita de Magnific/);

@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const activity = activityBySlug.get(slug)
     ?? routableActivities.find((item) => item.legacySlugs?.includes(slug));
   return activity ? {
-    title: `${activity.title} | Actividades de Ciencias`,
+    title: `${activity.title} | Actividades de repaso`,
     description: activity.description,
     alternates: { canonical: `/actividad/${activity.slug}` },
   } : {};
@@ -57,7 +57,7 @@ export default async function ActivityPage({ params }: { params: Promise<{ slug:
     <main id="main-content" className="detail-page site-container">
       <nav className="breadcrumbs" aria-label="Migas de pan">
         <Link href="/">Inicio</Link><span aria-hidden="true">/</span>
-        {primarySubject ? <><Link href={`/asignatura/${primarySubject.slug}`}>{primarySubject.name}</Link><span aria-hidden="true">/</span></> : <><Link href="/actividades">Actividades</Link><span aria-hidden="true">/</span></>}
+        {primarySubject ? <><Link href={`/asignatura/${primarySubject.slug}`}>{primarySubject.name}</Link><span aria-hidden="true">/</span></> : <><Link href="/explorar">Explorar</Link><span aria-hidden="true">/</span></>}
         {primaryTopic ? <><Link href={getTopicHref(primaryTopic)}>{primaryTopic.name}</Link><span aria-hidden="true">/</span></> : null}
         <span aria-current="page">{activity.title}</span>
       </nav>

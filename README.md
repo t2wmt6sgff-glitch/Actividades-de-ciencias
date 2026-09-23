@@ -1,6 +1,6 @@
-# Actividades de Ciencias
+# Actividades de repaso
 
-Web educativa creada por Alejandro Castaño Medina. Reúne 65 actividades propias de Ciencias y Conocimiento del Medio, organizadas en 11 secciones y publicadas originalmente en Wordwall y Educaplay.
+Web educativa creada por Alejandro Castaño Medina. Nació con 65 actividades de Ciencias y Conocimiento del Medio organizadas en 11 temas y publicadas originalmente en Wordwall y Educaplay. La experiencia y el catálogo admiten nuevas asignaturas; por ahora solo hay contenido de Ciencias.
 
 ## Tecnología
 
@@ -72,7 +72,8 @@ También puedes ejecutar `npm run build` en un ordenador y subir el contenido de
 - `data/Actividades_Ciencias_para_Sites.xlsx`: fuente histórica de Ciencias. No se modifica.
 - `data/catalogo-actividades.xlsx`: fuente de verdad editable del catálogo general.
 - `data/generated/catalog.json`: catálogo generado usado por la aplicación.
-- `data/generated/generation-report.json`: huella, recuentos y avisos de cada generación.
+- `data/generated/search-index.json`: índice ligero de búsqueda y facetas, generado del catálogo.
+- `data/generated/generation-report.json`: huella, recuentos y avisos de cada generación, incluida la huella del índice.
 - `tests/fixtures/science-data.legacy.json`: fixture de regresión; no es una fuente activa.
 - `public/sections/`: once imágenes temáticas reutilizadas por las actividades.
 - La página **Sobre el proyecto** contiene los créditos y las licencias de las imágenes.
@@ -87,6 +88,6 @@ npm run catalog:validate
 
 No edites los JSON generados a mano. CI vuelve a generarlos y falla si no coinciden con el Excel. La migración inicial desde el libro histórico puede repetirse con `npm run catalog:migrate`; sobrescribe el libro general y no forma parte del mantenimiento habitual. `npm run catalog:migrate:check` compara el contenido lógico de ambos libros y no sus bytes ZIP.
 
-El esquema y las hojas están documentados en [`docs/catalogo-multiasignatura.md`](docs/catalogo-multiasignatura.md). Las rutas, selectores, componentes y compatibilidad de UI se describen en [`docs/ui-multiasignatura.md`](docs/ui-multiasignatura.md).
+El esquema y las hojas están documentados en [`docs/catalogo-multiasignatura.md`](docs/catalogo-multiasignatura.md). Las rutas y la compatibilidad de UI se describen en [`docs/ui-multiasignatura.md`](docs/ui-multiasignatura.md), y el flujo público de búsqueda en [`docs/experiencia-multiasignatura.md`](docs/experiencia-multiasignatura.md).
 
 No se incluye una licencia para el código del repositorio.

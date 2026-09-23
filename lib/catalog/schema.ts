@@ -172,3 +172,23 @@ export interface Catalog {
   information: CatalogInformation[];
   migration: CatalogMigration;
 }
+
+export interface SearchIndexEntry {
+  id: ActivityId;
+  title: string;
+  sourceTitle: string;
+  description: string;
+  subjects: string[];
+  topics: string[];
+  tags: string[];
+  keywords: string[];
+  type: string;
+  language: string;
+  platform: string;
+  source: string;
+}
+
+export interface SearchIndex {
+  schemaVersion: 1;
+  entries: SearchIndexEntry[];
+}
