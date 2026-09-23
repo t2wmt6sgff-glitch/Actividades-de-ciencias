@@ -1,6 +1,6 @@
-# Catálogo multiasignatura: flujo de datos de Fase 1
+# Catálogo multiasignatura: flujo de datos
 
-La web pública sigue mostrando Actividades de Ciencias y conserva sus rutas actuales. Esta fase cambia la infraestructura de datos, no el producto visible.
+La web pública sigue mostrando Actividades de Ciencias. La Fase 1 generalizó la infraestructura de datos y la Fase 2 conecta la interfaz directamente con ese catálogo, sin cambiar todavía la portada de producto ni la navegación principal.
 
 ## Fuente de verdad
 
@@ -80,18 +80,14 @@ El generador bloquea, entre otros casos:
 
 Los avisos no bloquean la generación. El estado inicial avisa de 65 fechas de creación desconocidas, el enlace limitado `EP-28734734` y dos actividades distintas que comparten el título “The European Union”.
 
-## Compatibilidad temporal
+## Consumo desde la interfaz
 
-`lib/science-data.ts` adapta el catálogo general a la forma que esperan los componentes actuales. Convierte:
+La interfaz consume `lib/catalog/data.ts`, `indexes.ts`, `selectors.ts` y `presentation.ts`. Los componentes trabajan con `Subject`, `Topic` y `Activity`, con idiomas BCP 47 y con la unión `external`/`native`.
 
-- `TopicId` a los IDs históricos `SEC-xx`;
-- `es` y `en` a `Español` e `Inglés`;
-- IDs de plataforma y tipo a sus nombres públicos;
-- arrays de etiquetas a las cadenas usadas por el buscador actual;
-- estados de enlace generales a las etiquetas existentes.
+El adaptador temporal `lib/science-data.ts` se retiró en Fase 2 porque ya no tiene consumidores. También se retiró `lib/section-media.ts`: colores, iconos, imágenes, posiciones y créditos se resuelven desde `Subject.visual` y `Topic.visual`, con un fallback accesible cuando faltan assets.
 
-La UI no importa el fixture antiguo. `tests/fixtures/science-data.legacy.json` solo permite demostrar paridad durante esta migración.
+`tests/fixtures/science-data.legacy.json` se conserva exclusivamente como fixture de regresión para demostrar la paridad de la migración; no es una fuente activa.
 
 ## Añadir datos en fases posteriores
 
-Una nueva asignatura se añadirá mediante filas en `ASIGNATURAS`, `TEMAS`, `ACTIVIDADES` y `ACTIVIDAD_TEMA`, más créditos cuando use imágenes. En Fase 1 todavía no se añaden asignaturas ni se modifican rutas, navegación, búsqueda o diseño.
+Una nueva asignatura se añadirá mediante filas en `ASIGNATURAS`, `TEMAS`, `ACTIVIDADES` y `ACTIVIDAD_TEMA`, más créditos cuando use imágenes. Las rutas de asignatura y tema se generan ya desde esos datos. La portada general, `/explorar`, `/recientes` y la navegación de producto pertenecen a Fase 3.

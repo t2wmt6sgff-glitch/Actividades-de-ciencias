@@ -32,11 +32,16 @@ test("exporta todas las rutas directas", async () => {
     "index.html",
     "actividades/index.html",
     "sobre-el-proyecto/index.html",
+    ...data.subjects.filter((subject) => subject.status === "active").map((subject) => `asignatura/${subject.slug}/index.html`),
+    ...data.topics.map((topic) => {
+      const subject = data.subjects.find((item) => item.id === topic.subjectId);
+      return `asignatura/${subject.slug}/${topic.slug}/index.html`;
+    }),
     ...data.topics.map((topic) => `seccion/${topic.slug}/index.html`),
     ...data.activities.map((activity) => `actividad/${activity.slug}/index.html`),
   ];
   await Promise.all(expected.map((relative) => access(path.join(root, "out", relative))));
-  assert.equal(expected.length, 79);
+  assert.equal(expected.length, 91);
 });
 
 test("exporta las once imágenes temáticas", async () => {

@@ -124,6 +124,8 @@ def load_general_workbook(source: Path) -> tuple[dict, dict[str, dict]]:
         topic_id = row["ID"]
         locations[topic_id] = {"sheet": "TEMAS", "row": row["__row__"]}
         visual = without_empty({
+            "accent": row["Color principal"],
+            "accentSoft": row["Color suave"],
             "image": row["Imagen"],
             "imageAlt": row["Texto alternativo"],
             "imageObjectPosition": row["Posición de imagen"],

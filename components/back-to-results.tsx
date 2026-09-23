@@ -11,7 +11,7 @@ export function BackToResults() {
       const referrer = new URL(document.referrer);
       // Referrer history is available only in the browser after static hydration.
       // eslint-disable-next-line react-hooks/set-state-in-effect
-      setHasResultsHistory(referrer.origin === window.location.origin && (/^\/actividades/.test(referrer.pathname) || /^\/seccion\//.test(referrer.pathname)));
+      setHasResultsHistory(referrer.origin === window.location.origin && (/^\/actividades/.test(referrer.pathname) || /^\/seccion\//.test(referrer.pathname) || /^\/asignatura\//.test(referrer.pathname)));
     } catch { setHasResultsHistory(false); }
   }, []);
   if (hasResultsHistory) {

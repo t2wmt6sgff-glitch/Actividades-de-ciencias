@@ -47,7 +47,9 @@ npm test
 npm run lint
 ```
 
-Las pruebas compilan la web y comprueban el contrato, la migración, los recuentos, las relaciones, las rutas, las imágenes, los enlaces externos y los archivos exportados.
+Las pruebas compilan la web y comprueban el contrato, la migración, los recuentos, las relaciones, las rutas canónicas y legadas, las imágenes, los enlaces externos y los archivos exportados.
+
+La exportación incluye rutas generadas desde el catálogo para cada asignatura y tema. Con los datos actuales están disponibles `/asignatura/ciencias` y once rutas `/asignatura/ciencias/{tema}`; las once rutas históricas `/seccion/{slug}` continúan como aliases estáticos canonicalizados.
 
 ## Despliegue en Hostinger desde GitHub
 
@@ -85,6 +87,6 @@ npm run catalog:validate
 
 No edites los JSON generados a mano. CI vuelve a generarlos y falla si no coinciden con el Excel. La migración inicial desde el libro histórico puede repetirse con `npm run catalog:migrate`; sobrescribe el libro general y no forma parte del mantenimiento habitual. `npm run catalog:migrate:check` compara el contenido lógico de ambos libros y no sus bytes ZIP.
 
-El esquema, las hojas y el adaptador temporal de compatibilidad están documentados en [`docs/catalogo-multiasignatura.md`](docs/catalogo-multiasignatura.md).
+El esquema y las hojas están documentados en [`docs/catalogo-multiasignatura.md`](docs/catalogo-multiasignatura.md). Las rutas, selectores, componentes y compatibilidad de UI se describen en [`docs/ui-multiasignatura.md`](docs/ui-multiasignatura.md).
 
 No se incluye una licencia para el código del repositorio.

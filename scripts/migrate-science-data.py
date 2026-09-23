@@ -42,6 +42,20 @@ TOPIC_MEDIA = {
     "SEC-11": ("/sections/relieve-y-geografia.webp", "Brújula sobre un mapa físico y político de Europa", ""),
 }
 
+TOPIC_COLORS = {
+    "SEC-01": ("#285F79", "#DFEAF0"),
+    "SEC-02": ("#4F722B", "#E6EFD9"),
+    "SEC-03": ("#72549A", "#ECE5F3"),
+    "SEC-04": ("#A35145", "#F3E3DE"),
+    "SEC-05": ("#1E725E", "#D9EEE7"),
+    "SEC-06": ("#946128", "#F2E8D6"),
+    "SEC-07": ("#3567A1", "#DDE9F5"),
+    "SEC-08": ("#296B88", "#DCECF2"),
+    "SEC-09": ("#A14468", "#F3DFE7"),
+    "SEC-10": ("#8B5741", "#EFE3DC"),
+    "SEC-11": ("#376D63", "#DFECE9"),
+}
+
 MAGNIFIC_LICENSE = "Licencia gratuita de Magnific para uso comercial con atribución, según el certificado aportado."
 TOPIC_CREDITS = {
     "SEC-01": ("rawpixel.com", "Magnific", "https://www.magnific.com/es/foto-gratis/vieja-biblia-mesa-madera_3012291.htm", MAGNIFIC_LICENSE),
@@ -214,6 +228,7 @@ def build_workbook(source_path: Path) -> Workbook:
         legacy_id = row["ID de sección"]
         topic_id = TOPIC_ID_MAP[legacy_id]
         image, image_alt, image_position = TOPIC_MEDIA[legacy_id]
+        accent, accent_soft = TOPIC_COLORS[legacy_id]
         credit_id = f"credit-{topic_id}"
         topic_rows.append([
             topic_id,
@@ -223,6 +238,8 @@ def build_workbook(source_path: Path) -> Workbook:
             "",
             int(row["Orden original"]),
             row["Notas"] or "",
+            accent,
+            accent_soft,
             image,
             image_alt,
             image_position,
@@ -238,9 +255,9 @@ def build_workbook(source_path: Path) -> Workbook:
     append_sheet(
         workbook,
         "TEMAS",
-        ["ID", "ID de asignatura", "Nombre", "Slug", "Slugs históricos", "Orden", "Descripción", "Imagen", "Texto alternativo", "Posición de imagen", "ID de crédito", "Estado", "ID legado", "Nombre original", "Curso histórico", "Conteo declarado legado"],
+        ["ID", "ID de asignatura", "Nombre", "Slug", "Slugs históricos", "Orden", "Descripción", "Color principal", "Color suave", "Imagen", "Texto alternativo", "Posición de imagen", "ID de crédito", "Estado", "ID legado", "Nombre original", "Curso histórico", "Conteo declarado legado"],
         topic_rows,
-        {1: 24, 2: 18, 3: 34, 4: 34, 7: 55, 8: 48, 9: 60, 10: 20, 11: 30, 13: 14, 14: 65, 15: 24},
+        {1: 24, 2: 18, 3: 34, 4: 34, 7: 55, 8: 18, 9: 18, 10: 48, 11: 60, 12: 20, 13: 30, 15: 14, 16: 65, 17: 24},
     )
 
     append_sheet(
