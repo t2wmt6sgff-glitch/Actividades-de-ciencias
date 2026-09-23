@@ -13,6 +13,7 @@ Web educativa creada por Alejandro Castaño Medina. Reúne 65 actividades propia
 
 - Node.js 20.9 o posterior. Se recomienda Node.js 22.
 - npm.
+- Python 3.12 y las dependencias de `requirements.txt` para regenerar el catálogo.
 
 ## Desarrollo local
 
@@ -40,10 +41,13 @@ npm start
 ## Comprobaciones
 
 ```bash
+npm run catalog:generate
+npm run catalog:validate
 npm test
+npm run lint
 ```
 
-La prueba compila la web y comprueba los recuentos, relaciones, rutas, imágenes, enlaces externos y archivos exportados.
+Las pruebas compilan la web y comprueban el contrato, la migración, los recuentos, las relaciones, las rutas, las imágenes, los enlaces externos y los archivos exportados.
 
 ## Despliegue en Hostinger desde GitHub
 
@@ -63,9 +67,24 @@ También puedes ejecutar `npm run build` en un ordenador y subir el contenido de
 
 ## Datos y recursos
 
-- `data/Actividades_Ciencias_para_Sites.xlsx`: fuente tabular original.
-- `lib/science-data.generated.json`: datos usados por la web.
+- `data/Actividades_Ciencias_para_Sites.xlsx`: fuente histórica de Ciencias. No se modifica.
+- `data/catalogo-actividades.xlsx`: fuente de verdad editable del catálogo general.
+- `data/generated/catalog.json`: catálogo generado usado por la aplicación.
+- `data/generated/generation-report.json`: huella, recuentos y avisos de cada generación.
+- `tests/fixtures/science-data.legacy.json`: fixture de regresión; no es una fuente activa.
 - `public/sections/`: once imágenes temáticas reutilizadas por las actividades.
 - La página **Sobre el proyecto** contiene los créditos y las licencias de las imágenes.
+
+Después de editar el libro general, ejecuta:
+
+```bash
+python -m pip install --requirement requirements.txt
+npm run catalog:generate
+npm run catalog:validate
+```
+
+No edites los JSON generados a mano. CI vuelve a generarlos y falla si no coinciden con el Excel. La migración inicial desde el libro histórico puede repetirse con `npm run catalog:migrate`; sobrescribe el libro general y no forma parte del mantenimiento habitual. `npm run catalog:migrate:check` compara el contenido lógico de ambos libros y no sus bytes ZIP.
+
+El esquema, las hojas y el adaptador temporal de compatibilidad están documentados en [`docs/catalogo-multiasignatura.md`](docs/catalogo-multiasignatura.md).
 
 No se incluye una licencia para el código del repositorio.

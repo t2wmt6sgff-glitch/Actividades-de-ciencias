@@ -4,24 +4,26 @@ import path from "node:path";
 import test from "node:test";
 
 const root = process.cwd();
-const data = JSON.parse(await readFile(path.join(root, "lib/science-data.generated.json"), "utf8"));
+const data = JSON.parse(await readFile(path.join(root, "data/generated/catalog.json"), "utf8"));
 
-test("preserva los datos y las relaciones", () => {
+test("preserva la regresión pública de Ciencias", () => {
   assert.equal(data.activities.length, 65);
-  assert.equal(data.sections.length, 11);
-  assert.equal(data.activities.reduce((total, item) => total + item.sectionIds.length, 0), 69);
-  assert.equal(data.activities.filter((item) => item.sectionIds.length > 1).length, 4);
+  assert.equal(data.topics.length, 11);
+  assert.equal(data.activities.reduce((total, item) => total + item.topicIds.length, 0), 69);
+  assert.equal(data.activities.filter((item) => item.topicIds.length > 1).length, 4);
   assert.equal(new Set(data.activities.map((item) => item.id)).size, 65);
   assert.equal(new Set(data.activities.map((item) => item.slug)).size, 65);
-  assert.equal(new Set(data.activities.map((item) => item.url)).size, 65);
+  assert.equal(new Set(data.activities.map((item) => item.source.url)).size, 65);
 });
 
-test("mantiene plataformas, cursos y enlaces públicos", () => {
+test("mantiene cursos y enlaces públicos externos", () => {
+  const platforms = new Set(data.platforms.map((platform) => platform.id));
   for (const activity of data.activities) {
-    assert.ok(activity.course, `Curso ausente: ${activity.id}`);
-    assert.ok(["Wordwall", "Educaplay"].includes(activity.platform), `Plataforma inesperada: ${activity.id}`);
-    const url = new URL(activity.url);
-    assert.ok(["wordwall.net", "es.educaplay.com"].includes(url.hostname), `Dominio inesperado: ${activity.url}`);
+    assert.ok(activity.originCourseLabel, `Curso ausente: ${activity.id}`);
+    assert.equal(activity.source.kind, "external");
+    assert.ok(platforms.has(activity.source.platformId), `Plataforma inesperada: ${activity.id}`);
+    const url = new URL(activity.source.url);
+    assert.ok(["wordwall.net", "es.educaplay.com"].includes(url.hostname), `Dominio inesperado: ${activity.source.url}`);
   }
 });
 
@@ -30,7 +32,7 @@ test("exporta todas las rutas directas", async () => {
     "index.html",
     "actividades/index.html",
     "sobre-el-proyecto/index.html",
-    ...data.sections.map((section) => `seccion/${section.slug}/index.html`),
+    ...data.topics.map((topic) => `seccion/${topic.slug}/index.html`),
     ...data.activities.map((activity) => `actividad/${activity.slug}/index.html`),
   ];
   await Promise.all(expected.map((relative) => access(path.join(root, "out", relative))));
@@ -45,7 +47,7 @@ test("exporta las once imágenes temáticas", async () => {
     "reproduccion-humana.webp", "sociedad-y-poblacion.webp", "union-europea.webp",
   ];
   await Promise.all(images.map((name) => access(path.join(root, "out/sections", name))));
-  assert.equal(images.length, data.sections.length);
+  assert.equal(images.length, data.topics.length);
 });
 
 test("incluye la autoría y los créditos en el HTML", async () => {
