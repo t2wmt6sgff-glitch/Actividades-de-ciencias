@@ -9,7 +9,7 @@ import re
 import tempfile
 from datetime import date, datetime
 from pathlib import Path
-from zipfile import ZIP_DEFLATED, ZipFile, ZipInfo
+from zipfile import ZIP_STORED, ZipFile, ZipInfo
 
 import openpyxl
 from openpyxl import Workbook
@@ -160,11 +160,13 @@ def deterministic_save(workbook: Workbook, destination: Path) -> None:
     with tempfile.TemporaryDirectory() as directory:
         raw_path = Path(directory) / "raw.xlsx"
         workbook.save(raw_path)
-        with ZipFile(raw_path, "r") as source, ZipFile(destination, "w", compression=ZIP_DEFLATED, compresslevel=9) as target:
+        # Store entries without compression so the resulting bytes do not
+        # depend on the runner's zlib implementation.
+        with ZipFile(raw_path, "r") as source, ZipFile(destination, "w", compression=ZIP_STORED) as target:
             for filename in sorted(source.namelist()):
                 source_info = source.getinfo(filename)
                 info = ZipInfo(filename, date_time=(1980, 1, 1, 0, 0, 0))
-                info.compress_type = ZIP_DEFLATED
+                info.compress_type = ZIP_STORED
                 info.external_attr = source_info.external_attr
                 info.create_system = source_info.create_system
                 content = source.read(filename)
