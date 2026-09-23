@@ -9,7 +9,7 @@ import re
 import tempfile
 from datetime import date, datetime
 from pathlib import Path
-from zipfile import ZIP_STORED, ZipFile, ZipInfo
+from zipfile import ZIP_DEFLATED, ZipFile, ZipInfo
 
 import openpyxl
 from openpyxl import Workbook
@@ -160,13 +160,11 @@ def deterministic_save(workbook: Workbook, destination: Path) -> None:
     with tempfile.TemporaryDirectory() as directory:
         raw_path = Path(directory) / "raw.xlsx"
         workbook.save(raw_path)
-        # Store entries without compression so the resulting bytes do not
-        # depend on the runner's zlib implementation.
-        with ZipFile(raw_path, "r") as source, ZipFile(destination, "w", compression=ZIP_STORED) as target:
+        with ZipFile(raw_path, "r") as source, ZipFile(destination, "w", compression=ZIP_DEFLATED, compresslevel=9) as target:
             for filename in sorted(source.namelist()):
                 source_info = source.getinfo(filename)
                 info = ZipInfo(filename, date_time=(1980, 1, 1, 0, 0, 0))
-                info.compress_type = ZIP_STORED
+                info.compress_type = ZIP_DEFLATED
                 info.external_attr = source_info.external_attr
                 info.create_system = source_info.create_system
                 content = source.read(filename)
@@ -408,11 +406,145 @@ def _slugify(value: str) -> str:
     return re.sub(r"[^a-zA-Z0-9]+", "-", ascii_text).strip("-").lower()
 
 
+def xlsx_container_differences(expected: Path, candidate: Path) -> list[str]:
+    """Describe binary container differences without treating them as data errors."""
+    differences = []
+    with ZipFile(expected) as expected_zip, ZipFile(candidate) as candidate_zip:
+        expected_names = expected_zip.namelist()
+        candidate_names = candidate_zip.namelist()
+        if expected_names != candidate_names:
+            differences.append("orden o conjunto de entradas ZIP distinto")
+        for name in sorted(set(expected_names).intersection(candidate_names)):
+            expected_info = expected_zip.getinfo(name)
+            candidate_info = candidate_zip.getinfo(name)
+            if expected_zip.read(name) != candidate_zip.read(name):
+                differences.append(f"contenido XML/binario distinto: {name}")
+            metadata = (
+                expected_info.date_time,
+                expected_info.compress_type,
+                expected_info.create_system,
+                expected_info.external_attr,
+                expected_info.flag_bits,
+                expected_info.extra,
+            )
+            candidate_metadata = (
+                candidate_info.date_time,
+                candidate_info.compress_type,
+                candidate_info.create_system,
+                candidate_info.external_attr,
+                candidate_info.flag_bits,
+                candidate_info.extra,
+            )
+            if metadata != candidate_metadata:
+                differences.append(f"metadatos ZIP distintos: {name}")
+    return differences
+
+
+def dimension_signature(dimension) -> tuple:
+    return (
+        dimension.width if hasattr(dimension, "width") else dimension.height,
+        dimension.hidden,
+        dimension.outlineLevel,
+        dimension.collapsed,
+    )
+
+
+def semantic_workbook_differences(expected: Path, candidate: Path) -> list[str]:
+    """Compare the workbook contract while ignoring irrelevant ZIP serialization."""
+    expected_book = openpyxl.load_workbook(expected, data_only=False)
+    candidate_book = openpyxl.load_workbook(candidate, data_only=False)
+    differences: list[str] = []
+
+    if expected_book.sheetnames != candidate_book.sheetnames:
+        differences.append(
+            f"libro/hojas: {expected_book.sheetnames!r} != {candidate_book.sheetnames!r}"
+        )
+        return differences
+
+    property_names = ("creator", "lastModifiedBy", "title", "subject", "created", "modified")
+    for name in property_names:
+        expected_value = getattr(expected_book.properties, name)
+        candidate_value = getattr(candidate_book.properties, name)
+        if expected_value != candidate_value:
+            differences.append(f"libro/propiedad {name}: {expected_value!r} != {candidate_value!r}")
+
+    for sheet_name in expected_book.sheetnames:
+        expected_sheet = expected_book[sheet_name]
+        candidate_sheet = candidate_book[sheet_name]
+        prefix = f"{sheet_name}"
+        sheet_properties = {
+            "dimensiones": (
+                (expected_sheet.max_row, expected_sheet.max_column),
+                (candidate_sheet.max_row, candidate_sheet.max_column),
+            ),
+            "estado": (expected_sheet.sheet_state, candidate_sheet.sheet_state),
+            "panel inmovilizado": (expected_sheet.freeze_panes, candidate_sheet.freeze_panes),
+            "autofiltro": (expected_sheet.auto_filter.ref, candidate_sheet.auto_filter.ref),
+            "cuadrícula": (
+                expected_sheet.sheet_view.showGridLines,
+                candidate_sheet.sheet_view.showGridLines,
+            ),
+            "celdas combinadas": (
+                tuple(str(item) for item in expected_sheet.merged_cells.ranges),
+                tuple(str(item) for item in candidate_sheet.merged_cells.ranges),
+            ),
+        }
+        for label, (expected_value, candidate_value) in sheet_properties.items():
+            if expected_value != candidate_value:
+                differences.append(
+                    f"{prefix}/{label}: {expected_value!r} != {candidate_value!r}"
+                )
+
+        max_row = max(expected_sheet.max_row, candidate_sheet.max_row)
+        max_column = max(expected_sheet.max_column, candidate_sheet.max_column)
+        for row in range(1, max_row + 1):
+            for column in range(1, max_column + 1):
+                expected_cell = expected_sheet.cell(row, column)
+                candidate_cell = candidate_sheet.cell(row, column)
+                properties = {
+                    "valor": (expected_cell.value, candidate_cell.value),
+                    "tipo": (expected_cell.data_type, candidate_cell.data_type),
+                    "tipo Python": (
+                        type(expected_cell.value).__name__,
+                        type(candidate_cell.value).__name__,
+                    ),
+                    "estilo": (expected_cell._style, candidate_cell._style),
+                }
+                for label, (expected_value, candidate_value) in properties.items():
+                    if expected_value != candidate_value:
+                        differences.append(
+                            f"{prefix}/{expected_cell.coordinate}/{label}: "
+                            f"{expected_value!r} != {candidate_value!r}"
+                        )
+
+        column_keys = sorted(set(expected_sheet.column_dimensions).union(candidate_sheet.column_dimensions))
+        for key in column_keys:
+            expected_dimension = expected_sheet.column_dimensions[key]
+            candidate_dimension = candidate_sheet.column_dimensions[key]
+            if dimension_signature(expected_dimension) != dimension_signature(candidate_dimension):
+                differences.append(
+                    f"{prefix}/columna {key}/formato: "
+                    f"{dimension_signature(expected_dimension)!r} != "
+                    f"{dimension_signature(candidate_dimension)!r}"
+                )
+        row_keys = sorted(set(expected_sheet.row_dimensions).union(candidate_sheet.row_dimensions))
+        for key in row_keys:
+            expected_dimension = expected_sheet.row_dimensions[key]
+            candidate_dimension = candidate_sheet.row_dimensions[key]
+            if dimension_signature(expected_dimension) != dimension_signature(candidate_dimension):
+                differences.append(
+                    f"{prefix}/fila {key}/formato: "
+                    f"{dimension_signature(expected_dimension)!r} != "
+                    f"{dimension_signature(candidate_dimension)!r}"
+                )
+    return differences
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--input", type=Path, default=DEFAULT_INPUT)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
-    parser.add_argument("--check", action="store_true", help="Comprueba que el archivo versionado coincide con una migración nueva.")
+    parser.add_argument("--check", action="store_true", help="Comprueba semánticamente el libro versionado frente a una migración nueva.")
     args = parser.parse_args()
     workbook = build_workbook(args.input)
     if args.check:
@@ -424,11 +556,23 @@ def main() -> None:
             expected_hash = hashlib.sha256(args.output.read_bytes()).hexdigest()
             candidate_hash = hashlib.sha256(candidate.read_bytes()).hexdigest()
             if expected_hash != candidate_hash:
-                raise SystemExit(
-                    "El libro general no coincide con la migración reproducible. "
-                    f"Versionado={expected_hash}, regenerado={candidate_hash}. Ejecuta npm run catalog:migrate."
+                print(
+                    "Los contenedores XLSX tienen SHA-256 distinto; se comprobará su contenido lógico. "
+                    f"Versionado={expected_hash}, regenerado={candidate_hash}."
                 )
-            print(f"Migración reproducible verificada: {candidate_hash}")
+                for difference in xlsx_container_differences(args.output, candidate):
+                    print(f"- {difference}")
+            differences = semantic_workbook_differences(args.output, candidate)
+            if differences:
+                details = "\n".join(f"- {difference}" for difference in differences[:50])
+                remainder = len(differences) - 50
+                if remainder > 0:
+                    details += f"\n- … y {remainder} diferencias más"
+                raise SystemExit(
+                    "El libro general no coincide semánticamente con la migración reproducible:\n"
+                    f"{details}\nEjecuta npm run catalog:migrate."
+                )
+            print("Migración semánticamente reproducible verificada.")
         return
     deterministic_save(workbook, args.output)
     print(f"Libro general creado: {args.output}")

@@ -59,6 +59,8 @@ npm run catalog:migrate:check
 
 `catalog:migrate` reconstruye `data/catalogo-actividades.xlsx` desde el libro histórico y sobrescribe el libro general. No debe usarse después de añadir nuevas actividades directamente al catálogo general. `catalog:migrate:check` solo demuestra la reproducibilidad del estado inicial de Fase 1.
 
+La comprobación de migración compara semánticamente el libro versionado con uno temporal: orden y nombres de hojas, dimensiones, valores, tipos y fórmulas de celdas, estilos, anchos y altos, filtros, paneles inmovilizados y propiedades deliberadas del documento. Un XLSX es un contenedor ZIP/XML, por lo que diferencias irrelevantes de serialización o metadatos ZIP se diagnostican pero no provocan un fallo si el libro lógico es idéntico.
+
 ## Contrato y validación
 
 `lib/catalog/schema.ts` define el contrato TypeScript explícito. `data.ts` carga el catálogo e `indexes.ts` ofrece índices por ID y slug.

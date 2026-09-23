@@ -83,7 +83,7 @@ npm run catalog:generate
 npm run catalog:validate
 ```
 
-No edites los JSON generados a mano. CI vuelve a generarlos y falla si no coinciden con el Excel. La migración inicial desde el libro histórico puede repetirse con `npm run catalog:migrate`; sobrescribe el libro general y no forma parte del mantenimiento habitual.
+No edites los JSON generados a mano. CI vuelve a generarlos y falla si no coinciden con el Excel. La migración inicial desde el libro histórico puede repetirse con `npm run catalog:migrate`; sobrescribe el libro general y no forma parte del mantenimiento habitual. `npm run catalog:migrate:check` compara el contenido lógico de ambos libros y no sus bytes ZIP.
 
 El esquema, las hojas y el adaptador temporal de compatibilidad están documentados en [`docs/catalogo-multiasignatura.md`](docs/catalogo-multiasignatura.md).
 
