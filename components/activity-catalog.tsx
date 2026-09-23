@@ -21,23 +21,26 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { activityTypes, platforms } from "@/lib/catalog/data";
+import { activityTypeById, platformById, subjectById, topicById } from "@/lib/catalog/indexes";
+import { languageLabel, platformLabel, typeLabel } from "@/lib/catalog/presentation";
 import {
-  activities,
-  activityTypes,
-  getActivitySections,
-  sectionBySlug,
-  sections,
-  type Activity,
-} from "@/lib/science-data";
+  activeTopics,
+  getActivitySubjects,
+  getActivityTopics,
+  publicActivities,
+  resolveTopicFilter,
+} from "@/lib/catalog/selectors";
+import type { Activity } from "@/lib/catalog/schema";
 
 type FilterState = {
-  sections: string[];
+  topics: string[];
   languages: string[];
   types: string[];
   platforms: string[];
 };
 
-const emptyFilters: FilterState = { sections: [], languages: [], types: [], platforms: [] };
+const emptyFilters: FilterState = { topics: [], languages: [], types: [], platforms: [] };
 
 function normalize(value: string) {
   return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase("es").trim();
@@ -46,8 +49,8 @@ function normalize(value: string) {
 function score(activity: Activity, query: string) {
   if (!query) return 0;
   const title = normalize(activity.title);
-  const original = normalize(activity.originalTitle);
-  const tags = normalize(`${activity.tags} ${activity.keywords}`);
+  const original = normalize(activity.sourceTitle ?? "");
+  const tags = normalize([...activity.tags, ...activity.keywords].join(" "));
   const description = normalize(activity.description);
   if (title === query) return 1000;
   if (title.startsWith(query)) return 700;
@@ -57,15 +60,33 @@ function score(activity: Activity, query: string) {
   return 100;
 }
 
-function readInitialFilters(lockedSection?: string): FilterState {
+function valuesFrom(params: URLSearchParams, name: string) {
+  return (params.get(name) ?? "").split("|").filter(Boolean);
+}
+
+function resolveConfiguredId(value: string, entries: { id: string; name: string }[]) {
+  return entries.find((entry) => entry.id === value || entry.name === value)?.id;
+}
+
+function readInitialFilters(lockedTopicId?: string): FilterState {
   if (typeof window === "undefined") return emptyFilters;
   const params = new URLSearchParams(window.location.search);
-  const values = (name: string) => (params.get(name) ?? "").split("|").filter(Boolean);
+  const languages = [...new Set(publicActivities.map((activity) => activity.language))];
   return {
-    sections: lockedSection ? [] : values("section"),
-    languages: values("lang"),
-    types: values("type"),
-    platforms: values("platform"),
+    topics: lockedTopicId
+      ? []
+      : valuesFrom(params, "section")
+          .map((value) => resolveTopicFilter(value)?.id)
+          .filter((value): value is string => Boolean(value)),
+    languages: valuesFrom(params, "lang")
+      .map((value) => languages.find((language) => language === value || languageLabel(language) === value))
+      .filter((value): value is string => Boolean(value)),
+    types: valuesFrom(params, "type")
+      .map((value) => resolveConfiguredId(value, activityTypes))
+      .filter((value): value is string => Boolean(value)),
+    platforms: valuesFrom(params, "platform")
+      .map((value) => resolveConfiguredId(value, platforms))
+      .filter((value): value is string => Boolean(value)),
   };
 }
 
@@ -90,8 +111,17 @@ function FilterGroup({ title, values, selected, onToggle }: { title: string; val
   );
 }
 
-export function ActivityCatalog({ initialQuery = "", lockedSection }: { initialQuery?: string; lockedSection?: string }) {
-  const locked = lockedSection ? sectionBySlug.get(lockedSection) : undefined;
+export function ActivityCatalog({
+  initialQuery = "",
+  lockedTopicId,
+  lockedSubjectId,
+}: {
+  initialQuery?: string;
+  lockedTopicId?: string;
+  lockedSubjectId?: string;
+}) {
+  const lockedTopic = lockedTopicId ? topicById.get(lockedTopicId) : undefined;
+  const lockedSubject = lockedSubjectId ? subjectById.get(lockedSubjectId) : undefined;
   const [query, setQuery] = useState(initialQuery);
   const [debouncedQuery, setDebouncedQuery] = useState(initialQuery);
   const [filters, setFilters] = useState<FilterState>(emptyFilters);
@@ -103,9 +133,9 @@ export function ActivityCatalog({ initialQuery = "", lockedSection }: { initialQ
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setQuery(params.get("q") ?? initialQuery);
     setDebouncedQuery(params.get("q") ?? initialQuery);
-    setFilters(readInitialFilters(lockedSection));
+    setFilters(readInitialFilters(lockedTopicId));
     setSort(params.get("sort") ?? (params.get("q") ? "relevance" : "theme"));
-  }, [initialQuery, lockedSection]);
+  }, [initialQuery, lockedTopicId]);
 
   useEffect(() => {
     const timer = window.setTimeout(() => setDebouncedQuery(query.trim()), 200);
@@ -115,27 +145,38 @@ export function ActivityCatalog({ initialQuery = "", lockedSection }: { initialQ
   useEffect(() => {
     const params = new URLSearchParams();
     if (debouncedQuery) params.set("q", debouncedQuery);
-    if (!lockedSection && filters.sections.length) params.set("section", filters.sections.join("|"));
+    if (!lockedTopicId && filters.topics.length) params.set("section", filters.topics.join("|"));
     if (filters.languages.length) params.set("lang", filters.languages.join("|"));
     if (filters.types.length) params.set("type", filters.types.join("|"));
     if (filters.platforms.length) params.set("platform", filters.platforms.join("|"));
     if (sort !== (debouncedQuery ? "relevance" : "theme")) params.set("sort", sort);
     const next = `${window.location.pathname}${params.size ? `?${params.toString()}` : ""}`;
     window.history.replaceState({ catalog: true }, "", next);
-  }, [debouncedQuery, filters, lockedSection, sort]);
+  }, [debouncedQuery, filters, lockedTopicId, sort]);
+
+  const scopedActivities = useMemo(
+    () => publicActivities.filter((activity) =>
+      (!lockedSubjectId || activity.subjectIds.includes(lockedSubjectId))
+      && (!lockedTopicId || activity.topicIds.includes(lockedTopicId))),
+    [lockedSubjectId, lockedTopicId],
+  );
+
+  const availableTopics = activeTopics.filter((topic) => !lockedSubjectId || topic.subjectId === lockedSubjectId);
+  const availableLanguages = [...new Set(scopedActivities.map((activity) => activity.language))].sort();
+  const countBy = (predicate: (activity: Activity) => boolean) => scopedActivities.filter(predicate).length;
 
   const results = useMemo(() => {
     const terms = normalize(debouncedQuery).split(/\s+/).filter(Boolean);
-    return activities
-      .filter((activity) => !locked || activity.sectionIds.includes(locked.id))
-      .filter((activity) => !filters.sections.length || activity.sectionIds.some((id) => filters.sections.includes(id)))
+    return scopedActivities
+      .filter((activity) => !filters.topics.length || activity.topicIds.some((id) => filters.topics.includes(id)))
       .filter((activity) => !filters.languages.length || filters.languages.includes(activity.language))
-      .filter((activity) => !filters.types.length || filters.types.includes(activity.type))
-      .filter((activity) => !filters.platforms.length || filters.platforms.includes(activity.platform))
+      .filter((activity) => !filters.types.length || filters.types.includes(activity.typeId))
+      .filter((activity) => !filters.platforms.length || (activity.source.kind === "external" && filters.platforms.includes(activity.source.platformId)))
       .filter((activity) => {
         if (!terms.length) return true;
-        const sectionNames = getActivitySections(activity).map((section) => section.name).join(" ");
-        const haystack = normalize(`${activity.title} ${activity.originalTitle} ${activity.description} ${sectionNames} ${activity.tags} ${activity.keywords} ${activity.type} ${activity.language} ${activity.platform}`);
+        const subjectNames = getActivitySubjects(activity).map((subject) => subject.name).join(" ");
+        const topicNames = getActivityTopics(activity).map((topic) => topic.name).join(" ");
+        const haystack = normalize(`${activity.title} ${activity.sourceTitle ?? ""} ${activity.description} ${subjectNames} ${topicNames} ${activity.tags.join(" ")} ${activity.keywords.join(" ")} ${typeLabel(activity)} ${languageLabel(activity.language)} ${platformLabel(activity)}`);
         return terms.every((term) => haystack.includes(term));
       })
       .sort((a, b) => {
@@ -143,11 +184,11 @@ export function ActivityCatalog({ initialQuery = "", lockedSection }: { initialQ
         if (sort === "relevance" && debouncedQuery) {
           return score(b, normalize(debouncedQuery)) - score(a, normalize(debouncedQuery)) || a.title.localeCompare(b.title, "es");
         }
-        if (locked) return a.title.localeCompare(b.title, "es");
-        const sectionOrder = (getActivitySections(a)[0]?.order ?? 99) - (getActivitySections(b)[0]?.order ?? 99);
-        return sectionOrder || a.title.localeCompare(b.title, "es");
+        if (lockedTopic) return a.title.localeCompare(b.title, "es");
+        const topicOrder = (getActivityTopics(a)[0]?.order ?? 99) - (getActivityTopics(b)[0]?.order ?? 99);
+        return topicOrder || a.title.localeCompare(b.title, "es");
       });
-  }, [debouncedQuery, filters, locked, sort]);
+  }, [debouncedQuery, filters, lockedTopic, scopedActivities, sort]);
 
   function toggle(group: keyof FilterState, value: string) {
     setFilters((current) => ({ ...current, [group]: current[group].includes(value) ? current[group].filter((item) => item !== value) : [...current[group], value] }));
@@ -161,18 +202,18 @@ export function ActivityCatalog({ initialQuery = "", lockedSection }: { initialQ
   }
 
   const chips = [
-    ...filters.sections.map((id) => ({ group: "sections" as const, value: id, label: sections.find((section) => section.id === id)?.name ?? id })),
-    ...filters.languages.map((value) => ({ group: "languages" as const, value, label: value })),
-    ...filters.types.map((value) => ({ group: "types" as const, value, label: value })),
-    ...filters.platforms.map((value) => ({ group: "platforms" as const, value, label: value })),
+    ...filters.topics.map((id) => ({ group: "topics" as const, value: id, label: topicById.get(id)?.name ?? id })),
+    ...filters.languages.map((value) => ({ group: "languages" as const, value, label: languageLabel(value) })),
+    ...filters.types.map((value) => ({ group: "types" as const, value, label: activityTypeById.get(value)?.name ?? value })),
+    ...filters.platforms.map((value) => ({ group: "platforms" as const, value, label: platformById.get(value)?.name ?? value })),
   ];
 
   const filtersUi = (
     <div className="filters-stack">
-      {!locked ? <FilterGroup title="Sección" values={sections.map((section) => ({ value: section.id, label: section.name, count: section.count }))} selected={filters.sections} onToggle={(value) => toggle("sections", value)} /> : null}
-      <FilterGroup title="Idioma" values={[{ value: "Español", label: "Español", count: 26 }, { value: "Inglés", label: "Inglés", count: 39 }]} selected={filters.languages} onToggle={(value) => toggle("languages", value)} />
-      <FilterGroup title="Tipo de actividad" values={activityTypes.map((item) => ({ value: item.name, label: item.name, count: item.count }))} selected={filters.types} onToggle={(value) => toggle("types", value)} />
-      <FilterGroup title="Plataforma" values={[{ value: "Wordwall", label: "Wordwall", count: 22 }, { value: "Educaplay", label: "Educaplay", count: 43 }]} selected={filters.platforms} onToggle={(value) => toggle("platforms", value)} />
+      {!lockedTopic ? <FilterGroup title="Tema" values={availableTopics.map((topic) => ({ value: topic.id, label: topic.name, count: countBy((activity) => activity.topicIds.includes(topic.id)) }))} selected={filters.topics} onToggle={(value) => toggle("topics", value)} /> : null}
+      <FilterGroup title="Idioma" values={availableLanguages.map((language) => ({ value: language, label: languageLabel(language), count: countBy((activity) => activity.language === language) }))} selected={filters.languages} onToggle={(value) => toggle("languages", value)} />
+      <FilterGroup title="Tipo de actividad" values={activityTypes.map((item) => ({ value: item.id, label: item.name, count: countBy((activity) => activity.typeId === item.id) })).filter((item) => item.count > 0)} selected={filters.types} onToggle={(value) => toggle("types", value)} />
+      <FilterGroup title="Plataforma" values={platforms.map((platform) => ({ value: platform.id, label: platform.name, count: countBy((activity) => activity.source.kind === "external" && activity.source.platformId === platform.id) })).filter((item) => item.count > 0)} selected={filters.platforms} onToggle={(value) => toggle("platforms", value)} />
       <Button variant="outline" className="clear-filter-button" onClick={clearAll}>Limpiar filtros</Button>
     </div>
   );
@@ -200,9 +241,9 @@ export function ActivityCatalog({ initialQuery = "", lockedSection }: { initialQ
       <div className="catalog-layout">
         <aside className="desktop-filters" aria-label="Filtros"><div className="filter-heading"><Filter aria-hidden="true" /><h2>Filtros</h2></div>{filtersUi}</aside>
         <section className="results-panel" aria-labelledby="results-heading">
-          <div className="results-heading"><h2 id="results-heading">{results.length} {results.length === 1 ? "actividad" : "actividades"}</h2>{locked ? <span>en {locked.name}</span> : null}</div>
+          <div className="results-heading"><h2 id="results-heading">{results.length} {results.length === 1 ? "actividad" : "actividades"}</h2>{lockedTopic ? <span>en {lockedTopic.name}</span> : lockedSubject ? <span>de {lockedSubject.name}</span> : null}</div>
           <p className="sr-only" aria-live="polite">Se muestran {results.length} resultados.</p>
-          {results.length ? <div className="activity-grid">{results.map((activity) => <ActivityCard key={activity.id} activity={activity} currentSection={locked} />)}</div> : <div className="empty-state"><Search aria-hidden="true" /><h3>No hay resultados con esos criterios</h3><p>Prueba otra búsqueda o elimina alguno de los filtros.</p><Button onClick={clearAll}>Limpiar filtros</Button></div>}
+          {results.length ? <div className="activity-grid">{results.map((activity) => <ActivityCard key={activity.id} activity={activity} currentTopic={lockedTopic} currentSubject={lockedSubject} />)}</div> : <div className="empty-state"><Search aria-hidden="true" /><h3>No hay resultados con esos criterios</h3><p>Prueba otra búsqueda o elimina alguno de los filtros.</p><Button onClick={clearAll}>Limpiar filtros</Button></div>}
         </section>
       </div>
     </div>

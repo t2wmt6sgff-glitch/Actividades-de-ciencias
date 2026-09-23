@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { ArrowRight, BookOpen, ExternalLink } from "lucide-react";
 import { HomeSearch } from "@/components/home-search";
-import { sections } from "@/lib/science-data";
-import { getSectionMedia } from "@/lib/section-media";
+import { TopicTile } from "@/components/topic-tile";
+import { platforms } from "@/lib/catalog/data";
+import { activeTopics, publicActivities } from "@/lib/catalog/selectors";
 
 export default function Home() {
   return (
@@ -11,7 +12,7 @@ export default function Home() {
         <p className="eyebrow">Recursos educativos</p>
         <h1>Actividades de Ciencias</h1>
         <p className="home-subtitle">Recursos de repaso organizados por temas</p>
-        <p className="home-description">Una recopilación de actividades de Ciencias creadas para estudiar y repasar, disponibles en Wordwall y Educaplay.</p>
+        <p className="home-description">Una recopilación de actividades de Ciencias creadas para estudiar y repasar, disponibles en {platforms.map((platform) => platform.name).join(" y ")}.</p>
         <p className="home-author">Actividades, recopilación y web creadas por <strong>Alejandro Castaño Medina</strong></p>
         <HomeSearch />
       </section>
@@ -20,21 +21,8 @@ export default function Home() {
           <div><p className="eyebrow">Explorar por tema</p><h2 id="themes-heading">¿Qué quieres repasar?</h2></div>
           <Link href="/actividades" className="text-link">Ver catálogo completo <ArrowRight aria-hidden="true" /></Link>
         </div>
-        <div className="section-grid">
-          {sections.map((section) => {
-            const media = getSectionMedia(section);
-            return <Link key={section.id} href={`/seccion/${section.slug}`} className={`section-tile section-theme-${section.order}`}>
-              {media ? <img src={media.src} alt="" style={{ objectPosition: media.objectPosition }} /> : null}
-              <span className="section-tile-shade" aria-hidden="true" />
-              <span className="section-number" aria-hidden="true">{String(section.order).padStart(2, "0")}</span>
-              <span className="section-name">{section.name}</span>
-              <span className="section-count">{section.count} {section.count === 1 ? "actividad" : "actividades"}</span>
-              <small className="image-signature">Alejandro Castaño Medina</small>
-              <ArrowRight aria-hidden="true" />
-            </Link>;
-          })}
-        </div>
-        <div className="home-summary"><span>65 actividades</span><span>11 temas</span><span>Wordwall y Educaplay</span></div>
+        <div className="section-grid">{activeTopics.map((topic) => <TopicTile key={topic.id} topic={topic} />)}</div>
+        <div className="home-summary"><span>{publicActivities.length} actividades</span><span>{activeTopics.length} temas</span><span>{platforms.map((platform) => platform.name).join(" y ")}</span></div>
         <Link href="/actividades" className="primary-link-button">Ver todas las actividades <ArrowRight aria-hidden="true" /></Link>
       </section>
       <section className="about-teaser">

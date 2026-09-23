@@ -12,12 +12,24 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { platforms } from "@/lib/catalog/data";
+import { formatCatalogDate } from "@/lib/catalog/presentation";
+import { publicActivities } from "@/lib/catalog/selectors";
 
 const nav = [
   { href: "/", label: "Inicio" },
   { href: "/actividades", label: "Actividades" },
   { href: "/sobre-el-proyecto", label: "Sobre el proyecto" },
 ];
+
+const platformNames = platforms.map((platform) => platform.name);
+const platformSummary = platformNames.length > 1
+  ? `${platformNames.slice(0, -1).join(", ")} o ${platformNames.at(-1)}`
+  : platformNames[0] ?? "sus plataformas originales";
+const lastVerifiedAt = publicActivities
+  .flatMap((activity) => activity.source.kind === "external" && activity.source.lastVerifiedAt ? [activity.source.lastVerifiedAt] : [])
+  .sort()
+  .at(-1);
 
 export function SiteHeader() {
   return (
@@ -69,7 +81,7 @@ export function SiteFooter() {
           <Link href="/sobre-el-proyecto">Sobre el proyecto</Link>
           <Link href="/sobre-el-proyecto#creditos-imagenes">Créditos</Link>
         </nav>
-        <p className="footer-note"><span className="footer-signature">Alejandro Castaño Medina</span> Datos revisados el 5 de septiembre de 2026. Las actividades se abren en Wordwall o Educaplay.</p>
+        <p className="footer-note"><span className="footer-signature">Alejandro Castaño Medina</span>{lastVerifiedAt ? ` Enlaces revisados el ${formatCatalogDate(lastVerifiedAt)}.` : ""} Las actividades externas se abren en {platformSummary}.</p>
       </div>
     </footer>
   );
