@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "source": {
     "file": "data/catalogo-actividades.xlsx",
-    "sha256": "5f7ecafbbfe11db542f93ec16fffcb7bebb6f8a91de500f75a9110af2736ae8c"
+    "sha256": "223cc49f96712070505f8ac1c22a531c0756c714db827718d6f44667528dc864"
   },
   "counts": {
     "subjects": 1,

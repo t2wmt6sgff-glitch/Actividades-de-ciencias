@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "source": {
     "file": "data/catalogo-actividades.xlsx",
-    "sha256": "5f7ecafbbfe11db542f93ec16fffcb7bebb6f8a91de500f75a9110af2736ae8c"
+    "sha256": "223cc49f96712070505f8ac1c22a531c0756c714db827718d6f44667528dc864"
   },
   "subjects": [
     {
@@ -29,6 +29,8 @@
       "order": 1,
       "description": "El documento concreta que el bloque corresponde a la Edad Contemporánea.",
       "visual": {
+        "accent": "#285F79",
+        "accentSoft": "#DFEAF0",
         "image": "/sections/historia.webp",
         "imageAlt": "Biblia antigua, brújula y mapa histórico sobre una mesa",
         "imageObjectPosition": "center 58%",
@@ -50,6 +52,8 @@
       "order": 2,
       "description": "El documento indica expresamente que se desconoce el curso de origen.",
       "visual": {
+        "accent": "#4F722B",
+        "accentSoft": "#E6EFD9",
         "image": "/sections/alimentacion.webp",
         "imageAlt": "Platos con verduras, legumbres, frutos secos y otros alimentos",
         "creditId": "credit-topic-ciencias-002"
@@ -70,6 +74,8 @@
       "order": 3,
       "description": "Incluye organización territorial, participación política e instituciones.",
       "visual": {
+        "accent": "#72549A",
+        "accentSoft": "#ECE5F3",
         "image": "/sections/politica-y-organizacion-de-espana.webp",
         "imageAlt": "Una persona deposita un sobre en una urna ante la bandera de España",
         "creditId": "credit-topic-ciencias-003"
@@ -90,6 +96,8 @@
       "order": 4,
       "description": "Nombre ampliado para describir mejor el contenido sin cambiar la clasificación original.",
       "visual": {
+        "accent": "#A35145",
+        "accentSoft": "#F3E3DE",
         "image": "/sections/sociedad-y-poblacion.webp",
         "imageAlt": "Figuras de personas distribuidas sobre un mapa de Europa",
         "creditId": "credit-topic-ciencias-004"
@@ -110,6 +118,8 @@
       "order": 5,
       "description": "La actividad de plantas tiene un curso de origen específico de 4.º de Primaria indicado en el propio párrafo.",
       "visual": {
+        "accent": "#1E725E",
+        "accentSoft": "#D9EEE7",
         "image": "/sections/medio-ambiente-y-sostenibilidad.webp",
         "imageAlt": "Manos sostienen símbolos de la Tierra, el agua, la energía y las plantas",
         "creditId": "credit-topic-ciencias-005"
@@ -129,6 +139,8 @@
       "slug": "la-transicion-espanola",
       "order": 6,
       "visual": {
+        "accent": "#946128",
+        "accentSoft": "#F2E8D6",
         "image": "/sections/la-transicion-espanola.webp",
         "imageAlt": "Proclamación de Juan Carlos I como rey de España en 1975",
         "imageObjectPosition": "center 38%",
@@ -149,6 +161,8 @@
       "slug": "derechos-y-deberes",
       "order": 7,
       "visual": {
+        "accent": "#3567A1",
+        "accentSoft": "#DDE9F5",
         "image": "/sections/derechos-y-deberes.webp",
         "imageAlt": "Puños alzados de distintos tonos de piel como símbolo de igualdad",
         "imageObjectPosition": "center 50%",
@@ -169,6 +183,8 @@
       "slug": "union-europea",
       "order": 8,
       "visual": {
+        "accent": "#296B88",
+        "accentSoft": "#DCECF2",
         "image": "/sections/union-europea.webp",
         "imageAlt": "Estrellas de la bandera de la Unión Europea sobre un mapa de Europa",
         "creditId": "credit-topic-ciencias-008"
@@ -188,6 +204,8 @@
       "slug": "reproduccion-humana",
       "order": 9,
       "visual": {
+        "accent": "#A14468",
+        "accentSoft": "#F3DFE7",
         "image": "/sections/reproduccion-humana.webp",
         "imageAlt": "Ilustración científica de espermatozoides aproximándose a un óvulo",
         "creditId": "credit-topic-ciencias-009"
@@ -207,6 +225,8 @@
       "slug": "cuerpo-humano",
       "order": 10,
       "visual": {
+        "accent": "#8B5741",
+        "accentSoft": "#EFE3DC",
         "image": "/sections/cuerpo-humano.webp",
         "imageAlt": "Ilustración anatómica del esqueleto, los órganos y el sistema circulatorio",
         "imageObjectPosition": "center 42%",
@@ -227,6 +247,8 @@
       "slug": "relieve-y-geografia",
       "order": 11,
       "visual": {
+        "accent": "#376D63",
+        "accentSoft": "#DFECE9",
         "image": "/sections/relieve-y-geografia.webp",
         "imageAlt": "Brújula sobre un mapa físico y político de Europa",
         "creditId": "credit-topic-ciencias-011"
