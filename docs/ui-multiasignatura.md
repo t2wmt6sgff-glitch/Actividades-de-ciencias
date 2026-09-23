@@ -1,5 +1,7 @@
 # UI multiasignatura: Fase 2
 
+Este documento registra el alcance histórico de la Fase 2. La experiencia de Fase 3, ya incorporada, se documenta en [experiencia-multiasignatura.md](experiencia-multiasignatura.md).
+
 La Fase 2 conecta las rutas y componentes React directamente con el contrato general del catálogo. El producto público continúa mostrando únicamente Ciencias y mantiene su marca y navegación actuales.
 
 ## Rutas
