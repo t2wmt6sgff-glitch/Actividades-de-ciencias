@@ -2,6 +2,8 @@ import type { CSSProperties } from "react";
 import { activityTypeById, platformById, subjectById } from "@/lib/catalog/indexes";
 import type { Activity, LinkStatus, Subject, Topic, VisualConfig } from "@/lib/catalog/schema";
 
+export { formatCatalogDate } from "@/lib/catalog/dates";
+
 const FALLBACK_ACCENT = "#285F79";
 const FALLBACK_ACCENT_SOFT = "#DFEAF0";
 const safeColor = /^#[0-9a-f]{6}$/i;
@@ -28,15 +30,6 @@ export function languageLabel(language: string, locale = "es") {
     // Unknown runtimes and tags retain a readable standards-based fallback.
   }
   return language.toUpperCase();
-}
-
-export function formatCatalogDate(date: string, locale = "es") {
-  return new Intl.DateTimeFormat(locale, {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-    timeZone: "UTC",
-  }).format(new Date(`${date}T00:00:00Z`));
 }
 
 export function typeLabel(activity: Activity) {

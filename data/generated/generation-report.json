@@ -141,5 +141,13 @@
       "SEC-10": "topic-ciencias-010",
       "SEC-11": "topic-ciencias-011"
     }
+  },
+  "artifacts": {
+    "searchIndex": {
+      "file": "data/generated/search-index.json",
+      "sha256": "67e0f0aa6541d52a229cb868aba228c21e4cb2a0aa89933557befba4cdf07af3",
+      "bytes": 49605,
+      "entries": 65
+    }
   }
 }
