@@ -1,6 +1,6 @@
 # Catálogo multiasignatura: flujo de datos
 
-La web pública sigue mostrando Actividades de Ciencias. La Fase 1 generalizó la infraestructura de datos y la Fase 2 conecta la interfaz directamente con ese catálogo, sin cambiar todavía la portada de producto ni la navegación principal.
+La web pública reúne Ciencias, Francés, Lengua, Matemáticas e Inglés. Las actividades interactivas y los recursos multimedia relacionados son entidades distintas.
 
 ## Fuente de verdad
 
@@ -13,8 +13,11 @@ El libro general contiene:
 - `MIGRACIÓN_TEMAS`: mapa auditable de los once IDs `SEC-xx` a los nuevos `TopicId`.
 - `TIPOS_ACTIVIDAD`: vocabulario de tipos estable.
 - `PLATAFORMAS`: plataformas externas y hosts conocidos.
-- `ACTIVIDADES`: entidad única, fechas, estado editorial y origen external/native; incluye los campos mínimos del motor nativo aunque permanezcan vacíos en las 65 filas externas actuales.
+- `ACTIVIDADES`: entidad única, fechas, estado editorial y origen external/native. Las 82 actividades actuales son externas; el vídeo no se mezcla en esta hoja.
 - `ACTIVIDAD_TEMA`: relaciones muchos-a-muchos.
+- `RECURSOS_RELACIONADOS`: recursos multimedia con IDs, temas, actividades relacionadas y rutas locales verificadas.
+- `ENTRADA_ORIGINAL`: encabezados y notas del material de entrada, incluido «Adjetivos» para WW-55409289.
+- `REVISION`: observaciones editoriales no bloqueantes aún abiertas.
 - `CRÉDITOS`: autoría, procedencia y licencia de assets.
 - `CONTROL_DE_CALIDAD`: incidencias que no deben perderse durante la generación.
 - `INFORMACIÓN`: reglas del libro y procedencia.
@@ -57,7 +60,15 @@ npm run catalog:migrate
 npm run catalog:migrate:check
 ```
 
-`catalog:migrate` reconstruye `data/catalogo-actividades.xlsx` desde el libro histórico y sobrescribe el libro general. No debe usarse después de añadir nuevas actividades directamente al catálogo general. `catalog:migrate:check` solo demuestra la reproducibilidad del estado inicial de Fase 1.
+`catalog:migrate` reconstruye el libro inicial de Ciencias y **sobrescribiría las nuevas asignaturas**. No debe ejecutarse para mantener el catálogo ampliado. `catalog:migrate:check` compara las filas históricas iniciales con la migración reproducible y admite filas y hojas posteriores.
+
+## Recursos multimedia relacionados
+
+`MediaResource` aparece en `catalog.json` como `mediaResources`, separado de `activities`. El generador lee `RECURSOS_RELACIONADOS`; el validador exige ID único, tipo `video`, idioma BCP 47, asignatura, tema principal incluido, temas de esa asignatura, al menos una actividad válida y archivos existentes bajo `public/media/`. El reproductor se muestra en la ficha de cada actividad relacionada y la página del tema principal ofrece un enlace. No hay ruta `/video/` ni filtro de actividad para multimedia.
+
+El recurso `MEDIA-MATES-53716987` enlaza `WW-53716987`. El autor confirmó que el QR conduce a `https://wordwall.net/es/resource/53716987` y decidió publicar el vídeo histórico tal como fue creado en 4.º de Primaria. La copia distribuida `public/media/repaso-mates-web.mp4` se creó a partir de `REPASO DE MATES.mp4` mediante `ffmpeg -c copy -movflags +faststart`: no se recodificaron imagen ni audio. Original SHA-256 `ff0899000f1b0cabd82251d9e0d6a3797f3a8107724f03986cf25d3e22d93365`; derivada SHA-256 `9d09ab18703823ae6d3eb3c357b4fb9e74fae4760a5a83d733044e76e6e42d9f`. Se conserva una portada real del vídeo y una guía descriptiva de las pantallas. La guía **no es transcripción de la pista de audio**. No se publican subtítulos inventados.
+
+Tras desplegar en Hostinger, comprobar `Content-Type: video/mp4`, solicitudes `Range`, carga del póster y reproducción en Safari/iPadOS y Chrome/Android. La exportación estática sirve los assets sin API.
 
 La comprobación de migración compara semánticamente el libro versionado con uno temporal: orden y nombres de hojas, dimensiones, valores, tipos y fórmulas de celdas, estilos, anchos y altos, filtros, paneles inmovilizados y propiedades deliberadas del documento. Un XLSX es un contenedor ZIP/XML, por lo que diferencias irrelevantes de serialización o metadatos ZIP se diagnostican pero no provocan un fallo si el libro lógico es idéntico.
 

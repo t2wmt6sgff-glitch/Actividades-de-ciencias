@@ -1,4 +1,4 @@
-import { activities, subjects, topics } from "@/lib/catalog/data";
+import { activities, mediaResources, subjects, topics } from "@/lib/catalog/data";
 import { subjectById, topicById } from "@/lib/catalog/indexes";
 import type { Activity, Subject, Topic } from "@/lib/catalog/schema";
 
@@ -17,6 +17,16 @@ export const publicActivities = activities.filter(
 export const routableActivities = activities.filter(
   (activity) => activity.publicationStatus === "published" || activity.publicationStatus === "archived",
 );
+
+export const publicMediaResources = mediaResources.filter((resource) => resource.status === "active");
+
+export function getActivityMediaResources(activityId: string) {
+  return publicMediaResources.filter((resource) => resource.relatedActivityIds.includes(activityId));
+}
+
+export function getTopicMediaResources(topicId: string) {
+  return publicMediaResources.filter((resource) => resource.primaryTopicId === topicId);
+}
 
 export function getSubjectTopics(subjectOrId: Subject | string) {
   const subjectId = typeof subjectOrId === "string" ? subjectOrId : subjectOrId.id;

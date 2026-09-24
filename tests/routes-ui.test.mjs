@@ -65,7 +65,7 @@ test("cada actividad multitema aparece en todas sus vistas sin duplicar su entid
 });
 
 test("las fichas conservan los 65 slugs y representan todas las fuentes externas", async () => {
-  assert.equal(catalog.activities.length, 65);
+  assert.equal(catalog.activities.filter((activity) => activity.primarySubjectId === "ciencias").length, 65);
   assert.ok(catalog.activities.every((activity) => activity.source.kind === "external"));
   for (const activity of catalog.activities) {
     const activityHtml = await html(`actividad/${activity.slug}`);
@@ -75,7 +75,7 @@ test("las fichas conservan los 65 slugs y representan todas las fuentes externas
 });
 
 test("los temas actuales tienen visual completo y existe fallback genérico", async () => {
-  for (const topic of catalog.topics) {
+  for (const topic of catalog.topics.filter((item) => item.subjectId === "ciencias")) {
     assert.match(topic.visual?.accent ?? "", /^#[0-9A-F]{6}$/i);
     assert.match(topic.visual?.accentSoft ?? "", /^#[0-9A-F]{6}$/i);
     assert.ok(topic.visual?.image);

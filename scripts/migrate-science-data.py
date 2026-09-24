@@ -557,6 +557,36 @@ def semantic_workbook_differences(expected: Path, candidate: Path) -> list[str]:
     return differences
 
 
+def historical_prefix_differences(extended: Path, baseline: Path) -> list[str]:
+    """Keep the migrated Sciences rows intact after the catalog grows.
+
+    The historical migration only creates the initial workbook. New subjects,
+    media sheets and rows must not be wiped by the migration check.
+    """
+    extended_book = openpyxl.load_workbook(extended, data_only=False)
+    baseline_book = openpyxl.load_workbook(baseline, data_only=False)
+    differences = []
+    def equal_cell(left, right):
+        # Spreadsheet serialization may turn an empty cell into an empty string.
+        if left in (None, "") and right in (None, ""):
+            return True
+        if isinstance(left, (date, datetime)) and isinstance(right, (date, datetime)):
+            return left.isoformat()[:10] == right.isoformat()[:10]
+        return left == right
+    for name in baseline_book.sheetnames:
+        if name not in extended_book:
+            differences.append(f"Falta hoja histórica {name}")
+            continue
+        actual_rows = list(extended_book[name].values)
+        baseline_rows = list(baseline_book[name].values)
+        for index, row in enumerate(baseline_rows):
+            if index >= len(actual_rows) or len(actual_rows[index]) != len(row) or any(not equal_cell(a, b) for a, b in zip(actual_rows[index], row)):
+                differences.append(f"{name}, fila {index + 1}: datos históricos modificados")
+        if len(actual_rows) < len(baseline_rows):
+            differences.append(f"{name}: se han eliminado filas históricas")
+    return differences
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--input", type=Path, default=DEFAULT_INPUT)
@@ -577,19 +607,18 @@ def main() -> None:
                     "Los contenedores XLSX tienen SHA-256 distinto; se comprobará su contenido lógico. "
                     f"Versionado={expected_hash}, regenerado={candidate_hash}."
                 )
-                for difference in xlsx_container_differences(args.output, candidate):
-                    print(f"- {difference}")
-            differences = semantic_workbook_differences(args.output, candidate)
+                print("Se comprobarán las filas históricas; los datos nuevos cambian el contenedor.")
+            differences = historical_prefix_differences(args.output, candidate)
             if differences:
                 details = "\n".join(f"- {difference}" for difference in differences[:50])
                 remainder = len(differences) - 50
                 if remainder > 0:
                     details += f"\n- … y {remainder} diferencias más"
                 raise SystemExit(
-                    "El libro general no coincide semánticamente con la migración reproducible:\n"
-                    f"{details}\nEjecuta npm run catalog:migrate."
+                    "Las filas de la migración histórica han cambiado:\n"
+                    f"{details}\nNo sobrescribas el catálogo ampliado con catalog:migrate."
                 )
-            print("Migración semánticamente reproducible verificada.")
+            print("Filas históricas de Ciencias conservadas frente a la migración reproducible.")
         return
     deterministic_save(workbook, args.output)
     print(f"Libro general creado: {args.output}")

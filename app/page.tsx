@@ -15,7 +15,7 @@ export default function Home() {
       <p className="eyebrow">Recursos educativos</p>
       <h1>Actividades de repaso</h1>
       <p className="home-subtitle">Encuentra una actividad y vuelve a practicar lo aprendido</p>
-      <p className="home-description">Una biblioteca educativa organizada por asignaturas y temas. Actualmente reúne actividades de Ciencias creadas y recopiladas por Alejandro Castaño Medina.</p>
+      <p className="home-description">Una biblioteca educativa organizada por asignaturas y temas, con actividades creadas y recopiladas por Alejandro Castaño Medina.</p>
       <HomeSearch />
     </section>
     <section className="home-section site-container" aria-labelledby="subjects-heading">
@@ -27,6 +27,6 @@ export default function Home() {
       {recentActivities.length ? <div className="activity-grid">{recentActivities.map((activity) => <ActivityCard key={activity.id} activity={activity} showPublishedDate />)}</div> : <div className="empty-state"><p>Todavía no hay actividades con fecha pública de incorporación.</p><Link href="/explorar" className="primary-link-button">Explorar el catálogo</Link></div>}
       <div className="catalog-callout"><div><strong>{publicActivities.length} actividades disponibles</strong><span>Busca por asignatura, tema, idioma o tipo de actividad.</span></div><Link href="/explorar" className="primary-link-button">Abrir el catálogo completo <ArrowRight aria-hidden="true" /></Link></div>
     </section>
-    <section className="about-teaser"><div className="site-container about-teaser-inner"><div className="about-icon" aria-hidden="true"><BookOpen /></div><div><h2>Un proyecto que nació estudiando Ciencias</h2><p>La colección empezó con actividades creadas para repasar Ciencias y está preparada para incorporar otras asignaturas sin perder su organización ni su historia.</p><Link href="/sobre-el-proyecto" className="text-link">Conocer el proyecto <ArrowRight aria-hidden="true" /></Link></div><p className="external-note"><ExternalLink aria-hidden="true" /> Los recursos actuales se abren en {platforms.map((platform) => platform.name).join(" o ")}.</p></div></section>
+    <section className="about-teaser"><div className="site-container about-teaser-inner"><div className="about-icon" aria-hidden="true"><BookOpen /></div><div><h2>Un proyecto que nació estudiando Ciencias</h2><p>La colección empezó con actividades de Ciencias y ahora reúne también otras asignaturas, sin perder su organización ni su historia.</p><Link href="/sobre-el-proyecto" className="text-link">Conocer el proyecto <ArrowRight aria-hidden="true" /></Link></div><p className="external-note"><ExternalLink aria-hidden="true" /> Las actividades interactivas se abren en {platforms.map((platform) => platform.name).join(" o ")}.</p></div></section>
   </main>;
 }
