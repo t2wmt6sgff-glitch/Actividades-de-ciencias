@@ -122,6 +122,14 @@ svg { stroke-width: 1.8; }
 .section-count { margin-top: .28rem; color: rgba(255,255,255,.88); font-size: .86rem; }
 .topic-fallback-icon { width: 2.7rem; height: 2.7rem; display: grid; place-items: center; margin-bottom: .7rem; border: 1px solid rgba(255,255,255,.35); border-radius: .8rem; background: rgba(255,255,255,.14); }
 .topic-fallback-icon svg { width: 1.4rem; }
+
+.related-video { margin-top: 2.5rem; }
+.related-video h3 { margin: .5rem 0; font-size: 1.2rem; }
+.related-video video { display: block; width: 100%; max-width: 910px; height: auto; aspect-ratio: 910 / 512; margin-top: 1rem; border-radius: .8rem; background: #142837; }
+.video-guide { margin-top: .8rem; }
+.video-guide a, .topic-media a { text-decoration: underline; text-underline-offset: .2em; }
+.topic-media { max-width: 76rem; margin: 2rem auto; padding: 1.5rem; border-radius: .9rem; background: #edf4f5; }
+.topic-media h2 { font-size: 1.2rem; margin-bottom: .5rem; }
 .image-signature { position: absolute; z-index: 2; top: .72rem; right: .75rem; max-width: calc(100% - 4rem); color: rgba(255,255,255,.82); font-size: .63rem; font-weight: 700; letter-spacing: .02em; text-align: right; text-shadow: 0 1px 4px rgba(0,0,0,.75); }
 .section-tile.visual-fallback { background: linear-gradient(145deg, rgba(7, 23, 31, .32), rgba(7, 23, 31, .76)), var(--theme); }
 .home-summary { display: flex; flex-wrap: wrap; gap: .45rem 1.25rem; margin: 1.4rem 0 1rem; color: #596773; font-size: .94rem; }

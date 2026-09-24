@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import re
 from datetime import date
+from pathlib import Path
 from urllib.parse import urlparse
 
 
@@ -45,6 +46,7 @@ def validate_catalog(catalog: dict, locations=None) -> tuple[list[dict], list[di
         "activity-type": catalog.get("activityTypes", []),
         "platform": catalog.get("platforms", []),
         "activity": catalog.get("activities", []),
+        "media-resource": catalog.get("mediaResources", []),
         "credit": catalog.get("credits", []),
     }
     for kind, records in collections.items():
@@ -185,5 +187,37 @@ def validate_catalog(catalog: dict, locations=None) -> tuple[list[dict], list[di
                 "problem": f"Título compartido por {len(ids)} actividades: {title}",
                 "expected": "Revisar; no fusionar automáticamente si son recursos distintos",
             })
+
+    asset_root = Path(__file__).resolve().parents[1] / "public"
+    for media in collections["media-resource"]:
+        media_id = media.get("id", "media-resource")
+        if media_id in {activity.get("id") for activity in collections["activity"]}:
+            errors.append(problem("media-id-collision", media_id, "ID compartido con una actividad", "Usar un ID de recurso independiente", locations))
+        if media.get("kind") != "video":
+            errors.append(problem("invalid-media-kind", media_id, f"Tipo inválido: {media.get('kind')!r}", "Usar video", locations))
+        if media.get("status") not in {"active", "hidden", "archived"}:
+            errors.append(problem("invalid-media-status", media_id, f"Estado inválido: {media.get('status')!r}", "Usar active, hidden o archived", locations))
+        if not isinstance(media.get("language"), str) or not BCP47.fullmatch(media["language"]):
+            errors.append(problem("invalid-media-language", media_id, f"Idioma inválido: {media.get('language')!r}", "Usar código BCP 47", locations))
+        subject_id = media.get("subjectId")
+        if subject_id not in subjects:
+            errors.append(problem("orphan-media-subject", media_id, f"Asignatura inexistente: {subject_id!r}", "Usar un ID de ASIGNATURAS", locations))
+        topic_ids = media.get("topicIds", [])
+        if not topic_ids or media.get("primaryTopicId") not in topic_ids or len(topic_ids) != len(set(topic_ids)):
+            errors.append(problem("invalid-media-topics", media_id, "Temas vacíos, repetidos o tema principal ausente", "Definir temas únicos e incluir el principal", locations))
+        for topic_id in topic_ids:
+            topic = topics.get(topic_id)
+            if not topic or topic.get("subjectId") != subject_id:
+                errors.append(problem("orphan-media-topic", media_id, f"Tema no perteneciente a la asignatura: {topic_id}", "Usar tema existente de la asignatura", locations))
+        related = media.get("relatedActivityIds", [])
+        activity_ids = {activity.get("id") for activity in collections["activity"]}
+        if not related or len(related) != len(set(related)) or any(item not in activity_ids for item in related):
+            errors.append(problem("orphan-media-activity", media_id, f"Actividades relacionadas no válidas: {related}", "Referenciar actividades existentes sin duplicados", locations))
+        for field, suffix in (("src", ".mp4"), ("poster", ".png"), ("visualDescriptionPath", ".txt")):
+            path = media.get(field)
+            if path is None and field == "visualDescriptionPath":
+                continue
+            if not isinstance(path, str) or not re.fullmatch(r"/media/[A-Za-z0-9._/-]+", path) or ".." in Path(path).parts or not path.endswith(suffix) or not (asset_root / path.lstrip("/")).is_file():
+                errors.append(problem("invalid-media-asset", media_id, f"Ruta inexistente o no permitida en {field}: {path!r}", "Usar archivo local bajo public/media", locations, field))
 
     return errors, warnings

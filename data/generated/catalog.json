@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "source": {
     "file": "data/catalogo-actividades.xlsx",
-    "sha256": "223cc49f96712070505f8ac1c22a531c0756c714db827718d6f44667528dc864"
+    "sha256": "385d2172f1f35c5e57fc1b6c5e14ffa6957aa8c72ee644870175a0044d96f309"
   },
   "subjects": [
     {
@@ -16,6 +16,62 @@
         "accent": "#175B72",
         "accentSoft": "#E6F1EF",
         "icon": "microscope"
+      },
+      "status": "active"
+    },
+    {
+      "id": "frances",
+      "name": "Francés",
+      "shortName": "Francés",
+      "slug": "frances",
+      "order": 2,
+      "description": "Actividades de repaso de francés.",
+      "visual": {
+        "accent": "#385F91",
+        "accentSoft": "#EAF0F8",
+        "icon": "languages"
+      },
+      "status": "active"
+    },
+    {
+      "id": "lengua",
+      "name": "Lengua",
+      "shortName": "Lengua",
+      "slug": "lengua",
+      "order": 3,
+      "description": "Actividades de repaso de lengua.",
+      "visual": {
+        "accent": "#994858",
+        "accentSoft": "#FAEDF0",
+        "icon": "book-open"
+      },
+      "status": "active"
+    },
+    {
+      "id": "matematicas",
+      "name": "Matemáticas",
+      "shortName": "Matemáticas",
+      "slug": "matematicas",
+      "order": 4,
+      "description": "Actividades de repaso de matemáticas.",
+      "visual": {
+        "accent": "#34746A",
+        "accentSoft": "#E7F4F0",
+        "icon": "sigma"
+      },
+      "status": "active"
+    },
+    {
+      "id": "ingles",
+      "name": "Inglés",
+      "shortName": "Inglés",
+      "slug": "ingles",
+      "order": 5,
+      "description": "Actividades de repaso de inglés.",
+      "visual": {
+        "accent": "#A36831",
+        "accentSoft": "#FAF1E7",
+        "icon": "languages"
       },
       "status": "active"
     }
@@ -260,6 +316,174 @@
         "historicalCourse": "4.º, 5.º y 6.º de Primaria",
         "declaredCount": 8
       }
+    },
+    {
+      "id": "topic-frances-material-escolar",
+      "subjectId": "frances",
+      "name": "Le matériel scolaire",
+      "slug": "material-escolar",
+      "order": 1,
+      "status": "active"
+    },
+    {
+      "id": "topic-frances-vetements",
+      "subjectId": "frances",
+      "name": "Les vêtements",
+      "slug": "vetements",
+      "order": 2,
+      "status": "active"
+    },
+    {
+      "id": "topic-frances-ecole",
+      "subjectId": "frances",
+      "name": "L’école et les matières",
+      "slug": "ecole",
+      "order": 3,
+      "status": "active"
+    },
+    {
+      "id": "topic-frances-prepositions-lieu",
+      "subjectId": "frances",
+      "name": "Les prépositions de lieu",
+      "slug": "prepositions-lieu",
+      "order": 4,
+      "status": "active"
+    },
+    {
+      "id": "topic-frances-heure",
+      "subjectId": "frances",
+      "name": "L’heure",
+      "slug": "heure",
+      "order": 5,
+      "status": "active"
+    },
+    {
+      "id": "topic-frances-verbes-present",
+      "subjectId": "frances",
+      "name": "Les verbes au présent",
+      "slug": "verbes-present",
+      "order": 6,
+      "status": "active"
+    },
+    {
+      "id": "topic-frances-loisirs",
+      "subjectId": "frances",
+      "name": "Les loisirs",
+      "slug": "loisirs",
+      "order": 7,
+      "status": "active"
+    },
+    {
+      "id": "topic-frances-maison",
+      "subjectId": "frances",
+      "name": "Les pièces de la maison",
+      "slug": "maison",
+      "order": 8,
+      "status": "active"
+    },
+    {
+      "id": "topic-frances-transports",
+      "subjectId": "frances",
+      "name": "Les moyens de transport",
+      "slug": "transports",
+      "order": 9,
+      "status": "active"
+    },
+    {
+      "id": "topic-frances-ville",
+      "subjectId": "frances",
+      "name": "Les lieux de la ville",
+      "slug": "ville",
+      "order": 10,
+      "status": "active"
+    },
+    {
+      "id": "topic-frances-itineraires",
+      "subjectId": "frances",
+      "name": "Les itinéraires et la compréhension écrite",
+      "slug": "itineraires",
+      "order": 11,
+      "status": "active"
+    },
+    {
+      "id": "topic-ingles-vocabulary",
+      "subjectId": "ingles",
+      "name": "Vocabulary",
+      "slug": "vocabulary",
+      "order": 1,
+      "status": "active"
+    },
+    {
+      "id": "topic-ingles-comparativos",
+      "subjectId": "ingles",
+      "name": "Comparative adjectives",
+      "slug": "comparativos",
+      "order": 2,
+      "status": "active"
+    },
+    {
+      "id": "topic-lengua-enunciados",
+      "subjectId": "lengua",
+      "name": "Tipos de enunciados",
+      "slug": "enunciados",
+      "order": 1,
+      "status": "active"
+    },
+    {
+      "id": "topic-lengua-tiempos-verbales",
+      "subjectId": "lengua",
+      "name": "Tiempos verbales",
+      "slug": "tiempos-verbales",
+      "order": 2,
+      "status": "active"
+    },
+    {
+      "id": "topic-lengua-recursos-literarios",
+      "subjectId": "lengua",
+      "name": "Recursos literarios",
+      "slug": "recursos-literarios",
+      "order": 3,
+      "status": "active"
+    },
+    {
+      "id": "topic-lengua-palabras-invariables",
+      "subjectId": "lengua",
+      "name": "Palabras invariables",
+      "slug": "palabras-invariables",
+      "order": 4,
+      "status": "active"
+    },
+    {
+      "id": "topic-matematicas-multiplicaciones",
+      "subjectId": "matematicas",
+      "name": "Multiplicación",
+      "slug": "multiplicaciones",
+      "order": 1,
+      "status": "active"
+    },
+    {
+      "id": "topic-matematicas-rectas",
+      "subjectId": "matematicas",
+      "name": "Puntos y rectas",
+      "slug": "rectas",
+      "order": 2,
+      "status": "active"
+    },
+    {
+      "id": "topic-matematicas-angulos",
+      "subjectId": "matematicas",
+      "name": "Ángulos",
+      "slug": "angulos",
+      "order": 3,
+      "status": "active"
+    },
+    {
+      "id": "topic-matematicas-operaciones-combinadas",
+      "subjectId": "matematicas",
+      "name": "Operaciones combinadas",
+      "slug": "operaciones-combinadas",
+      "order": 4,
+      "status": "active"
     }
   ],
   "activityTypes": [
@@ -334,6 +558,12 @@
       "name": "Ordenar palabras",
       "icon": "rows-3",
       "order": 12
+    },
+    {
+      "id": "aplastatopos",
+      "name": "Aplastatopos",
+      "icon": "target",
+      "order": 13
     }
   ],
   "platforms": [
@@ -3831,6 +4061,910 @@
         "subjectLabel": "Ciencias / Conocimiento del Medio",
         "linkStatusLabel": "Verificado"
       }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "WW-73932172",
+      "slug": "materiel-scolaire-73932172",
+      "title": "Le matériel scolaire",
+      "sourceTitle": "MATERIAL ESCOLAR FRANCÉS",
+      "description": "Relaciona nombres de material escolar en francés con sus equivalentes en español.",
+      "primarySubjectId": "frances",
+      "subjectIds": [
+        "frances"
+      ],
+      "primaryTopicId": "topic-frances-material-escolar",
+      "topicIds": [
+        "topic-frances-material-escolar"
+      ],
+      "language": "fr",
+      "typeId": "emparejar",
+      "originCourseLabel": "5.º de Primaria",
+      "tags": [
+        "vocabulario escolar",
+        "traducción"
+      ],
+      "keywords": [
+        "vocabulario escolar",
+        "traducción"
+      ],
+      "dates": {
+        "createdAt": null,
+        "publishedAt": "2026-09-24",
+        "updatedAt": "2026-09-24"
+      },
+      "publicationStatus": "published",
+      "source": {
+        "kind": "external",
+        "platformId": "wordwall",
+        "resourceId": "73932172",
+        "url": "https://wordwall.net/es/resource/73932172/espa%C3%B1ol/material-escolar-franc%C3%A9s",
+        "canonicalUrl": "https://wordwall.net/es/resource/73932172/espa%C3%B1ol/material-escolar-franc%C3%A9s",
+        "originalUrl": "https://wordwall.net/es/resource/73932172?wwmethod=link",
+        "linkStatus": "verified",
+        "lastVerifiedAt": "2026-09-24",
+        "titleVerified": true,
+        "titleSource": "Página pública de la actividad, título visible o metadatos",
+        "descriptionSource": "Síntesis editorial del contenido público y notas del Markdown",
+        "verificationNote": "HTTP 200; recursos interactivos no completados en sesión."
+      },
+      "legacy": {
+        "subjectLabel": "Francés"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "EP-26019778",
+      "slug": "vetements-26019778",
+      "title": "Les vêtements",
+      "sourceTitle": "LES VÊTEMENTS",
+      "description": "Associe le nom des vêtements en français à leur image ou à leur traduction espagnole.",
+      "primarySubjectId": "frances",
+      "subjectIds": [
+        "frances"
+      ],
+      "primaryTopicId": "topic-frances-vetements",
+      "topicIds": [
+        "topic-frances-vetements"
+      ],
+      "language": "fr",
+      "typeId": "relacionar-columnas",
+      "originCourseLabel": "6.º de Primaria",
+      "tags": [
+        "vêtements",
+        "association"
+      ],
+      "keywords": [
+        "vêtements",
+        "association"
+      ],
+      "dates": {
+        "createdAt": null,
+        "publishedAt": "2026-09-24",
+        "updatedAt": "2026-09-24"
+      },
+      "publicationStatus": "published",
+      "source": {
+        "kind": "external",
+        "platformId": "educaplay",
+        "resourceId": "26019778",
+        "url": "https://es.educaplay.com/recursos-educativos/26019778-prendas_de_vestir_en_frances.html",
+        "canonicalUrl": "https://es.educaplay.com/recursos-educativos/26019778-prendas_de_vestir_en_frances.html",
+        "originalUrl": "https://es.educaplay.com/recursos-educativos/26019778-prendas_de_vestir_en_frances.html",
+        "linkStatus": "verified",
+        "lastVerifiedAt": "2026-09-24",
+        "titleVerified": true,
+        "titleSource": "Página pública de la actividad, título visible o metadatos",
+        "descriptionSource": "Síntesis editorial del contenido público y notas del Markdown",
+        "verificationNote": "HTTP 200; recursos interactivos no completados en sesión."
+      },
+      "legacy": {
+        "subjectLabel": "Francés"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "EP-26879995",
+      "slug": "a-lecole-revision-26879995",
+      "title": "À l’école : matières, prépositions et heure",
+      "sourceTitle": "RÈVISION THÈME 2 ( À L’ÉCOLE)",
+      "description": "Écris en français des matières scolaires, des prépositions de lieu et des phrases pour indiquer l’heure.",
+      "primarySubjectId": "frances",
+      "subjectIds": [
+        "frances"
+      ],
+      "primaryTopicId": "topic-frances-ecole",
+      "topicIds": [
+        "topic-frances-ecole",
+        "topic-frances-prepositions-lieu",
+        "topic-frances-heure",
+        "topic-frances-material-escolar"
+      ],
+      "language": "fr",
+      "typeId": "cuestionario",
+      "originCourseLabel": "6.º de Primaria",
+      "tags": [
+        "matières scolaires",
+        "prépositions",
+        "heure"
+      ],
+      "keywords": [
+        "matières scolaires",
+        "prépositions",
+        "heure"
+      ],
+      "dates": {
+        "createdAt": null,
+        "publishedAt": "2026-09-24",
+        "updatedAt": "2026-09-24"
+      },
+      "publicationStatus": "published",
+      "source": {
+        "kind": "external",
+        "platformId": "educaplay",
+        "resourceId": "26879995",
+        "url": "https://es.educaplay.com/recursos-educativos/26879995-les_matieres_scolaires.html",
+        "canonicalUrl": "https://es.educaplay.com/recursos-educativos/26879995-les_matieres_scolaires.html",
+        "originalUrl": "https://es.educaplay.com/recursos-educativos/26879995-les_matieres_scolaires.html",
+        "linkStatus": "verified",
+        "lastVerifiedAt": "2026-09-24",
+        "titleVerified": true,
+        "titleSource": "Página pública de la actividad, título visible o metadatos",
+        "descriptionSource": "Síntesis editorial del contenido público y notas del Markdown",
+        "verificationNote": "HTTP 200; recursos interactivos no completados en sesión."
+      },
+      "legacy": {
+        "subjectLabel": "Francés"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "EP-27609018",
+      "slug": "aller-jouer-faire-27609018",
+      "title": "Aller, jouer et faire au présent",
+      "sourceTitle": "VERBOS “ALLER”, “JOUER” Y “FAIRE”",
+      "description": "Conjugue aller, jouer et faire au présent selon le pronom proposé.",
+      "primarySubjectId": "frances",
+      "subjectIds": [
+        "frances"
+      ],
+      "primaryTopicId": "topic-frances-verbes-present",
+      "topicIds": [
+        "topic-frances-verbes-present"
+      ],
+      "language": "fr",
+      "typeId": "cuestionario",
+      "originCourseLabel": "6.º de Primaria",
+      "tags": [
+        "aller",
+        "jouer",
+        "faire"
+      ],
+      "keywords": [
+        "aller",
+        "jouer",
+        "faire"
+      ],
+      "dates": {
+        "createdAt": null,
+        "publishedAt": "2026-09-24",
+        "updatedAt": "2026-09-24"
+      },
+      "publicationStatus": "published",
+      "source": {
+        "kind": "external",
+        "platformId": "educaplay",
+        "resourceId": "27609018",
+        "url": "https://es.educaplay.com/recursos-educativos/27609018-quiz_verbes_francais_au_present_1s_2s_3s.html",
+        "canonicalUrl": "https://es.educaplay.com/recursos-educativos/27609018-quiz_verbes_francais_au_present_1s_2s_3s.html",
+        "originalUrl": "https://es.educaplay.com/recursos-educativos/27609018-quiz_verbes_francais_au_present_1s_2s_3s.html",
+        "linkStatus": "verified",
+        "lastVerifiedAt": "2026-09-24",
+        "titleVerified": true,
+        "titleSource": "Página pública de la actividad, título visible o metadatos",
+        "descriptionSource": "Síntesis editorial del contenido público y notas del Markdown",
+        "verificationNote": "HTTP 200; recursos interactivos no completados en sesión."
+      },
+      "legacy": {
+        "subjectLabel": "Francés"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "EP-27611495",
+      "slug": "loisirs-27611495",
+      "title": "Les loisirs : aimer, aller, faire et jouer",
+      "sourceTitle": "LES LOISIRS (AIMER, ALLER, FAIRE ET JOUER)",
+      "description": "Complète des phrases sur les loisirs à partir d’images en choisissant la forme verbale adaptée.",
+      "primarySubjectId": "frances",
+      "subjectIds": [
+        "frances"
+      ],
+      "primaryTopicId": "topic-frances-loisirs",
+      "topicIds": [
+        "topic-frances-loisirs",
+        "topic-frances-verbes-present"
+      ],
+      "language": "fr",
+      "typeId": "cuestionario",
+      "originCourseLabel": "6.º de Primaria",
+      "tags": [
+        "loisirs",
+        "aimer",
+        "aller",
+        "faire",
+        "jouer"
+      ],
+      "keywords": [
+        "loisirs",
+        "aimer",
+        "aller",
+        "faire",
+        "jouer"
+      ],
+      "dates": {
+        "createdAt": null,
+        "publishedAt": "2026-09-24",
+        "updatedAt": "2026-09-24"
+      },
+      "publicationStatus": "published",
+      "source": {
+        "kind": "external",
+        "platformId": "educaplay",
+        "resourceId": "27611495",
+        "url": "https://es.educaplay.com/recursos-educativos/27611495-les_loisirs.html",
+        "canonicalUrl": "https://es.educaplay.com/recursos-educativos/27611495-les_loisirs.html",
+        "originalUrl": "https://es.educaplay.com/recursos-educativos/27611495-les_loisirs.html",
+        "linkStatus": "verified",
+        "lastVerifiedAt": "2026-09-24",
+        "titleVerified": true,
+        "titleSource": "Página pública de la actividad, título visible o metadatos",
+        "descriptionSource": "Síntesis editorial del contenido público y notas del Markdown",
+        "verificationNote": "HTTP 200; recursos interactivos no completados en sesión."
+      },
+      "legacy": {
+        "subjectLabel": "Francés"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "EP-27925635",
+      "slug": "pieces-maison-27925635",
+      "title": "Les pièces de la maison",
+      "sourceTitle": "LES PIÈCES DE LA MAISON",
+      "description": "Écris en français le nom des pièces de la maison présentées dans les questions.",
+      "primarySubjectId": "frances",
+      "subjectIds": [
+        "frances"
+      ],
+      "primaryTopicId": "topic-frances-maison",
+      "topicIds": [
+        "topic-frances-maison"
+      ],
+      "language": "fr",
+      "typeId": "cuestionario",
+      "originCourseLabel": "6.º de Primaria",
+      "tags": [
+        "maison",
+        "pièces"
+      ],
+      "keywords": [
+        "maison",
+        "pièces"
+      ],
+      "dates": {
+        "createdAt": null,
+        "publishedAt": "2026-09-24",
+        "updatedAt": "2026-09-24"
+      },
+      "publicationStatus": "published",
+      "source": {
+        "kind": "external",
+        "platformId": "educaplay",
+        "resourceId": "27925635",
+        "url": "https://es.educaplay.com/recursos-educativos/27925635-les_pieces_de_la_maison.html",
+        "canonicalUrl": "https://es.educaplay.com/recursos-educativos/27925635-les_pieces_de_la_maison.html",
+        "originalUrl": "https://es.educaplay.com/recursos-educativos/27925635-les_pieces_de_la_maison.html",
+        "linkStatus": "verified",
+        "lastVerifiedAt": "2026-09-24",
+        "titleVerified": true,
+        "titleSource": "Página pública de la actividad, título visible o metadatos",
+        "descriptionSource": "Síntesis editorial del contenido público y notas del Markdown",
+        "verificationNote": "HTTP 200; recursos interactivos no completados en sesión."
+      },
+      "legacy": {
+        "subjectLabel": "Francés"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "EP-28722082",
+      "slug": "moyens-transport-28722082",
+      "title": "Les moyens de transport",
+      "sourceTitle": "LES MOYENS DE TRANSPORT",
+      "description": "Nomme en français les moyens de transport présentés dans les questions.",
+      "primarySubjectId": "frances",
+      "subjectIds": [
+        "frances"
+      ],
+      "primaryTopicId": "topic-frances-transports",
+      "topicIds": [
+        "topic-frances-transports"
+      ],
+      "language": "fr",
+      "typeId": "cuestionario",
+      "originCourseLabel": "6.º de Primaria",
+      "tags": [
+        "transports",
+        "vocabulaire"
+      ],
+      "keywords": [
+        "transports",
+        "vocabulaire"
+      ],
+      "dates": {
+        "createdAt": null,
+        "publishedAt": "2026-09-24",
+        "updatedAt": "2026-09-24"
+      },
+      "publicationStatus": "published",
+      "source": {
+        "kind": "external",
+        "platformId": "educaplay",
+        "resourceId": "28722082",
+        "url": "https://es.educaplay.com/recursos-educativos/28722082-les_moyens_de_transport.html",
+        "canonicalUrl": "https://es.educaplay.com/recursos-educativos/28722082-les_moyens_de_transport.html",
+        "originalUrl": "https://es.educaplay.com/recursos-educativos/28722082-les_moyens_de_transport.html",
+        "linkStatus": "verified",
+        "lastVerifiedAt": "2026-09-24",
+        "titleVerified": true,
+        "titleSource": "Página pública de la actividad, título visible o metadatos",
+        "descriptionSource": "Síntesis editorial del contenido público y notas del Markdown",
+        "verificationNote": "HTTP 200; recursos interactivos no completados en sesión."
+      },
+      "legacy": {
+        "subjectLabel": "Francés"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "EP-28722363",
+      "slug": "lieux-ville-28722363",
+      "title": "Les lieux de la ville",
+      "sourceTitle": "LA VILLE (francés hasta en la sopa)",
+      "description": "Écris en français le nom des lieux de la ville proposés dans le quiz.",
+      "primarySubjectId": "frances",
+      "subjectIds": [
+        "frances"
+      ],
+      "primaryTopicId": "topic-frances-ville",
+      "topicIds": [
+        "topic-frances-ville"
+      ],
+      "language": "fr",
+      "typeId": "cuestionario",
+      "originCourseLabel": "6.º de Primaria",
+      "tags": [
+        "ville",
+        "lieux"
+      ],
+      "keywords": [
+        "ville",
+        "lieux"
+      ],
+      "dates": {
+        "createdAt": null,
+        "publishedAt": "2026-09-24",
+        "updatedAt": "2026-09-24"
+      },
+      "publicationStatus": "published",
+      "source": {
+        "kind": "external",
+        "platformId": "educaplay",
+        "resourceId": "28722363",
+        "url": "https://es.educaplay.com/recursos-educativos/28722363-la_ville_frances_hasta_en_la_sopa.html",
+        "canonicalUrl": "https://es.educaplay.com/recursos-educativos/28722363-la_ville_frances_hasta_en_la_sopa.html",
+        "originalUrl": "https://es.educaplay.com/recursos-educativos/28722363-la_ville_frances_hasta_en_la_sopa.html",
+        "linkStatus": "verified",
+        "lastVerifiedAt": "2026-09-24",
+        "titleVerified": true,
+        "titleSource": "Página pública de la actividad, título visible o metadatos",
+        "descriptionSource": "Síntesis editorial del contenido público y notas del Markdown",
+        "verificationNote": "HTTP 200; recursos interactivos no completados en sesión."
+      },
+      "legacy": {
+        "subjectLabel": "Francés"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "EP-28731092",
+      "slug": "comment-on-va-bibliotheque-28731092",
+      "title": "Comment on va à la bibliothèque ?",
+      "sourceTitle": "COMMENT ON VA À LA BIBLIOTHÉQUE ?",
+      "description": "Lis un texte sur un trajet vers la bibliothèque et réponds par écrit aux questions en français.",
+      "primarySubjectId": "frances",
+      "subjectIds": [
+        "frances"
+      ],
+      "primaryTopicId": "topic-frances-itineraires",
+      "topicIds": [
+        "topic-frances-itineraires",
+        "topic-frances-ville"
+      ],
+      "language": "fr",
+      "typeId": "cuestionario",
+      "originCourseLabel": "6.º de Primaria",
+      "tags": [
+        "bibliothèque",
+        "trajet",
+        "lecture"
+      ],
+      "keywords": [
+        "bibliothèque",
+        "trajet",
+        "lecture"
+      ],
+      "dates": {
+        "createdAt": null,
+        "publishedAt": "2026-09-24",
+        "updatedAt": "2026-09-24"
+      },
+      "publicationStatus": "published",
+      "source": {
+        "kind": "external",
+        "platformId": "educaplay",
+        "resourceId": "28731092",
+        "url": "https://es.educaplay.com/recursos-educativos/28731092-comment_on_va_a_la_bibliotheque.html",
+        "canonicalUrl": "https://es.educaplay.com/recursos-educativos/28731092-comment_on_va_a_la_bibliotheque.html",
+        "originalUrl": "https://es.educaplay.com/recursos-educativos/28731092-comment_on_va_a_la_bibliotheque.html",
+        "linkStatus": "verified",
+        "lastVerifiedAt": "2026-09-24",
+        "titleVerified": true,
+        "titleSource": "Página pública de la actividad, título visible o metadatos",
+        "descriptionSource": "Síntesis editorial del contenido público y notas del Markdown",
+        "verificationNote": "HTTP 200; recursos interactivos no completados en sesión.  La actividad depende de un texto del libro; comprobar que el texto esté visible para el alumno."
+      },
+      "legacy": {
+        "subjectLabel": "Francés"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "WW-53716089",
+      "slug": "tipos-enunciados-53716089",
+      "title": "Tipos de enunciados",
+      "sourceTitle": "TIPOS DE ENUNCIADOS",
+      "description": "Relaciona los enunciados enunciativos, interrogativos, exclamativos e imperativos con su función.",
+      "primarySubjectId": "lengua",
+      "subjectIds": [
+        "lengua"
+      ],
+      "primaryTopicId": "topic-lengua-enunciados",
+      "topicIds": [
+        "topic-lengua-enunciados"
+      ],
+      "language": "es",
+      "typeId": "emparejar",
+      "originCourseLabel": "4.º de Primaria",
+      "tags": [
+        "enunciados",
+        "función comunicativa"
+      ],
+      "keywords": [
+        "enunciados",
+        "función comunicativa"
+      ],
+      "dates": {
+        "createdAt": null,
+        "publishedAt": "2026-09-24",
+        "updatedAt": "2026-09-24"
+      },
+      "publicationStatus": "published",
+      "source": {
+        "kind": "external",
+        "platformId": "wordwall",
+        "resourceId": "53716089",
+        "url": "https://wordwall.net/es/resource/53716089/tipos-de-enunciados",
+        "canonicalUrl": "https://wordwall.net/es/resource/53716089/tipos-de-enunciados",
+        "originalUrl": "https://wordwall.net/es/resource/53716089?wwmethod=link",
+        "linkStatus": "verified",
+        "lastVerifiedAt": "2026-09-24",
+        "titleVerified": true,
+        "titleSource": "Página pública de la actividad, título visible o metadatos",
+        "descriptionSource": "Síntesis editorial del contenido público y notas del Markdown",
+        "verificationNote": "HTTP 200; recursos interactivos no completados en sesión."
+      },
+      "legacy": {
+        "subjectLabel": "Lengua"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "WW-55342703",
+      "slug": "tiempos-verbales-indicativo-55342703",
+      "title": "Tiempos verbales del indicativo",
+      "sourceTitle": "TIEMPOS VERBALES EN ESPAÑOL",
+      "description": "Relaciona formas verbales con el presente, el pretérito imperfecto, el pretérito perfecto simple y el futuro del indicativo.",
+      "primarySubjectId": "lengua",
+      "subjectIds": [
+        "lengua"
+      ],
+      "primaryTopicId": "topic-lengua-tiempos-verbales",
+      "topicIds": [
+        "topic-lengua-tiempos-verbales"
+      ],
+      "language": "es",
+      "typeId": "emparejar",
+      "originCourseLabel": "5.º de Primaria",
+      "tags": [
+        "indicativo",
+        "conjugación"
+      ],
+      "keywords": [
+        "indicativo",
+        "conjugación"
+      ],
+      "dates": {
+        "createdAt": null,
+        "publishedAt": "2026-09-24",
+        "updatedAt": "2026-09-24"
+      },
+      "publicationStatus": "published",
+      "source": {
+        "kind": "external",
+        "platformId": "wordwall",
+        "resourceId": "55342703",
+        "url": "https://wordwall.net/es/resource/55342703/espa%C3%B1ol/tiempos-verbales-en-espa%C3%B1ol",
+        "canonicalUrl": "https://wordwall.net/es/resource/55342703/espa%C3%B1ol/tiempos-verbales-en-espa%C3%B1ol",
+        "originalUrl": "https://wordwall.net/es/resource/55342703?wwmethod=link",
+        "linkStatus": "verified",
+        "lastVerifiedAt": "2026-09-24",
+        "titleVerified": true,
+        "titleSource": "Página pública de la actividad, título visible o metadatos",
+        "descriptionSource": "Síntesis editorial del contenido público y notas del Markdown",
+        "verificationNote": "HTTP 200; recursos interactivos no completados en sesión."
+      },
+      "legacy": {
+        "subjectLabel": "Lengua"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "EP-26938828",
+      "slug": "recursos-literarios-26938828",
+      "title": "Recursos literarios",
+      "sourceTitle": "LOS RECURSOS LITERARIOS",
+      "description": "Completa definiciones e identifica recursos literarios en ejemplos de frases.",
+      "primarySubjectId": "lengua",
+      "subjectIds": [
+        "lengua"
+      ],
+      "primaryTopicId": "topic-lengua-recursos-literarios",
+      "topicIds": [
+        "topic-lengua-recursos-literarios"
+      ],
+      "language": "es",
+      "typeId": "completar-frases",
+      "originCourseLabel": "6.º de Primaria",
+      "tags": [
+        "recursos literarios",
+        "ejemplos"
+      ],
+      "keywords": [
+        "recursos literarios",
+        "ejemplos"
+      ],
+      "dates": {
+        "createdAt": null,
+        "publishedAt": "2026-09-24",
+        "updatedAt": "2026-09-24"
+      },
+      "publicationStatus": "published",
+      "source": {
+        "kind": "external",
+        "platformId": "educaplay",
+        "resourceId": "26938828",
+        "url": "https://es.educaplay.com/recursos-educativos/26938828-los_recursos_literarios.html",
+        "canonicalUrl": "https://es.educaplay.com/recursos-educativos/26938828-los_recursos_literarios.html",
+        "originalUrl": "https://es.educaplay.com/recursos-educativos/26938828-los_recursos_literarios.html",
+        "linkStatus": "verified",
+        "lastVerifiedAt": "2026-09-24",
+        "titleVerified": true,
+        "titleSource": "Página pública de la actividad, título visible o metadatos",
+        "descriptionSource": "Síntesis editorial del contenido público y notas del Markdown",
+        "verificationNote": "HTTP 200; recursos interactivos no completados en sesión."
+      },
+      "legacy": {
+        "subjectLabel": "Lengua"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "EP-27395921",
+      "slug": "palabras-invariables-27395921",
+      "title": "Palabras invariables",
+      "sourceTitle": "LAS PALABRAS INVARIABLES",
+      "description": "Completa listas de preposiciones, adverbios, conjunciones e interjecciones y reconoce ejemplos.",
+      "primarySubjectId": "lengua",
+      "subjectIds": [
+        "lengua"
+      ],
+      "primaryTopicId": "topic-lengua-palabras-invariables",
+      "topicIds": [
+        "topic-lengua-palabras-invariables"
+      ],
+      "language": "es",
+      "typeId": "completar-frases",
+      "originCourseLabel": "6.º de Primaria",
+      "tags": [
+        "preposiciones",
+        "adverbios",
+        "conjunciones",
+        "interjecciones"
+      ],
+      "keywords": [
+        "preposiciones",
+        "adverbios",
+        "conjunciones",
+        "interjecciones"
+      ],
+      "dates": {
+        "createdAt": null,
+        "publishedAt": "2026-09-24",
+        "updatedAt": "2026-09-24"
+      },
+      "publicationStatus": "published",
+      "source": {
+        "kind": "external",
+        "platformId": "educaplay",
+        "resourceId": "27395921",
+        "url": "https://es.educaplay.com/recursos-educativos/27395921-preposiciones_completas.html",
+        "canonicalUrl": "https://es.educaplay.com/recursos-educativos/27395921-preposiciones_completas.html",
+        "originalUrl": "https://es.educaplay.com/recursos-educativos/27395921-preposiciones_completas.html",
+        "linkStatus": "verified",
+        "lastVerifiedAt": "2026-09-24",
+        "titleVerified": true,
+        "titleSource": "Página pública de la actividad, título visible o metadatos",
+        "descriptionSource": "Síntesis editorial del contenido público y notas del Markdown",
+        "verificationNote": "HTTP 200; recursos interactivos no completados en sesión."
+      },
+      "legacy": {
+        "subjectLabel": "Lengua"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "WW-45753481",
+      "slug": "tablas-multiplicar-45753481",
+      "title": "Tablas y multiplicaciones por 10, 100 y 1000",
+      "sourceTitle": "Tablas de multiplicar y multiplicaciones por 1 seguido de 0.",
+      "description": "Distingue multiplicaciones correctas e incorrectas de las tablas y de números por 10, 100 y 1000.",
+      "primarySubjectId": "matematicas",
+      "subjectIds": [
+        "matematicas"
+      ],
+      "primaryTopicId": "topic-matematicas-multiplicaciones",
+      "topicIds": [
+        "topic-matematicas-multiplicaciones"
+      ],
+      "language": "es",
+      "typeId": "aplastatopos",
+      "originCourseLabel": "3.º de Primaria",
+      "tags": [
+        "tablas",
+        "potencias de diez"
+      ],
+      "keywords": [
+        "tablas",
+        "potencias de diez"
+      ],
+      "dates": {
+        "createdAt": null,
+        "publishedAt": "2026-09-24",
+        "updatedAt": "2026-09-24"
+      },
+      "publicationStatus": "published",
+      "source": {
+        "kind": "external",
+        "platformId": "wordwall",
+        "resourceId": "45753481",
+        "url": "https://wordwall.net/es/resource/45753481/tablas-de-multiplicar-y-multiplicaciones-por-1-seguido-de-0",
+        "canonicalUrl": "https://wordwall.net/es/resource/45753481/tablas-de-multiplicar-y-multiplicaciones-por-1-seguido-de-0",
+        "originalUrl": "https://wordwall.net/es/resource/45753481",
+        "linkStatus": "verified",
+        "lastVerifiedAt": "2026-09-24",
+        "titleVerified": true,
+        "titleSource": "Página pública de la actividad, título visible o metadatos",
+        "descriptionSource": "Síntesis editorial del contenido público y notas del Markdown",
+        "verificationNote": "HTTP 200; recursos interactivos no completados en sesión."
+      },
+      "legacy": {
+        "subjectLabel": "Matemáticas"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "WW-53716987",
+      "slug": "geometria-operaciones-combinadas-53716987",
+      "title": "Geometría y operaciones combinadas · temas 4 y 5",
+      "sourceTitle": "MATESMÁTICAS Temas 4 y 5 REVUELA",
+      "description": "Relaciona puntos, rectas y ángulos con sus definiciones y repasa el orden de las operaciones combinadas.",
+      "primarySubjectId": "matematicas",
+      "subjectIds": [
+        "matematicas"
+      ],
+      "primaryTopicId": "topic-matematicas-rectas",
+      "topicIds": [
+        "topic-matematicas-rectas",
+        "topic-matematicas-angulos",
+        "topic-matematicas-operaciones-combinadas"
+      ],
+      "language": "es",
+      "typeId": "emparejar",
+      "originCourseLabel": "4.º de Primaria",
+      "tags": [
+        "geometría",
+        "operaciones combinadas",
+        "Revuela"
+      ],
+      "keywords": [
+        "geometría",
+        "operaciones combinadas",
+        "Revuela"
+      ],
+      "dates": {
+        "createdAt": null,
+        "publishedAt": "2026-09-24",
+        "updatedAt": "2026-09-24"
+      },
+      "publicationStatus": "published",
+      "source": {
+        "kind": "external",
+        "platformId": "wordwall",
+        "resourceId": "53716987",
+        "url": "https://wordwall.net/es/resource/53716987/matem%C3%A1ticas/matesm%C3%A1ticas-temas-4-y-5-revuela",
+        "canonicalUrl": "https://wordwall.net/es/resource/53716987/matem%C3%A1ticas/matesm%C3%A1ticas-temas-4-y-5-revuela",
+        "originalUrl": "https://wordwall.net/es/resource/53716987?wwmethod=link",
+        "linkStatus": "verified",
+        "lastVerifiedAt": "2026-09-24",
+        "titleVerified": true,
+        "titleSource": "Página pública de la actividad, título visible o metadatos",
+        "descriptionSource": "Síntesis editorial del contenido público y notas del Markdown",
+        "verificationNote": "HTTP 200; recursos interactivos no completados en sesión."
+      },
+      "legacy": {
+        "subjectLabel": "Matemáticas"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "WW-55409289",
+      "slug": "unit-7-vocabulary-kids-box-3-55409289",
+      "title": "Unit 7 vocabulary · Kid’s Box 3",
+      "sourceTitle": "Unit 7 ENGLISH|Kid's Box 3 VOCABULARIO",
+      "description": "Review the general vocabulary from Unit 7 of Kid’s Box 3 through a matching activity.",
+      "primarySubjectId": "ingles",
+      "subjectIds": [
+        "ingles"
+      ],
+      "primaryTopicId": "topic-ingles-vocabulary",
+      "topicIds": [
+        "topic-ingles-vocabulary"
+      ],
+      "language": "en",
+      "typeId": "emparejar",
+      "originCourseLabel": "3.º de Primaria",
+      "tags": [
+        "vocabulary",
+        "Unit 7",
+        "Kid’s Box 3"
+      ],
+      "keywords": [
+        "vocabulary",
+        "Unit 7",
+        "Kid’s Box 3",
+        "English"
+      ],
+      "dates": {
+        "createdAt": null,
+        "publishedAt": "2026-09-24",
+        "updatedAt": "2026-09-24"
+      },
+      "publicationStatus": "published",
+      "source": {
+        "kind": "external",
+        "platformId": "wordwall",
+        "resourceId": "55409289",
+        "url": "https://wordwall.net/es/resource/55409289/ingl%C3%A9s/unit-7-englishkids-box-3-vocabulario",
+        "canonicalUrl": "https://wordwall.net/es/resource/55409289/ingl%C3%A9s/unit-7-englishkids-box-3-vocabulario",
+        "originalUrl": "https://wordwall.net/es/resource/55409289?wwmethod=link",
+        "linkStatus": "verified",
+        "lastVerifiedAt": "2026-09-24",
+        "titleVerified": true,
+        "titleSource": "Página pública de la actividad, título visible o metadatos",
+        "descriptionSource": "Síntesis editorial del contenido público y notas del Markdown",
+        "verificationNote": "Alcance confirmado por Alejandro, autor: vocabulario general de Unit 7. Título de origen comprobado en Wordwall."
+      },
+      "legacy": {
+        "subjectLabel": "Inglés"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "WW-55344112",
+      "slug": "comparative-adjectives-55344112",
+      "title": "Comparative adjectives · Kid’s Box 3",
+      "sourceTitle": "COMPARATIVES|Unit 7 Kids Box 3",
+      "description": "Relaciona adjetivos ingleses con sus formas comparativas, como big/bigger y happy/happier.",
+      "primarySubjectId": "ingles",
+      "subjectIds": [
+        "ingles"
+      ],
+      "primaryTopicId": "topic-ingles-comparativos",
+      "topicIds": [
+        "topic-ingles-comparativos"
+      ],
+      "language": "en",
+      "typeId": "emparejar",
+      "originCourseLabel": "3.º de Primaria",
+      "tags": [
+        "comparatives",
+        "adjectives",
+        "Kid’s Box 3"
+      ],
+      "keywords": [
+        "comparatives",
+        "adjectives",
+        "Kid’s Box 3"
+      ],
+      "dates": {
+        "createdAt": null,
+        "publishedAt": "2026-09-24",
+        "updatedAt": "2026-09-24"
+      },
+      "publicationStatus": "published",
+      "source": {
+        "kind": "external",
+        "platformId": "wordwall",
+        "resourceId": "55344112",
+        "url": "https://wordwall.net/es/resource/55344112/ingl%C3%A9s/comparativesunit-7-kids-box-3",
+        "canonicalUrl": "https://wordwall.net/es/resource/55344112/ingl%C3%A9s/comparativesunit-7-kids-box-3",
+        "originalUrl": "https://wordwall.net/es/resource/55344112?wwmethod=link",
+        "linkStatus": "verified",
+        "lastVerifiedAt": "2026-09-24",
+        "titleVerified": true,
+        "titleSource": "Página pública de la actividad, título visible o metadatos",
+        "descriptionSource": "Síntesis editorial del contenido público y notas del Markdown",
+        "verificationNote": "HTTP 200; recursos interactivos no completados en sesión."
+      },
+      "legacy": {
+        "subjectLabel": "Inglés"
+      }
+    }
+  ],
+  "mediaResources": [
+    {
+      "id": "MEDIA-MATES-53716987",
+      "kind": "video",
+      "title": "Puntos, rectas, ángulos y operaciones combinadas",
+      "description": "Vídeo original de repaso creado en 4.º de Primaria: puntos, rectas, ángulos y orden básico de operaciones. Al terminar, practica con la actividad relacionada.",
+      "language": "es",
+      "subjectId": "matematicas",
+      "primaryTopicId": "topic-matematicas-rectas",
+      "topicIds": [
+        "topic-matematicas-rectas",
+        "topic-matematicas-angulos",
+        "topic-matematicas-operaciones-combinadas"
+      ],
+      "relatedActivityIds": [
+        "WW-53716987"
+      ],
+      "originCourseLabel": "4.º de Primaria",
+      "src": "/media/repaso-mates-web.mp4",
+      "poster": "/media/poster-repaso-mates.png",
+      "visualDescriptionPath": "/media/guia-visual-repaso-mates.txt",
+      "status": "active"
     }
   ],
   "credits": [
@@ -3983,6 +5117,18 @@
     {
       "field": "Edición",
       "explanation": "Editar este libro y ejecutar npm run catalog:generate. No editar los JSON generados a mano."
+    },
+    {
+      "field": "Incorporación Fase 4B",
+      "explanation": "El 2026-09-24 se añadieron 17 actividades y cuatro asignaturas; el libro histórico de Ciencias sigue en su fuente original."
+    },
+    {
+      "field": "Recursos multimedia",
+      "explanation": "RECURSOS_RELACIONADOS es fuente editable de MediaResource; se genera separado de las actividades."
+    },
+    {
+      "field": "Corrección del autor WW-55409289",
+      "explanation": "Vocabulario general de Unit 7 de Kid’s Box 3; el encabezado provisional «Adjetivos» consta en ENTRADA_ORIGINAL."
     }
   ],
   "migration": {

@@ -2,31 +2,37 @@
   "schemaVersion": 1,
   "source": {
     "file": "data/catalogo-actividades.xlsx",
-    "sha256": "223cc49f96712070505f8ac1c22a531c0756c714db827718d6f44667528dc864"
+    "sha256": "385d2172f1f35c5e57fc1b6c5e14ffa6957aa8c72ee644870175a0044d96f309"
   },
   "counts": {
-    "subjects": 1,
-    "topics": 11,
-    "activities": 65,
-    "relations": 69,
-    "multiTopicActivities": 4
+    "subjects": 5,
+    "topics": 32,
+    "activities": 82,
+    "relations": 93,
+    "multiTopicActivities": 8,
+    "mediaResources": 1
   },
   "byPlatform": {
-    "educaplay": 43,
-    "wordwall": 22
+    "educaplay": 53,
+    "wordwall": 29
   },
   "byLanguage": {
-    "en": 39,
-    "es": 26
+    "en": 41,
+    "es": 32,
+    "fr": 9
   },
   "bySourceKind": {
-    "external": 65
+    "external": 82
   },
   "multiTopicActivityIds": [
     "EP-28023550",
     "EP-28401434",
     "EP-29200890",
-    "EP-28397214"
+    "EP-28397214",
+    "EP-26879995",
+    "EP-27611495",
+    "EP-28731092",
+    "WW-53716987"
   ],
   "warnings": [
     {
@@ -35,7 +41,7 @@
       "row": null,
       "column": "Fecha de creación",
       "id": null,
-      "problem": "65 actividades no tienen fecha original de creación",
+      "problem": "82 actividades no tienen fecha original de creación",
       "expected": "Mantener null hasta disponer de una fuente fiable",
       "activityIds": [
         "WW-105266776",
@@ -102,7 +108,24 @@
         "WW-83837307",
         "EP-23930394",
         "EP-23949842",
-        "EP-23952079"
+        "EP-23952079",
+        "WW-73932172",
+        "EP-26019778",
+        "EP-26879995",
+        "EP-27609018",
+        "EP-27611495",
+        "EP-27925635",
+        "EP-28722082",
+        "EP-28722363",
+        "EP-28731092",
+        "WW-53716089",
+        "WW-55342703",
+        "EP-26938828",
+        "EP-27395921",
+        "WW-45753481",
+        "WW-53716987",
+        "WW-55409289",
+        "WW-55344112"
       ]
     },
     {
@@ -145,9 +168,9 @@
   "artifacts": {
     "searchIndex": {
       "file": "data/generated/search-index.json",
-      "sha256": "67e0f0aa6541d52a229cb868aba228c21e4cb2a0aa89933557befba4cdf07af3",
-      "bytes": 49605,
-      "entries": 65
+      "sha256": "d261f57e2f8176e458de5de634d4a6cf529bd611a3ff33f34becac938601c9a0",
+      "bytes": 61382,
+      "entries": 82
     }
   }
 }

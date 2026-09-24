@@ -138,6 +138,30 @@
       "source": "external externa externo"
     },
     {
+      "id": "EP-26019778",
+      "title": "les vetements",
+      "sourceTitle": "les vetements",
+      "description": "associe le nom des vetements en francais a leur image ou a leur traduction espagnole.",
+      "subjects": [
+        "frances"
+      ],
+      "topics": [
+        "les vetements"
+      ],
+      "tags": [
+        "vetements",
+        "association"
+      ],
+      "keywords": [
+        "vetements",
+        "association"
+      ],
+      "type": "relacionar columnas",
+      "language": "fr frances frances french",
+      "platform": "educaplay",
+      "source": "external externa externo"
+    },
+    {
       "id": "EP-26052230",
       "title": "stimuli and responses in our body",
       "sourceTitle": "stimuli and responses in our body",
@@ -333,6 +357,35 @@
       "source": "external externa externo"
     },
     {
+      "id": "EP-26879995",
+      "title": "a l’ecole : matieres, prepositions et heure",
+      "sourceTitle": "revision theme 2 ( a l’ecole)",
+      "description": "ecris en francais des matieres scolaires, des prepositions de lieu et des phrases pour indiquer l’heure.",
+      "subjects": [
+        "frances"
+      ],
+      "topics": [
+        "l’ecole et les matieres",
+        "les prepositions de lieu",
+        "l’heure",
+        "le materiel scolaire"
+      ],
+      "tags": [
+        "matieres scolaires",
+        "prepositions",
+        "heure"
+      ],
+      "keywords": [
+        "matieres scolaires",
+        "prepositions",
+        "heure"
+      ],
+      "type": "cuestionario",
+      "language": "fr frances frances french",
+      "platform": "educaplay",
+      "source": "external externa externo"
+    },
+    {
       "id": "EP-26886816",
       "title": "el aparato reproductor masculino",
       "sourceTitle": "el aparato reproductor masculino",
@@ -465,6 +518,30 @@
       "source": "external externa externo"
     },
     {
+      "id": "EP-26938828",
+      "title": "recursos literarios",
+      "sourceTitle": "los recursos literarios",
+      "description": "completa definiciones e identifica recursos literarios en ejemplos de frases.",
+      "subjects": [
+        "lengua"
+      ],
+      "topics": [
+        "recursos literarios"
+      ],
+      "tags": [
+        "recursos literarios",
+        "ejemplos"
+      ],
+      "keywords": [
+        "recursos literarios",
+        "ejemplos"
+      ],
+      "type": "completar frases",
+      "language": "es espanol spanish",
+      "platform": "educaplay",
+      "source": "external externa externo"
+    },
+    {
       "id": "EP-27365750",
       "title": "eje cronologico del siglo xix",
       "sourceTitle": "eje cronologico del siglo xix",
@@ -486,6 +563,34 @@
         "orden temporal"
       ],
       "type": "ordenar palabras",
+      "language": "es espanol spanish",
+      "platform": "educaplay",
+      "source": "external externa externo"
+    },
+    {
+      "id": "EP-27395921",
+      "title": "palabras invariables",
+      "sourceTitle": "las palabras invariables",
+      "description": "completa listas de preposiciones, adverbios, conjunciones e interjecciones y reconoce ejemplos.",
+      "subjects": [
+        "lengua"
+      ],
+      "topics": [
+        "palabras invariables"
+      ],
+      "tags": [
+        "preposiciones",
+        "adverbios",
+        "conjunciones",
+        "interjecciones"
+      ],
+      "keywords": [
+        "preposiciones",
+        "adverbios",
+        "conjunciones",
+        "interjecciones"
+      ],
+      "type": "completar frases",
       "language": "es espanol spanish",
       "platform": "educaplay",
       "source": "external externa externo"
@@ -592,6 +697,87 @@
       ],
       "type": "cuestionario",
       "language": "es espanol spanish",
+      "platform": "educaplay",
+      "source": "external externa externo"
+    },
+    {
+      "id": "EP-27609018",
+      "title": "aller, jouer et faire au present",
+      "sourceTitle": "verbos “aller”, “jouer” y “faire”",
+      "description": "conjugue aller, jouer et faire au present selon le pronom propose.",
+      "subjects": [
+        "frances"
+      ],
+      "topics": [
+        "les verbes au present"
+      ],
+      "tags": [
+        "aller",
+        "jouer",
+        "faire"
+      ],
+      "keywords": [
+        "aller",
+        "jouer",
+        "faire"
+      ],
+      "type": "cuestionario",
+      "language": "fr frances frances french",
+      "platform": "educaplay",
+      "source": "external externa externo"
+    },
+    {
+      "id": "EP-27611495",
+      "title": "les loisirs : aimer, aller, faire et jouer",
+      "sourceTitle": "les loisirs (aimer, aller, faire et jouer)",
+      "description": "complete des phrases sur les loisirs a partir d’images en choisissant la forme verbale adaptee.",
+      "subjects": [
+        "frances"
+      ],
+      "topics": [
+        "les loisirs",
+        "les verbes au present"
+      ],
+      "tags": [
+        "loisirs",
+        "aimer",
+        "aller",
+        "faire",
+        "jouer"
+      ],
+      "keywords": [
+        "loisirs",
+        "aimer",
+        "aller",
+        "faire",
+        "jouer"
+      ],
+      "type": "cuestionario",
+      "language": "fr frances frances french",
+      "platform": "educaplay",
+      "source": "external externa externo"
+    },
+    {
+      "id": "EP-27925635",
+      "title": "les pieces de la maison",
+      "sourceTitle": "les pieces de la maison",
+      "description": "ecris en francais le nom des pieces de la maison presentees dans les questions.",
+      "subjects": [
+        "frances"
+      ],
+      "topics": [
+        "les pieces de la maison"
+      ],
+      "tags": [
+        "maison",
+        "pieces"
+      ],
+      "keywords": [
+        "maison",
+        "pieces"
+      ],
+      "type": "cuestionario",
+      "language": "fr frances frances french",
       "platform": "educaplay",
       "source": "external externa externo"
     },
@@ -894,6 +1080,81 @@
       ],
       "type": "cuestionario",
       "language": "en ingles ingles english",
+      "platform": "educaplay",
+      "source": "external externa externo"
+    },
+    {
+      "id": "EP-28722082",
+      "title": "les moyens de transport",
+      "sourceTitle": "les moyens de transport",
+      "description": "nomme en francais les moyens de transport presentes dans les questions.",
+      "subjects": [
+        "frances"
+      ],
+      "topics": [
+        "les moyens de transport"
+      ],
+      "tags": [
+        "transports",
+        "vocabulaire"
+      ],
+      "keywords": [
+        "transports",
+        "vocabulaire"
+      ],
+      "type": "cuestionario",
+      "language": "fr frances frances french",
+      "platform": "educaplay",
+      "source": "external externa externo"
+    },
+    {
+      "id": "EP-28722363",
+      "title": "les lieux de la ville",
+      "sourceTitle": "la ville (frances hasta en la sopa)",
+      "description": "ecris en francais le nom des lieux de la ville proposes dans le quiz.",
+      "subjects": [
+        "frances"
+      ],
+      "topics": [
+        "les lieux de la ville"
+      ],
+      "tags": [
+        "ville",
+        "lieux"
+      ],
+      "keywords": [
+        "ville",
+        "lieux"
+      ],
+      "type": "cuestionario",
+      "language": "fr frances frances french",
+      "platform": "educaplay",
+      "source": "external externa externo"
+    },
+    {
+      "id": "EP-28731092",
+      "title": "comment on va a la bibliotheque ?",
+      "sourceTitle": "comment on va a la bibliotheque ?",
+      "description": "lis un texte sur un trajet vers la bibliotheque et reponds par ecrit aux questions en francais.",
+      "subjects": [
+        "frances"
+      ],
+      "topics": [
+        "les itineraires et la comprehension ecrite",
+        "les lieux de la ville"
+      ],
+      "tags": [
+        "bibliotheque",
+        "trajet",
+        "lecture"
+      ],
+      "keywords": [
+        "bibliotheque",
+        "trajet",
+        "lecture"
+      ],
+      "type": "cuestionario",
+      "language": "fr frances frances french",
       "platform": "educaplay",
       "source": "external externa externo"
     },
@@ -1416,6 +1677,82 @@
       "source": "external externa externo"
     },
     {
+      "id": "WW-45753481",
+      "title": "tablas y multiplicaciones por 10, 100 y 1000",
+      "sourceTitle": "tablas de multiplicar y multiplicaciones por 1 seguido de 0.",
+      "description": "distingue multiplicaciones correctas e incorrectas de las tablas y de numeros por 10, 100 y 1000.",
+      "subjects": [
+        "matematicas"
+      ],
+      "topics": [
+        "multiplicacion"
+      ],
+      "tags": [
+        "tablas",
+        "potencias de diez"
+      ],
+      "keywords": [
+        "tablas",
+        "potencias de diez"
+      ],
+      "type": "aplastatopos",
+      "language": "es espanol spanish",
+      "platform": "wordwall",
+      "source": "external externa externo"
+    },
+    {
+      "id": "WW-53716089",
+      "title": "tipos de enunciados",
+      "sourceTitle": "tipos de enunciados",
+      "description": "relaciona los enunciados enunciativos, interrogativos, exclamativos e imperativos con su funcion.",
+      "subjects": [
+        "lengua"
+      ],
+      "topics": [
+        "tipos de enunciados"
+      ],
+      "tags": [
+        "enunciados",
+        "funcion comunicativa"
+      ],
+      "keywords": [
+        "enunciados",
+        "funcion comunicativa"
+      ],
+      "type": "emparejar",
+      "language": "es espanol spanish",
+      "platform": "wordwall",
+      "source": "external externa externo"
+    },
+    {
+      "id": "WW-53716987",
+      "title": "geometria y operaciones combinadas · temas 4 y 5",
+      "sourceTitle": "matesmaticas temas 4 y 5 revuela",
+      "description": "relaciona puntos, rectas y angulos con sus definiciones y repasa el orden de las operaciones combinadas.",
+      "subjects": [
+        "matematicas"
+      ],
+      "topics": [
+        "puntos y rectas",
+        "angulos",
+        "operaciones combinadas"
+      ],
+      "tags": [
+        "geometria",
+        "operaciones combinadas",
+        "revuela"
+      ],
+      "keywords": [
+        "geometria",
+        "operaciones combinadas",
+        "revuela"
+      ],
+      "type": "emparejar",
+      "language": "es espanol spanish",
+      "platform": "wordwall",
+      "source": "external externa externo"
+    },
+    {
       "id": "WW-53717982",
       "title": "mountains of spain",
       "sourceTitle": "mountains of spain",
@@ -1440,6 +1777,83 @@
       ],
       "type": "diagrama con etiquetas",
       "language": "es espanol spanish",
+      "platform": "wordwall",
+      "source": "external externa externo"
+    },
+    {
+      "id": "WW-55342703",
+      "title": "tiempos verbales del indicativo",
+      "sourceTitle": "tiempos verbales en espanol",
+      "description": "relaciona formas verbales con el presente, el preterito imperfecto, el preterito perfecto simple y el futuro del indicativo.",
+      "subjects": [
+        "lengua"
+      ],
+      "topics": [
+        "tiempos verbales"
+      ],
+      "tags": [
+        "indicativo",
+        "conjugacion"
+      ],
+      "keywords": [
+        "indicativo",
+        "conjugacion"
+      ],
+      "type": "emparejar",
+      "language": "es espanol spanish",
+      "platform": "wordwall",
+      "source": "external externa externo"
+    },
+    {
+      "id": "WW-55344112",
+      "title": "comparative adjectives · kid’s box 3",
+      "sourceTitle": "comparatives|unit 7 kids box 3",
+      "description": "relaciona adjetivos ingleses con sus formas comparativas, como big/bigger y happy/happier.",
+      "subjects": [
+        "ingles"
+      ],
+      "topics": [
+        "comparative adjectives"
+      ],
+      "tags": [
+        "comparatives",
+        "adjectives",
+        "kid’s box 3"
+      ],
+      "keywords": [
+        "comparatives",
+        "adjectives",
+        "kid’s box 3"
+      ],
+      "type": "emparejar",
+      "language": "en ingles ingles english",
+      "platform": "wordwall",
+      "source": "external externa externo"
+    },
+    {
+      "id": "WW-55409289",
+      "title": "unit 7 vocabulary · kid’s box 3",
+      "sourceTitle": "unit 7 english|kid's box 3 vocabulario",
+      "description": "review the general vocabulary from unit 7 of kid’s box 3 through a matching activity.",
+      "subjects": [
+        "ingles"
+      ],
+      "topics": [
+        "vocabulary"
+      ],
+      "tags": [
+        "vocabulary",
+        "unit 7",
+        "kid’s box 3"
+      ],
+      "keywords": [
+        "vocabulary",
+        "unit 7",
+        "kid’s box 3",
+        "english"
+      ],
+      "type": "emparejar",
+      "language": "en ingles ingles english",
       "platform": "wordwall",
       "source": "external externa externo"
     },
@@ -1497,6 +1911,30 @@
       ],
       "type": "emparejar",
       "language": "en ingles ingles english",
+      "platform": "wordwall",
+      "source": "external externa externo"
+    },
+    {
+      "id": "WW-73932172",
+      "title": "le materiel scolaire",
+      "sourceTitle": "material escolar frances",
+      "description": "relaciona nombres de material escolar en frances con sus equivalentes en espanol.",
+      "subjects": [
+        "frances"
+      ],
+      "topics": [
+        "le materiel scolaire"
+      ],
+      "tags": [
+        "vocabulario escolar",
+        "traduccion"
+      ],
+      "keywords": [
+        "vocabulario escolar",
+        "traduccion"
+      ],
+      "type": "emparejar",
+      "language": "fr frances frances french",
       "platform": "wordwall",
       "source": "external externa externo"
     },

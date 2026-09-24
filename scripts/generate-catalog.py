@@ -94,6 +94,7 @@ def load_general_workbook(source: Path) -> tuple[dict, dict[str, dict]]:
         "CRÉDITOS",
         "CONTROL_DE_CALIDAD",
         "INFORMACIÓN",
+        "RECURSOS_RELACIONADOS",
     }
     missing = required.difference(workbook.sheetnames)
     if missing:
@@ -262,6 +263,27 @@ def load_general_workbook(source: Path) -> tuple[dict, dict[str, dict]]:
             }),
         }))
 
+    media_resources = []
+    for row in raw["RECURSOS_RELACIONADOS"]:
+        resource_id = row["ID"]
+        locations[resource_id] = {"sheet": "RECURSOS_RELACIONADOS", "row": row["__row__"]}
+        media_resources.append(without_empty({
+            "id": resource_id,
+            "kind": row["Tipo"],
+            "title": row["Título"],
+            "description": row["Descripción"],
+            "language": row["Idioma"],
+            "subjectId": row["ID de asignatura"],
+            "primaryTopicId": row["ID de tema principal"],
+            "topicIds": split_values(row["IDs de tema"]),
+            "relatedActivityIds": split_values(row["IDs de actividad relacionada"]),
+            "originCourseLabel": row["Curso histórico"],
+            "src": row["Ruta de vídeo"],
+            "poster": row["Ruta de póster"],
+            "visualDescriptionPath": row["Ruta de descripción visual"],
+            "status": row["Estado"],
+        }))
+
     quality_issues = []
     for row in raw["CONTROL_DE_CALIDAD"]:
         quality_issues.append({
@@ -286,6 +308,7 @@ def load_general_workbook(source: Path) -> tuple[dict, dict[str, dict]]:
         "activityTypes": sorted(activity_types, key=lambda item: (item["order"], item["id"])),
         "platforms": sorted(platforms, key=lambda item: (item["order"], item["id"])),
         "activities": activities,
+        "mediaResources": sorted(media_resources, key=lambda item: item["id"]),
         "credits": credits,
         "qualityIssues": quality_issues,
         "information": information,
@@ -362,6 +385,7 @@ def main() -> None:
         raise SystemExit(1)
 
     activities = catalog["activities"]
+    media_resources = catalog["mediaResources"]
     platform_counts = Counter(activity["source"].get("platformId") for activity in activities if activity["source"]["kind"] == "external")
     language_counts = Counter(activity["language"] for activity in activities)
     source_kind_counts = Counter(activity["source"]["kind"] for activity in activities)
@@ -390,6 +414,7 @@ def main() -> None:
             "activities": len(activities),
             "relations": sum(len(activity["topicIds"]) for activity in activities),
             "multiTopicActivities": len(multi_topic_ids),
+            "mediaResources": len(media_resources),
         },
         "byPlatform": dict(sorted(platform_counts.items())),
         "byLanguage": dict(sorted(language_counts.items())),

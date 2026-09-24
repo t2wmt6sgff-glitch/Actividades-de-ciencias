@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ExternalLink, Info } from "lucide-react";
 import { notFound } from "next/navigation";
 import { ActivityThumbnail } from "@/components/activity-thumbnail";
+import { RelatedVideo } from "@/components/related-video";
 import { BackToResults } from "@/components/back-to-results";
 import { activityBySlug } from "@/lib/catalog/indexes";
 import {
@@ -16,6 +17,7 @@ import {
 } from "@/lib/catalog/presentation";
 import {
   getActivitySubjects,
+  getActivityMediaResources,
   getActivityTopics,
   getPrimarySubject,
   getPrimaryTopic,
@@ -50,6 +52,7 @@ export default async function ActivityPage({ params }: { params: Promise<{ slug:
   const relatedSubjects = getActivitySubjects(activity);
   const primarySubject = getPrimarySubject(activity);
   const primaryTopic = getPrimaryTopic(activity);
+  const relatedMedia = getActivityMediaResources(activity.id);
   const language = languageLabel(activity.language);
   const sourceLabel = platformLabel(activity);
 
@@ -71,6 +74,7 @@ export default async function ActivityPage({ params }: { params: Promise<{ slug:
           {shouldShowSourceTitle(activity) ? <p className="original-title"><strong>Título original:</strong> <span lang={activity.language}>{activity.sourceTitle}</span></p> : null}
           <section className="detail-section"><h2>Asignaturas relacionadas</h2><div className="theme-links">{relatedSubjects.map((subject) => <Link key={subject.id} href={`/asignatura/${subject.slug}`}>{subject.name}</Link>)}</div></section>
           <section className="detail-section"><h2>Temas relacionados</h2><div className="theme-links">{relatedTopics.map((topic) => <Link key={topic.id} href={getTopicHref(topic)}>{topic.name}</Link>)}</div></section>
+          {relatedMedia.map((resource) => <RelatedVideo key={resource.id} resource={resource} />)}
         </div>
         <aside className="detail-aside">
           {activity.source.kind === "external" ? (

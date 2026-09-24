@@ -125,6 +125,23 @@ export interface Activity {
   legacy?: ActivityLegacyMetadata;
 }
 
+export interface MediaResource {
+  id: string;
+  kind: "video";
+  title: string;
+  description: string;
+  language: LanguageTag;
+  originCourseLabel?: string;
+  subjectId: SubjectId;
+  primaryTopicId: TopicId;
+  topicIds: TopicId[];
+  relatedActivityIds: ActivityId[];
+  src: string;
+  poster: string;
+  visualDescriptionPath?: string;
+  status: EntityStatus;
+}
+
 export interface AssetCredit {
   id: string;
   title: string;
@@ -167,6 +184,7 @@ export interface Catalog {
   activityTypes: ActivityTypeDefinition[];
   platforms: PlatformDefinition[];
   activities: Activity[];
+  mediaResources: MediaResource[];
   credits: AssetCredit[];
   qualityIssues: QualityIssue[];
   information: CatalogInformation[];
