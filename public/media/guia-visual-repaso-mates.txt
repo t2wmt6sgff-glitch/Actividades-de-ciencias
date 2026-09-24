@@ -1,6 +1,6 @@
 Guía visual del videotutorial «Puntos, rectas, ángulos y operaciones combinadas»
 
-Este texto describe lo que se ve en pantalla. No es una transcripción de la pista de audio.
+Este texto describe lo que se ve en pantalla. El autor confirma que la pista de audio contiene únicamente música, sin locución.
 
 00:00–00:05. Portada «Repaso de mates».
 00:05–00:10. El punto.
