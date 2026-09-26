@@ -35,8 +35,10 @@ npm run build
 Next.js genera la web estática completa en `out/`. El servidor Node sirve esos archivos y añade la API privada:
 
 ```bash
-npm start
+NODE_ENV=development npm start
 ```
+
+En producción, `npm start` exige la contraseña hasheada, el token y el origen HTTPS antes de escuchar peticiones.
 
 ## Comprobaciones
 

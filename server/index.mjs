@@ -15,10 +15,10 @@ const owner = 't2wmt6sgff-glitch';
 const repository = 'Actividades-de-ciencias';
 const workflow = 'import-activity.yml';
 const githubApi = 'https://api.github.com';
-const isProduction = process.env.NODE_ENV === 'production';
+const isProduction = process.env.NODE_ENV !== 'test' && process.env.NODE_ENV !== 'development';
 
-if (isProduction && (!/^[a-f0-9]{32}:[a-f0-9]{128}$/i.test(process.env.ADMIN_PASSWORD_HASH || '') || (process.env.GITHUB_ACTIONS_TOKEN || '').length < 20)) {
-  throw new Error('Configura ADMIN_PASSWORD_HASH y GITHUB_ACTIONS_TOKEN antes de iniciar el servidor.');
+if (isProduction && (!/^[a-f0-9]{32}:[a-f0-9]{128}$/i.test(process.env.ADMIN_PASSWORD_HASH || '') || (process.env.GITHUB_ACTIONS_TOKEN || '').length < 20 || !/^https:\/\/[^/]+$/.test(process.env.ADMIN_ORIGIN || ''))) {
+  throw new Error('Configura ADMIN_PASSWORD_HASH, GITHUB_ACTIONS_TOKEN y ADMIN_ORIGIN antes de iniciar el servidor.');
 }
 
 function send(res, status, value, extra = {}) {
