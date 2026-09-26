@@ -38,14 +38,14 @@ jobs:
           CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CF_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
           ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
-          GH_ACTIONS_TOKEN: ${{ secrets.GITHUB_ACTIONS_TOKEN }}
+          GH_ACTIONS_TOKEN: ${{ secrets.ACTIVITY_PUBLISH_TOKEN }}
         run: |
           test -n "$CF_API_TOKEN" || { echo "::error::Falta el secreto CLOUDFLARE_API_TOKEN."; exit 1; }
           test -n "$CF_ACCOUNT_ID" || { echo "::error::Falta la variable CLOUDFLARE_ACCOUNT_ID."; exit 1; }
           test -n "$ADMIN_PASSWORD" || { echo "::error::Falta el secreto ADMIN_PASSWORD."; exit 1; }
           test "${#ADMIN_PASSWORD}" -ge 16 || { echo "::error::ADMIN_PASSWORD debe tener al menos 16 caracteres."; exit 1; }
-          test -n "$GH_ACTIONS_TOKEN" || { echo "::error::Falta el secreto GITHUB_ACTIONS_TOKEN."; exit 1; }
-          test "${#GH_ACTIONS_TOKEN}" -ge 20 || { echo "::error::GITHUB_ACTIONS_TOKEN no parece válido."; exit 1; }
+          test -n "$GH_ACTIONS_TOKEN" || { echo "::error::Falta el secreto ACTIVITY_PUBLISH_TOKEN."; exit 1; }
+          test "${#GH_ACTIONS_TOKEN}" -ge 20 || { echo "::error::ACTIVITY_PUBLISH_TOKEN no parece válido."; exit 1; }
       - name: Desplegar Worker y cargar secretos cifrados
         id: deploy
         uses: cloudflare/wrangler-action@v4
@@ -55,10 +55,10 @@ jobs:
           command: deploy --config wrangler.jsonc
           secrets: |
             ADMIN_PASSWORD
-            GITHUB_ACTIONS_TOKEN
+            ACTIVITY_PUBLISH_TOKEN
         env:
           ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
-          GITHUB_ACTIONS_TOKEN: ${{ secrets.GITHUB_ACTIONS_TOKEN }}
+          ACTIVITY_PUBLISH_TOKEN: ${{ secrets.ACTIVITY_PUBLISH_TOKEN }}
       - name: Mostrar URL del panel
         env:
           WORKER_URL: ${{ steps.deploy.outputs.deployment-url }}
