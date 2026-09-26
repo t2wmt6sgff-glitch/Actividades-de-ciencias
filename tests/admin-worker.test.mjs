@@ -58,7 +58,8 @@ test("login, cookie, sesión, origen, CSRF y logout", async () => {
     body: "{}",
   });
   assert.equal(logout.status, 200);
-  assert.equal((await request("/api/admin/session", { headers: { cookie } })).status, 401);
+  assert.match(logout.headers.get("set-cookie"), /Max-Age=0/);
+  assert.equal((await request("/api/admin/session")).status, 401);
 });
 
 test("Worker rechaza bodies excesivos", async () => {
