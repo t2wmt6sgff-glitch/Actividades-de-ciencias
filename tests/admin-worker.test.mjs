@@ -4,7 +4,7 @@ import worker from "../worker/index.mjs";
 
 const env = {
   ADMIN_PASSWORD: "frase-de-prueba-segura-123",
-  GITHUB_ACTIONS_TOKEN: "github-token-for-tests-only",
+  ACTIVITY_PUBLISH_TOKEN: "github-token-for-tests-only",
   ASSETS: { fetch: async () => new Response("<main>web</main>", { headers: { "content-type": "text/html" } }) },
 };
 
