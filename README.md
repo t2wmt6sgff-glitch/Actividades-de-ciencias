@@ -64,16 +64,16 @@ En **Settings → Secrets and variables → Actions**, configura:
 | --- | --- | --- |
 | `CLOUDFLARE_API_TOKEN` | Secret | Token limitado a **Edit Cloudflare Workers** en una sola cuenta Cloudflare. |
 | `ADMIN_PASSWORD` | Secret | Contraseña larga, mínimo 16 caracteres. |
-| `GITHUB_ACTIONS_TOKEN` | Secret | Fine-grained token para este repo con `Actions: write`, usado por el Worker para disparar y consultar publicación. |
+| `ACTIVITY_PUBLISH_TOKEN` | Secret | Fine-grained token para este repo con `Actions: write`, usado por el Worker para disparar y consultar publicación. |
 | `CLOUDFLARE_ACCOUNT_ID` | Variable | ID de la cuenta Cloudflare. |
 
-No pegues estos valores en el repositorio, issues ni chat. El workflow transfiere `ADMIN_PASSWORD` y `GITHUB_ACTIONS_TOKEN` al Worker como secretos cifrados. No se incluyen en el JavaScript público.
+No pegues estos valores en el repositorio, issues ni chat. El workflow transfiere `ADMIN_PASSWORD` y `ACTIVITY_PUBLISH_TOKEN` al Worker como secretos cifrados. No se incluyen en el JavaScript público.
 
 El workflow **Desplegar panel en Cloudflare Workers** se ejecuta al actualizar `main` y también puede iniciarse desde **Actions → Run workflow**. Después de desplegar, la URL del Worker aparece en el resumen. Guarda esa URL para abrir el panel. La publicación de una actividad actualiza también la copia estática del Worker mediante un segundo workflow dispatch.
 
 La publicación normal conserva `data/catalogo-actividades.xlsx` como fuente única. El importador valida y regenera el catálogo antes del commit. Un commit con `GITHUB_TOKEN` no inicia workflows de tipo `push`; por eso el importador dispara explícitamente el despliegue de la copia Worker después del commit.
 
-Para rotar `ADMIN_PASSWORD` o `GITHUB_ACTIONS_TOKEN`, actualiza el secreto de GitHub y ejecuta **Desplegar panel en Cloudflare Workers**. La sesión dura dos horas; cambiar la contraseña invalida las sesiones existentes. Para rotar Cloudflare API Token, crea otro con el mismo alcance, cambia `CLOUDFLARE_API_TOKEN` y revoca el anterior.
+Para rotar `ADMIN_PASSWORD` o `ACTIVITY_PUBLISH_TOKEN`, actualiza el secreto de GitHub y ejecuta **Desplegar panel en Cloudflare Workers**. La sesión dura dos horas; cambiar la contraseña invalida las sesiones existentes. Para rotar Cloudflare API Token, crea otro con el mismo alcance, cambia `CLOUDFLARE_API_TOKEN` y revoca el anterior.
 
 Hostinger debe continuar sirviendo `out/` para el sitio principal. Su ruta `/admin/` no contiene backend; utiliza `workers.dev/admin/`. La automatización de despliegue de Hostinger aún debe comprobarse desde hPanel cuando sea posible.
 
