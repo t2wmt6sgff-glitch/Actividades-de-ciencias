@@ -41,8 +41,17 @@ function rate(key,max,windowMs) {
   if(recent.length>max)throw new AdminError("Demasiados intentos. Prueba más tarde.",429);
 }
 async function body(request) {
-  const text=await request.text(); if(enc.encode(text).byteLength>12000)throw new AdminError("La solicitud es demasiado grande.",413);
-  try{return JSON.parse(text);}catch{throw new AdminError("JSON inválido.");}
+  const reader=request.body?.getReader();if(!reader)throw new AdminError("JSON inválido.");
+  const chunks=[];let size=0;
+  try {
+    while(true) {
+      const {done,value}=await reader.read();if(done)break;size+=value.byteLength;
+      if(size>12000){await reader.cancel();throw new AdminError("La solicitud es demasiado grande.",413);}
+      chunks.push(value);
+    }
+  } finally { await reader.cancel().catch(()=>{}); }
+  const bytes=new Uint8Array(size);let offset=0;for(const chunk of chunks){bytes.set(chunk,offset);offset+=chunk.byteLength;}
+  try{return JSON.parse(new TextDecoder().decode(bytes));}catch{throw new AdminError("JSON inválido.");}
 }
 function externalLink(input,manualId="") {
   if(typeof input!=="string"||input.length>2048)throw new AdminError("Pega una URL completa de Wordwall o Educaplay.");
@@ -89,6 +98,7 @@ function validateDraft(data) {
   const allowed=new Set(["url","platformId","resourceId","title","description","subjectId","topicIds","typeId","language","verified","sourceTitle","manual"]);
   if(Object.keys(data).some(k=>!allowed.has(k)))throw new AdminError("La solicitud contiene campos inesperados.");
   const link=externalLink(data.url,data.manual?data.resourceId:"");
+  if(data.manual!=null&&typeof data.manual!=="boolean")throw new AdminError("Estado manual inválido.");
   if(data.manual&&data.verified)throw new AdminError("Un enlace manual queda pendiente de verificación.");
   if(link.platformId!==data.platformId||link.resourceId!==data.resourceId)throw new AdminError("La plataforma o ID no coinciden con el enlace.");
   for(const [key,limit] of [["title",180],["description",1200]])if(typeof data[key]!=="string"||!data[key].trim()||data[key].length>limit||/[\x00-\x1f]/.test(data[key]))throw new AdminError(`${key}: revisa el texto.`);
