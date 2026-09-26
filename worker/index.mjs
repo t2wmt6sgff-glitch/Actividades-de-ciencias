@@ -119,7 +119,7 @@ const catalogOptions=()=>({
   platforms:catalog.platforms.map(({id,name})=>({id,name})),
 });
 async function github(path,env,init={}) {
-  const token=env.GITHUB_ACTIONS_TOKEN;if(!token||token.length<20)throw new AdminError("Falta configurar el token de publicación en Cloudflare.",503);
+  const token=env.ACTIVITY_PUBLISH_TOKEN;if(!token||token.length<20)throw new AdminError("Falta configurar el token de publicación en Cloudflare.",503);
   const res=await fetch(`https://api.github.com/repos/${owner}/${repo}${path}`,{...init,headers:{accept:"application/vnd.github+json",authorization:`Bearer ${token}`,"x-github-api-version":"2022-11-28",...(init.headers||{})},signal:AbortSignal.timeout(12000)});
   if(!res.ok)throw new AdminError("GitHub no ha aceptado la operación. Inténtalo de nuevo.",502);
   return res.status===204?null:res.json();
