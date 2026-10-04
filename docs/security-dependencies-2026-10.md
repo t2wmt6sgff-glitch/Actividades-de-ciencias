@@ -18,7 +18,7 @@ Solo se actualizan cuatro entradas de `package.json` y las resoluciones necesari
 | browserslist | 4.28.2 | 4.29.3 | Transitiva de @babel/helper-compilation-targets; desarrollo |
 | @babel/core | 7.29.0 | 7.29.7 | Transitiva de eslint-plugin-react-hooks; desarrollo |
 | baseline-browser-mapping | 2.10.30 | 2.11.27 | Transitiva de Next y Browserslist; build |
-| postcss | 8.4.31 / 8.5.14 | 8.5.23 | Next, Tailwind y Vite; build |
+| postcss | 8.4.31 / 8.5.14 | 8.5.23 / 8.5.28 | Next y Tailwind usan 8.5.23; Vite introduce 8.5.28; build |
 | nanoid | 3.3.12 | 3.3.19 | Transitiva de PostCSS; build |
 | ajv (rama serve) | 8.12.0 | 8.18.0 | Fijada por serve; ajv 6.15.0 de ESLint no está en este rango afectado |
 | serve-handler | 6.1.6 | 6.1.7 | Fijada por serve; corrige su minimatch 3.1.2 a 3.1.5 |
@@ -67,6 +67,6 @@ npm audit --omit=dev --json
 
 `validate.yml` ejecuta catálogo, tests (incluidos Worker, nativas y export), lint, TypeScript y navegador en escritorio/iPad/móvil. `deploy-admin-worker.yml` conserva Node 22 y Wrangler 4.143.0; los secretos y `wrangler.jsonc` no se modifican.
 
-El cambio debe entrar primero en main canónico mediante PR y CI verde. Después fusionar ese main en el main del fork conservando sus commits anteriores, sin reescribir su historia, y comprobar que package.json y package-lock.json tienen exactamente los mismos blobs. En el momento inicial el fork tenía permisos de escritura disponibles, pero `sync-fork.yml` ya estaba eliminado: las últimas sincronizaciones eran merges de upstream y no hay automatización vigente demostrada. No asumir los intervalos antiguos del README.
+El cambio debe entrar primero en main canónico mediante PR y CI verde. Después fusionar ese main en el main del fork conservando sus commits anteriores, sin reescribir su historia, y comprobar que package.json y package-lock.json tienen exactamente los mismos blobs. Aunque los metadatos declaraban `push: true`, la API rechazó crear un PR en el fork con `403: Resource not accessible by integration`: esta conexión no permite preparar allí la escritura. La fusión local con su main sí está probada, sin conflictos y con el mismo árbol resultante que el cambio canónico. `sync-fork.yml` ya estaba eliminado: las últimas sincronizaciones eran merges de upstream y no hay automatización vigente demostrada. No asumir los intervalos antiguos del README.
 
 Sin acceso a hPanel no se puede verificar la rama configurada, comandos de instalación/build, retención de node_modules, caché ni origen del escaneo. Hostinger debe compilar el commit sincronizado con una instalación limpia y servir `out/`; los manifests actualizados permiten la misma corrección tanto si escanea el lockfile como una instalación nueva. Si persisten alertas antiguas, contrastar SHA del fork y del deploy, limpiar la caché de build/node_modules y solicitar un nuevo escaneo. El aviso dev-only de braces puede seguir apareciendo; no atribuirlo a caché.
