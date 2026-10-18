@@ -352,9 +352,9 @@
     },
     {
       "id": "q11",
-      "prompt": "Classify these foods based on which molecules they are rich in.",
-      "explanation": "This exercise groups foods by the molecules highlighted in the supplied material: carbohydrates mainly provide energy; lipids store energy and help form membranes; proteins help build and repair structures. Foods contain mixtures: milk and cheese, for example, contain more than one of these groups. The key follows the supplied classification, rather than claiming each food contains only one type of molecule.",
-      "note": "Use the groups in this exercise. Foods can contain several types of molecule. “meal” is kept as supplied, in the Proteins group; its meaning here is unclear.",
+      "prompt": "Classify each food by the group of molecules it is mainly a source of.",
+      "explanation": "Foods contain mixtures of molecules. In this exercise, classify each food by the group it is mainly a source of: carbohydrates are an important energy source, lipids store energy and form part of cell membranes, and proteins help build and repair body structures. The classification highlights a main source; it does not mean the food contains only that group.",
+      "note": "Foods contain mixtures of molecules. Choose the group that best describes their main source in this exercise.",
       "kind": "classification",
       "items": [
         {
@@ -371,15 +371,15 @@
         },
         {
           "id": "i4",
-          "label": "chocolate"
+          "label": "rice"
         },
         {
           "id": "i5",
-          "label": "candy"
+          "label": "sugar"
         },
         {
           "id": "i6",
-          "label": "vegetables"
+          "label": "potatoes"
         },
         {
           "id": "i7",
@@ -387,7 +387,7 @@
         },
         {
           "id": "i8",
-          "label": "burger"
+          "label": "olive oil"
         },
         {
           "id": "i9",
@@ -399,11 +399,11 @@
         },
         {
           "id": "i11",
-          "label": "cheese"
+          "label": "sunflower oil"
         },
         {
           "id": "i12",
-          "label": "fried food"
+          "label": "margarine"
         },
         {
           "id": "i13",
@@ -423,11 +423,11 @@
         },
         {
           "id": "i17",
-          "label": "meal"
+          "label": "lentils"
         },
         {
           "id": "i18",
-          "label": "milk"
+          "label": "chickpeas"
         }
       ],
       "categories": [

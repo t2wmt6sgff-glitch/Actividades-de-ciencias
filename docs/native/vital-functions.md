@@ -37,7 +37,7 @@ La fuente íntegra se conserva en `data/native/sources/vital-functions.md`.
 - P10: **Nuclei acid → Nucleic acids**, corrección del nombre de las biomoléculas en la clasificación.
 - P6 conserva la respuesta Respiration y el enunciado original. La nota y explicación aclaran que tomar oxígeno describe la respiración aerobia; algunos organismos utilizan procesos anaerobios. Referencia de comprobación: [OpenStax, Biology 2e, 7.5](https://openstax.org/books/biology-2e/pages/7-5-metabolism-without-oxygen).
 - P8 conserva **Only in living things**, según la clave explícita. La explicación señala que es una simplificación del ejercicio: las moléculas orgánicas también pueden existir fuera de organismos vivos, por ejemplo en materia muerta. No se presenta la simplificación como una regla química universal.
-- P11 conserva los grupos originales aunque los alimentos contienen mezclas. **meal** permanece en Proteins; el archivo no permite saber qué alimento se quiso nombrar. La nota visible advierte esta ambigüedad y no lo sustituye por otra palabra.
+- P11: se conserva el tipo `classification`, los tres grupos y los 18 identificadores de elementos. Se cambia el enunciado para preguntar por el grupo de moléculas del que cada alimento es principalmente una fuente, y se sustituyen los ejemplos ambiguos (`chocolate`, `burger`, `cheese`, `fried food`, `meal` y `milk`) por ejemplos más defendibles para una clasificación escolar. La transcripción original permanece intacta en `data/native/sources/vital-functions.md`; la corrección editorial se documenta por separado. La clasificación no afirma que los alimentos contengan exclusivamente ese grupo de moléculas.
 
 No se generan preguntas ni explicaciones durante la ejecución.
 

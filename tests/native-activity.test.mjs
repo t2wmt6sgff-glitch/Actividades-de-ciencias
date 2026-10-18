@@ -36,8 +36,13 @@ test('las 11 preguntas y todas las opciones proceden del Markdown con solo dos c
  const sections=[...markdown.matchAll(/^##\s+(\d+)\.\s*([^\n]+)\n([\s\S]*?)(?=^##\s|$(?![\s\S]))/gm)];
  assert.equal(sections.length,11);
  for (const [,number,prompt,body] of sections) {
-  const question=q(`q${number}`);assert.equal(question.prompt,prompt.trim());
-  const expected=[...new Set([...body.matchAll(/^- \[ \] (.+)$/gm)].map(m=>m[1].trim().replace('Mollecules','Molecules').replace('Nuclei acid','Nucleic acids')))];
+  const question=q(`q${number}`);
+  const q11Editorial=markdown.split('## Editorial correction for interactive q11')[1] ?? '';
+  assert.ok(q11Editorial,'la corrección editorial de q11 está documentada');
+  assert.equal(question.prompt,Number(number)===11?'Classify each food by the group of molecules it is mainly a source of.':prompt.trim());
+  const expected=Number(number)===11
+   ? [...q11Editorial.matchAll(/^### (Carbohydrates|Lipids|Proteins):\\s*\\n((?:- \\[ \\] .+\\n?)+)/gm)].flatMap(([,category,items])=>[...items.matchAll(/^- \\[ \\] (.+)$/gm)].map(m=>m[1].trim()))
+   : [...new Set([...body.matchAll(/^- \\[ \\] (.+)$/gm)].map(m=>m[1].trim().replace('Mollecules','Molecules').replace('Nuclei acid','Nucleic acids')))];
   const actual=(question.options??question.items).map(i=>i.label);
   assert.deepEqual(actual,expected,question.id);
   if(Number(number)<=6){
@@ -46,7 +51,8 @@ test('las 11 preguntas y todas las opciones proceden del Markdown con solo dos c
    assert.deepEqual(question.correctIds.map(id=>question.options.find(o=>o.id===id).label),expectedCorrect);
   }
   if(Number(number)>=10){
-   for(const [,category,items] of body.matchAll(/^### (.+):\s*\n([\s\S]*?)(?=^###|$(?![\s\S]))/gm)){
+   const classificationBody=Number(number)===11?q11Editorial:body;
+   for(const [,category,items] of classificationBody.matchAll(/^### (.+):\s*\n([\s\S]*?)(?=^###|$(?![\s\S]))/gm)){
     for(const [,label] of items.matchAll(/^- \[ \] (.+)$/gm)){
      const item=question.items.find(i=>i.label===label.trim().replace('Nuclei acid','Nucleic acids'));
      assert.equal(question.categories.find(c=>c.id===question.correctCategories[item.id]).label,category);
@@ -57,7 +63,13 @@ test('las 11 preguntas y todas las opciones proceden del Markdown con solo dos c
  assert.deepEqual(content.questions.map(q=>q.kind),['multiple-choice',...Array(5).fill('single-choice'),'ordering','single-choice','single-choice','classification','classification']);
  assert.equal(q('q8').options.find(o=>o.id===q('q8').correctIds[0]).label,'Only in living things');
  assert.equal(q('q9').options.find(o=>o.id===q('q9').correctIds[0]).label,'Both');
- assert.equal(q('q11').items.length,18);assert.ok(q('q11').note.includes('meal'));
+ assert.equal(q('q11').items.length,18);
+ assert.equal(q('q11').kind,'classification');
+ assert.deepEqual(q('q11').categories.map(c=>c.label),['Carbohydrates','Lipids','Proteins']);
+ assert.ok(!q('q11').items.some(i=>['meal','milk','chocolate','burger','cheese','fried food'].includes(i.label)));
+ assert.deepEqual(q('q11').items.map(i=>q('q11').correctCategories[i.id]),['c1','c1','c1','c1','c1','c1','c2','c2','c2','c2','c2','c2','c3','c3','c3','c3','c3','c3']);
+ assert.match(q('q11').explanation,/mainly a source/);
+ assert.match(q11Editorial,/transcription/i);
 });
 
 test('validador rechaza IDs, opciones, orden o categorías inválidas',()=>{
