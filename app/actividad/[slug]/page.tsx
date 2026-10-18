@@ -4,6 +4,7 @@ import { ExternalLink, Info } from "lucide-react";
 import { notFound } from "next/navigation";
 import { ActivityThumbnail } from "@/components/activity-thumbnail";
 import { RelatedVideo } from "@/components/related-video";
+import { LumiConnectivityHelp } from "@/components/lumi-connectivity-help";
 import { BackToResults } from "@/components/back-to-results";
 import { NativeActivity } from "@/components/native/native-activity";
 import { createAttempt } from "@/lib/native/core.mjs";
@@ -105,6 +106,7 @@ export default async function ActivityPage({ params }: { params: Promise<{ slug:
               referrerPolicy="strict-origin-when-cross-origin"
             />
             <p className="embed-fallback-note">Si la actividad no se muestra o no responde, puedes <a href={activity.source.url} target="_blank" rel="noopener noreferrer">abrirla directamente en {sourceLabel}</a>.</p>
+            {activity.source.platformId === "lumi" ? <LumiConnectivityHelp activityUrl={activity.source.url} /> : null}
           </section> : null}
           {shouldShowSourceTitle(activity) ? <p className="original-title"><strong>Título original:</strong> <span lang={activity.language}>{activity.sourceTitle}</span></p> : null}
           <section className="detail-section"><h2>Asignaturas relacionadas</h2><div className="theme-links">{relatedSubjects.map((subject) => <Link key={subject.id} href={`/asignatura/${subject.slug}`}>{subject.name}</Link>)}</div></section>
