@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "source": {
     "file": "data/catalogo-actividades.xlsx",
-    "sha256": "69d3f93f708f54b22384fcb3156cb21dc8320943f93091accd2435fc79be7945"
+    "sha256": "39e41b5b6d4e871945287788fd7e9bc5d770740fd7188341f03914f83cd93533"
   },
   "subjects": [
     {
@@ -5338,7 +5338,7 @@
       "slug": "how-do-living-things-get-nutrients",
       "title": "How Do Living Things Get Nutrients?",
       "sourceTitle": "How Do Living Things Get Nutrients?",
-      "description": "English-language quiz on the nutrition function in living things, including autotrophic and heterotrophic nutrition, nutrients, cellular respiration and the route oxygen follows through the body.",
+      "description": "Interactive review of autotrophic and heterotrophic nutrition, photosynthesis and cellular respiration using labeled cell-organelle diagrams and selectable answers.",
       "primarySubjectId": "biologia-geologia",
       "subjectIds": [
         "biologia-geologia"
@@ -5352,17 +5352,20 @@
       "originCourseLabel": "1.º ESO",
       "tags": [
         "cellular nutrition",
-        "autotrophic nutrition",
-        "heterotrophic nutrition"
+        "photosynthesis",
+        "cellular respiration"
       ],
       "keywords": [
         "nutrición celular",
-        "nutrients",
-        "cell respiration",
-        "mitochondria",
-        "oxygen pathway",
-        "nutrición autótrofa",
-        "nutrición heterótrofa"
+        "autotrophic nutrition",
+        "heterotrophic nutrition",
+        "chloroplast",
+        "mitochondrion",
+        "carbon dioxide",
+        "mineral salts",
+        "oxygen",
+        "water",
+        "energy"
       ],
       "dates": {
         "createdAt": null,
@@ -5371,17 +5374,12 @@
       },
       "publicationStatus": "published",
       "source": {
-        "kind": "external",
-        "platformId": "lumi",
-        "resourceId": "1PCQ0H",
-        "url": "https://app.lumi.education/run/1PCQ0H",
-        "embedUrl": "https://app.lumi.education/run/1PCQ0H",
-        "canonicalUrl": "https://app.lumi.education/run/1PCQ0H",
-        "originalUrl": "https://app.lumi.education/run/1PCQ0H",
-        "linkStatus": "unverified",
-        "titleVerified": false,
-        "titleSource": "Markdown proporcionado",
-        "verificationNote": "URL de origen y título proporcionados por el usuario; no verificados en navegador."
+        "kind": "native",
+        "native": {
+          "engineVersion": 1,
+          "activityType": "mixed-practice",
+          "contentPath": "data/native/how-do-living-things-get-nutrients.json"
+        }
       }
     },
     {

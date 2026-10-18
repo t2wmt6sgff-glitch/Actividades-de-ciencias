@@ -2,7 +2,8 @@ import { ArrowDown, ArrowUp } from "lucide-react";
 import { useRef, useState } from "react";
 import { assignMatch } from "@/lib/native/core.mjs";
 import type { Answer, Question } from "@/lib/native/schema";
-import type { MatchingQuestion } from "@/lib/native/schema";
+import type { DiagramQuestion, MatchingQuestion } from "@/lib/native/schema";
+import { DiagramQuestionControls } from "./diagram-question";
 
 function MatchingControls({ question, answer, order, locked, onAnswer }: {
   question: MatchingQuestion; answer: Record<string, string>; order: string[]; locked: boolean; onAnswer: (answer: Answer) => void;
@@ -46,6 +47,7 @@ export function QuestionControls({ question, answer, order, locked, onAnswer }: 
   question: Question; answer: Answer; order: string[]; locked: boolean; onAnswer: (answer: Answer) => void;
 }) {
   if (question.kind === "matching") return <MatchingControls key={question.id} question={question} answer={answer as Record<string, string>} order={order} locked={locked} onAnswer={onAnswer} />;
+  if (question.kind === "diagram-label") return <DiagramQuestionControls question={question as DiagramQuestion} answer={answer as Record<string, string>} order={order} locked={locked} onAnswer={onAnswer} />;
   if (question.kind === "year") return <div className="native-written">
     <label htmlFor={`answer-${question.id}`}>Year</label>
     <input id={`answer-${question.id}`} lang="en" type="number" inputMode="numeric" min={question.minYear} max={question.maxYear} step={1}

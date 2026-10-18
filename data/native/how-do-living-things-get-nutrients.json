@@ -1,0 +1,495 @@
+{
+  "engineVersion": 1,
+  "activityType": "mixed-practice",
+  "id": "LUMI-1PCQ0H",
+  "language": "en",
+  "feedback": {
+    "explanations": "immediate"
+  },
+  "questions": [
+    {
+      "id": "nutrition-types",
+      "kind": "matching",
+      "prompt": "Match each type of nutrition with the way an organism gets organic matter.",
+      "left": [
+        {
+          "id": "autotrophic",
+          "label": "Autotrophic nutrition"
+        },
+        {
+          "id": "heterotrophic",
+          "label": "Heterotrophic nutrition"
+        }
+      ],
+      "right": [
+        {
+          "id": "make-organic",
+          "label": "Uses inorganic substances to make organic matter."
+        },
+        {
+          "id": "take-organic",
+          "label": "Gets organic nutrients from the environment."
+        }
+      ],
+      "correctMatches": {
+        "autotrophic": "make-organic",
+        "heterotrophic": "take-organic"
+      },
+      "explanation": "Autotrophs make organic matter from inorganic substances. Heterotrophs obtain organic nutrients from their surroundings or food. Plants use photosynthesis; animals and fungi are heterotrophs."
+    },
+    {
+      "id": "nutrition-examples",
+      "kind": "classification",
+      "prompt": "Sort these examples by their type of nutrition.",
+      "note": "The notes say plants, algae and some bacteria are autotrophs; animals, fungi and many microorganisms are heterotrophs. The words some and many matter: not all bacteria have the same type of nutrition.",
+      "items": [
+        {
+          "id": "plants",
+          "label": "Plants"
+        },
+        {
+          "id": "algae",
+          "label": "Algae"
+        },
+        {
+          "id": "some-bacteria",
+          "label": "Some bacteria"
+        },
+        {
+          "id": "animals",
+          "label": "Animals"
+        },
+        {
+          "id": "fungi",
+          "label": "Fungi"
+        },
+        {
+          "id": "many-microorganisms",
+          "label": "Many microorganisms"
+        }
+      ],
+      "categories": [
+        {
+          "id": "autotroph",
+          "label": "Autotrophs"
+        },
+        {
+          "id": "heterotroph",
+          "label": "Heterotrophs"
+        }
+      ],
+      "correctCategories": {
+        "plants": "autotroph",
+        "algae": "autotroph",
+        "some-bacteria": "autotroph",
+        "animals": "heterotroph",
+        "fungi": "heterotroph",
+        "many-microorganisms": "heterotroph"
+      },
+      "explanation": "Plants, algae and some bacteria can make organic matter from inorganic substances. Animals, fungi and many microorganisms obtain organic matter from the environment. These examples do not mean that every bacterium has the same nutrition."
+    },
+    {
+      "id": "heterotrophic-organic-nutrients",
+      "kind": "multiple-choice",
+      "prompt": "Which organic nutrients can heterotrophs obtain from their environment?",
+      "options": [
+        {
+          "id": "carbohydrates",
+          "label": "Carbohydrates"
+        },
+        {
+          "id": "proteins",
+          "label": "Proteins"
+        },
+        {
+          "id": "lipids",
+          "label": "Lipids"
+        },
+        {
+          "id": "water",
+          "label": "Water"
+        },
+        {
+          "id": "mineral-salts",
+          "label": "Mineral salts"
+        },
+        {
+          "id": "sunlight",
+          "label": "Sunlight"
+        }
+      ],
+      "correctIds": [
+        "carbohydrates",
+        "proteins",
+        "lipids"
+      ],
+      "explanation": "The notes list carbohydrates, proteins and lipids as organic nutrients that heterotrophs obtain from the environment. Water and mineral salts are inorganic nutrients, and sunlight supplies energy."
+    },
+    {
+      "id": "photosynthesis-flow",
+      "kind": "diagram-label",
+      "scene": "chloroplast",
+      "prompt": "Complete the photosynthesis diagram. Follow each numbered arrow and choose what enters or leaves the chloroplast.",
+      "note": "Mineral salts are inorganic nutrients absorbed by the plant, as shown in the notes. This simplified chloroplast diagram shows the materials used directly in photosynthesis; light enters as energy, not as a substance.",
+      "slots": [
+        {
+          "id": "carbon-dioxide-in",
+          "number": 1,
+          "label": "Which gas enters?",
+          "flow": "matter-in",
+          "from": [
+            25,
+            135
+          ],
+          "to": [
+            328,
+            135
+          ],
+          "marker": [
+            150,
+            135
+          ]
+        },
+        {
+          "id": "water-in",
+          "number": 2,
+          "label": "Which other substance enters?",
+          "flow": "matter-in",
+          "from": [
+            25,
+            285
+          ],
+          "to": [
+            328,
+            285
+          ],
+          "marker": [
+            150,
+            285
+          ]
+        },
+        {
+          "id": "light-in",
+          "number": 3,
+          "label": "What supplies the energy?",
+          "flow": "energy-in",
+          "from": [
+            500,
+            61
+          ],
+          "to": [
+            500,
+            96
+          ],
+          "marker": [
+            500,
+            76
+          ]
+        },
+        {
+          "id": "organic-matter-out",
+          "number": 4,
+          "label": "What energy-rich matter is produced?",
+          "flow": "matter-out",
+          "from": [
+            672,
+            135
+          ],
+          "to": [
+            975,
+            135
+          ],
+          "marker": [
+            850,
+            135
+          ]
+        },
+        {
+          "id": "oxygen-out",
+          "number": 5,
+          "label": "Which gas is released?",
+          "flow": "matter-out",
+          "from": [
+            672,
+            285
+          ],
+          "to": [
+            975,
+            285
+          ],
+          "marker": [
+            850,
+            285
+          ]
+        }
+      ],
+      "options": [
+        {
+          "id": "co2",
+          "label": "Carbon dioxide (CO₂)"
+        },
+        {
+          "id": "water",
+          "label": "Water (H₂O)"
+        },
+        {
+          "id": "light",
+          "label": "Sunlight energy"
+        },
+        {
+          "id": "salts",
+          "label": "Mineral salts"
+        },
+        {
+          "id": "organic",
+          "label": "Organic matter (sugars)"
+        },
+        {
+          "id": "oxygen",
+          "label": "Oxygen (O₂)"
+        },
+        {
+          "id": "energy",
+          "label": "Energy released"
+        },
+        {
+          "id": "proteins",
+          "label": "Proteins from food"
+        }
+      ],
+      "correctBySlot": {
+        "carbon-dioxide-in": "co2",
+        "water-in": "water",
+        "light-in": "light",
+        "organic-matter-out": "organic",
+        "oxygen-out": "oxygen"
+      },
+      "explanation": "In photosynthesis, carbon dioxide and water are used to build energy-rich organic matter, and oxygen is released. Chlorophyll in the chloroplast captures light energy. Plants also absorb mineral salts as inorganic nutrients, but those salts are not shown here as direct reactants of the simplified photosynthesis equation."
+    },
+    {
+      "id": "chlorophyll-role",
+      "kind": "single-choice",
+      "prompt": "What captures the sunlight needed for photosynthesis inside chloroplasts?",
+      "options": [
+        {
+          "id": "chlorophyll",
+          "label": "Chlorophyll"
+        },
+        {
+          "id": "mitochondria",
+          "label": "Mitochondria"
+        },
+        {
+          "id": "cellulose",
+          "label": "Cellulose"
+        },
+        {
+          "id": "nucleus",
+          "label": "The nucleus"
+        }
+      ],
+      "correctIds": [
+        "chlorophyll"
+      ],
+      "explanation": "Chlorophyll is the green pigment in chloroplasts that captures light energy for photosynthesis. A chloroplast is the organelle; chlorophyll is the pigment inside it."
+    },
+    {
+      "id": "cellular-respiration-flow",
+      "kind": "diagram-label",
+      "scene": "mitochondrion",
+      "prompt": "Complete the cellular-respiration diagram. Match each numbered arrow to the matter or energy entering or leaving the mitochondrion.",
+      "note": "The dashed golden arrow and burst represent energy. Energy is transferred for the cell to use; it is not a material substance.",
+      "slots": [
+        {
+          "id": "organic-matter-in",
+          "number": 1,
+          "label": "What organic nutrient enters?",
+          "flow": "matter-in",
+          "from": [
+            25,
+            135
+          ],
+          "to": [
+            328,
+            135
+          ],
+          "marker": [
+            150,
+            135
+          ]
+        },
+        {
+          "id": "oxygen-in",
+          "number": 2,
+          "label": "Which gas enters?",
+          "flow": "matter-in",
+          "from": [
+            25,
+            285
+          ],
+          "to": [
+            328,
+            285
+          ],
+          "marker": [
+            150,
+            285
+          ]
+        },
+        {
+          "id": "carbon-dioxide-out",
+          "number": 3,
+          "label": "Which gas leaves?",
+          "flow": "matter-out",
+          "from": [
+            672,
+            125
+          ],
+          "to": [
+            975,
+            125
+          ],
+          "marker": [
+            850,
+            125
+          ]
+        },
+        {
+          "id": "water-out",
+          "number": 4,
+          "label": "Which other substance leaves?",
+          "flow": "matter-out",
+          "from": [
+            672,
+            270
+          ],
+          "to": [
+            975,
+            270
+          ],
+          "marker": [
+            850,
+            270
+          ]
+        },
+        {
+          "id": "energy-out",
+          "number": 5,
+          "label": "What useful output is released for the cell?",
+          "flow": "energy-out",
+          "from": [
+            500,
+            313
+          ],
+          "to": [
+            500,
+            410
+          ],
+          "marker": [
+            500,
+            355
+          ]
+        }
+      ],
+      "options": [
+        {
+          "id": "organic",
+          "label": "Organic matter (sugars)"
+        },
+        {
+          "id": "oxygen",
+          "label": "Oxygen (O₂)"
+        },
+        {
+          "id": "co2",
+          "label": "Carbon dioxide (CO₂)"
+        },
+        {
+          "id": "water",
+          "label": "Water (H₂O)"
+        },
+        {
+          "id": "energy",
+          "label": "Energy"
+        },
+        {
+          "id": "sunlight",
+          "label": "Sunlight"
+        },
+        {
+          "id": "salts",
+          "label": "Mineral salts"
+        },
+        {
+          "id": "chlorophyll",
+          "label": "Chlorophyll"
+        }
+      ],
+      "correctBySlot": {
+        "organic-matter-in": "organic",
+        "oxygen-in": "oxygen",
+        "carbon-dioxide-out": "co2",
+        "water-out": "water",
+        "energy-out": "energy"
+      },
+      "explanation": "In the simplified school model, cellular respiration uses oxygen and organic matter. It releases carbon dioxide, water and energy the cell can use. Energy is an output of the process, not a substance that travels through the arrow."
+    },
+    {
+      "id": "both-cell-types-respire",
+      "kind": "single-choice",
+      "prompt": "Which statement about cellular respiration is correct?",
+      "options": [
+        {
+          "id": "both",
+          "label": "Cells of autotrophs and heterotrophs carry out cellular respiration in mitochondria."
+        },
+        {
+          "id": "heterotroph-only",
+          "label": "Only heterotrophs have mitochondria."
+        },
+        {
+          "id": "plants-no-respiration",
+          "label": "Plant cells photosynthesise but do not carry out cellular respiration."
+        },
+        {
+          "id": "chloroplast-respiration",
+          "label": "Cellular respiration takes place in chloroplasts."
+        }
+      ],
+      "correctIds": [
+        "both"
+      ],
+      "explanation": "The notes state that cells of both autotrophs and heterotrophs have mitochondria, where cellular respiration releases usable energy. Plant cells photosynthesise in chloroplasts and also respire in mitochondria."
+    },
+    {
+      "id": "oxygen-route",
+      "kind": "ordering",
+      "prompt": "Follow oxygen from the air you breathe to a mitochondrion. Put the stages in order.",
+      "items": [
+        {
+          "id": "lungs",
+          "label": "Lungs"
+        },
+        {
+          "id": "blood",
+          "label": "Blood"
+        },
+        {
+          "id": "cells",
+          "label": "Body cells"
+        },
+        {
+          "id": "mitochondria",
+          "label": "Mitochondria"
+        }
+      ],
+      "correctOrder": [
+        "lungs",
+        "blood",
+        "cells",
+        "mitochondria"
+      ],
+      "explanation": "In the original activity's human example, oxygen enters the lungs, travels in the blood to body cells, and reaches mitochondria for cellular respiration."
+    }
+  ]
+}

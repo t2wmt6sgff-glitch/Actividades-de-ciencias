@@ -1519,7 +1519,7 @@
       "id": "LUMI-1PCQ0H",
       "title": "how do living things get nutrients?",
       "sourceTitle": "how do living things get nutrients?",
-      "description": "english-language quiz on the nutrition function in living things, including autotrophic and heterotrophic nutrition, nutrients, cellular respiration and the route oxygen follows through the body.",
+      "description": "interactive review of autotrophic and heterotrophic nutrition, photosynthesis and cellular respiration using labeled cell-organelle diagrams and selectable answers.",
       "subjects": [
         "biologia y geologia"
       ],
@@ -1528,22 +1528,25 @@
       ],
       "tags": [
         "cellular nutrition",
-        "autotrophic nutrition",
-        "heterotrophic nutrition"
+        "photosynthesis",
+        "cellular respiration"
       ],
       "keywords": [
         "nutricion celular",
-        "nutrients",
-        "cell respiration",
-        "mitochondria",
-        "oxygen pathway",
-        "nutricion autotrofa",
-        "nutricion heterotrofa"
+        "autotrophic nutrition",
+        "heterotrophic nutrition",
+        "chloroplast",
+        "mitochondrion",
+        "carbon dioxide",
+        "mineral salts",
+        "oxygen",
+        "water",
+        "energy"
       ],
       "type": "actividad interactiva",
       "language": "en ingles ingles english",
-      "platform": "lumi",
-      "source": "external externa externo"
+      "platform": "actividad propia",
+      "source": "native nativa propia"
     },
     {
       "id": "LUMI-3ARRY5",

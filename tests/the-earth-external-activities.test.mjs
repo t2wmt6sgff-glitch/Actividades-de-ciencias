@@ -15,7 +15,7 @@ const expected = [
   ['WW-121676126', 'How Do Living Things Interact with Their Environment? Parte 2', 'https://wordwall.net/resource/121676126?wwmethod=link', 'https://wordwall.net/embed/66f02bba25bd48fdbabe4bd91dec5d23?themeId=1&templateId=2&fontStackId=0'],
 ];
 
-test('The Earth retains both native activities and adds the eight requested external activities in source order', () => {
+test('The Earth retains the native activities and preserves the eight imported resources in source order', () => {
   const topicActivities = catalog.activities.filter((activity) => activity.topicIds.includes(topicId));
   assert.equal(topicActivities.length, 10);
   assert.ok(topicActivities.some((activity) => activity.id === 'native-vital-functions'));
@@ -24,6 +24,12 @@ test('The Earth retains both native activities and adds the eight requested exte
   for (const [id, title, url, embedUrl] of expected) {
     const activity = topicActivities.find((entry) => entry.id === id);
     assert.equal(activity.title, title);
+    if (id === 'LUMI-1PCQ0H') {
+      assert.equal(activity.source.kind, 'native');
+      assert.equal(activity.source.native.contentPath, 'data/native/how-do-living-things-get-nutrients.json');
+      assert.equal(activity.source.url, undefined);
+      continue;
+    }
     assert.equal(activity.source.url, url);
     assert.equal(activity.source.embedUrl, embedUrl);
   }
@@ -39,10 +45,15 @@ test('The Earth topic page displays the eight new activities in the Markdown ord
   assert.deepEqual([...positions].sort((a, b) => a - b), positions);
 });
 
-test('each embedded detail page exports its player and a direct-link fallback', async () => {
+test('the transformed nutrition page exports native controls; remaining external pages keep their players', async () => {
   for (const [id, , url, embedUrl] of expected) {
     const activity = catalog.activities.find((entry) => entry.id === id);
     const html = await readFile(new URL(`../out/actividad/${activity.slug}/index.html`, import.meta.url), 'utf8');
+    if (id === 'LUMI-1PCQ0H') {
+      assert.match(html, /Match each type of nutrition/);
+      assert.doesNotMatch(html, /<iframe/);
+      continue;
+    }
     const escaped = (value) => value.replaceAll('&', '&amp;');
     assert.ok(html.includes(`src="${escaped(embedUrl)}"`), `iframe missing for ${id}`);
     assert.ok(html.includes(`href="${escaped(url)}"`), `direct-link fallback missing for ${id}`);
