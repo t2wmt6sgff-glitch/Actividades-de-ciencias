@@ -27,7 +27,23 @@ export interface MatchingQuestion extends QuestionBase {
   kind: "matching"; left: Item[]; right: Item[];
   correctMatches: Record<string, string>;
 }
-export type Question = ChoiceQuestion | OrderingQuestion | ClassificationQuestion | YearQuestion | TextQuestion | MatchingQuestion;
+export interface DiagramSlot {
+  id: string;
+  number: number;
+  label: string;
+  flow: "matter-in" | "matter-out" | "energy-in" | "energy-out";
+  from: [number, number];
+  to: [number, number];
+  marker: [number, number];
+}
+export interface DiagramQuestion extends QuestionBase {
+  kind: "diagram-label";
+  scene: "chloroplast" | "mitochondrion";
+  slots: DiagramSlot[];
+  options: Item[];
+  correctBySlot: Record<string, string>;
+}
+export type Question = ChoiceQuestion | OrderingQuestion | ClassificationQuestion | YearQuestion | TextQuestion | MatchingQuestion | DiagramQuestion;
 export interface NativeFeedback { explanations: "immediate" | "final-only" }
 export interface NativeContent {
   engineVersion: 1;

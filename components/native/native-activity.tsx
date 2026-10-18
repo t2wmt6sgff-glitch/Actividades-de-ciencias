@@ -17,6 +17,7 @@ function instruction(question: Question) {
     classification: "Choose a category for every item.",
     year: "Enter or adjust the year. Use a whole number.",
     matching: "Select a concept on the left, then its match on the right. You can change pairs before checking.",
+    "diagram-label": "Use each numbered arrow to choose the correct label. The numbers connect the diagram to the answer selectors.",
     "text-input": "",
   }[question.kind];
 }

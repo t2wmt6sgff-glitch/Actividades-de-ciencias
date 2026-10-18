@@ -68,6 +68,30 @@
 .native-item-verdict { display: inline-block; margin-left: .7rem; font-size: .85rem; font-weight: 700; }
 .native-item-review p { margin: .4rem 0 0; }
 .native-original-answer { white-space: pre-wrap; }
+.native-diagram-question { display: grid; gap: 1rem; }
+.native-diagram-figure { margin: 0; padding: .65rem; border: 1px solid #d5e0d8; border-radius: .9rem; background: #fbfdfb; }
+.native-flow-svg { display: block; width: 100%; height: auto; }
+.native-diagram-figure figcaption { margin: .45rem .35rem .1rem; color: #40554c; font-size: .9rem; line-height: 1.45; }
+.diagram-organelle-label { fill: #24382f; font-size: 18px; font-weight: 800; letter-spacing: .07em; }
+.diagram-organelle-subtitle { fill: #485c51; font-size: 13px; }
+.diagram-matter-arrow { stroke: #246b67; stroke-width: 4; }
+.diagram-energy-arrow { stroke: #a86713; stroke-width: 4; stroke-dasharray: 8 7; }
+.diagram-matter-number circle { fill: #fff; stroke: #246b67; stroke-width: 3; }
+.diagram-matter-number text { fill: #173f3c; font-size: 16px; font-weight: 800; }
+.diagram-energy-number circle { fill: #fff9e8; stroke: #a86713; stroke-width: 3; }
+.diagram-energy-number text { fill: #70440b; font-size: 16px; font-weight: 800; }
+.native-diagram-slots { list-style: none; display: grid; gap: .55rem; padding: 0; margin: 0; }
+.native-diagram-slots li { display: grid; grid-template-columns: 2.4rem minmax(10rem, .8fr) minmax(12rem, 1fr); align-items: center; gap: .75rem; min-height: 3.6rem; padding: .55rem .7rem; border: 1px solid #c7d0ce; border-radius: .7rem; background: #fff; }
+.diagram-slot-number { display: grid; place-items: center; width: 2rem; height: 2rem; border: 2px solid #246b67; border-radius: 50%; background: #fff; color: #173f3c; font-weight: 800; }
+.diagram-slot-number.is-energy { border-color: #a86713; background: #fff9e8; color: #70440b; }
+.native-diagram-slots label { font-weight: 650; line-height: 1.35; }
+.native-diagram-slots select { width: 100%; min-height: 48px; padding: .55rem .7rem; border: 1px solid #aab9b3; border-radius: .5rem; color: #172534; background: #fff; font: inherit; }
+.native-diagram-slots select:disabled { background: #f4f6f4; }
+.native-diagram-slots select:focus-visible { outline: 3px solid #6552a0; outline-offset: 3px; }
+@media (max-width: 540px) {
+  .native-diagram-slots li { grid-template-columns: 2.4rem minmax(0, 1fr); gap: .45rem .7rem; }
+  .native-diagram-slots select { grid-column: 2; }
+}
 .native-activity input:focus-visible { outline: 3px solid #6552a0; outline-offset: 3px; }
 .native-activity :is(button, select):focus-visible { outline: 3px solid #6552a0; outline-offset: 3px; }
 .native-activity h2:focus, .native-activity [role="region"]:focus { outline: 2px solid #6552a0; outline-offset: 5px; }

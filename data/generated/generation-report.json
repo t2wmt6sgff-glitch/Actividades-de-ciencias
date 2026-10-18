@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "source": {
     "file": "data/catalogo-actividades.xlsx",
-    "sha256": "69d3f93f708f54b22384fcb3156cb21dc8320943f93091accd2435fc79be7945"
+    "sha256": "39e41b5b6d4e871945287788fd7e9bc5d770740fd7188341f03914f83cd93533"
   },
   "counts": {
     "subjects": 6,
@@ -14,7 +14,7 @@
   },
   "byPlatform": {
     "educaplay": 56,
-    "lumi": 3,
+    "lumi": 2,
     "wordwall": 31
   },
   "byLanguage": {
@@ -23,8 +23,8 @@
     "fr": 9
   },
   "bySourceKind": {
-    "external": 90,
-    "native": 2
+    "external": 89,
+    "native": 3
   },
   "multiTopicActivityIds": [
     "EP-28023550",
@@ -178,8 +178,8 @@
   "artifacts": {
     "searchIndex": {
       "file": "data/generated/search-index.json",
-      "sha256": "f74223cbe467c792a8cdf55b05f6c5efe793fbcc68cddcb5c7a547fda19ee613",
-      "bytes": 70131,
+      "sha256": "9708e93fb0fbfde539ca5f120b0c6406fd4654361b70ff704083b298de2f7e2c",
+      "bytes": 70155,
       "entries": 92
     }
   }

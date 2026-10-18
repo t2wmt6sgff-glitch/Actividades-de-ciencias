@@ -3,6 +3,8 @@ import type { Answer, Question } from "@/lib/native/schema";
 
 export function AnswerDisplay({ question, answer }: { question: Question; answer: Answer }) {
   if (question.kind === "year" || question.kind === "text-input") return <p lang="en" className="native-original-answer">{(answer as string) || "Not answered"}</p>;
+  if (question.kind === "diagram-label") return <ol className="native-answer-list" lang="en">{question.slots.map(slot =>
+    <li key={slot.id}><strong>{slot.number}. {slot.label}:</strong> {question.options.find(i => i.id === (answer as Record<string, string>)[slot.id])?.label ?? "Not answered"}</li>)}</ol>;
   if (question.kind === "matching") return <ul className="native-answer-list" lang="en">{question.left.map(item =>
     <li key={item.id}><strong>{item.label}:</strong> {question.right.find(r => r.id === (answer as Record<string, string>)[item.id])?.label ?? "Not answered"}</li>)}</ul>;
   if (question.kind === "classification") return <ul className="native-answer-list" lang="en">{question.items.map(item =>
@@ -15,13 +17,13 @@ export function AnswerDisplay({ question, answer }: { question: Question; answer
 }
 
 function ItemReview({ question, answer }: { question: Question; answer: Answer }) {
-  if (question.kind !== "classification" && question.kind !== "matching") return null;
-  const items = question.kind === "matching" ? question.left : question.items;
-  const responses = question.kind === "matching" ? question.right : question.categories;
-  const solution = question.kind === "matching" ? question.correctMatches : question.correctCategories;
+  if (question.kind !== "classification" && question.kind !== "matching" && question.kind !== "diagram-label") return null;
+  const items = question.kind === "matching" ? question.left : question.kind === "classification" ? question.items : question.slots;
+  const responses = question.kind === "matching" ? question.right : question.kind === "classification" ? question.categories : question.options;
+  const solution = question.kind === "matching" ? question.correctMatches : question.kind === "classification" ? question.correctCategories : question.correctBySlot;
   const chosen = answer as Record<string, string>;
   return <ul className="native-item-review">{items.map(item => <li key={item.id}>
-    <strong lang="en">{item.label}</strong><span className="native-item-verdict">{chosen[item.id] === solution[item.id] ? "Correcta" : "Incorrecta"}</span>
+    <strong lang="en">{"number" in item ? `${item.number}. ${item.label}` : item.label}</strong><span className="native-item-verdict">{chosen[item.id] === solution[item.id] ? "Correcta" : "Incorrecta"}</span>
     <p>Tu respuesta: <span lang="en">{responses.find(r => r.id === chosen[item.id])?.label ?? "Not answered"}</span></p>
     <p>Respuesta correcta: <span lang="en">{responses.find(r => r.id === solution[item.id])!.label}</span></p>
   </li>)}</ul>;
@@ -42,7 +44,7 @@ export function AnswerReview({ question, answer, correct, showExplanation = true
   return <div className={`native-review ${correct ? "is-correct" : "is-incorrect"}`}>
     <p className="native-verdict"><strong>{correct ? "Correcta" : "Incorrecta"}</strong></p>
     <ChoiceFeedback question={question} answer={answer} />
-    {question.kind === "classification" || question.kind === "matching" ? <ItemReview question={question} answer={answer} /> : <div className="native-answer-columns">
+    {question.kind === "classification" || question.kind === "matching" || question.kind === "diagram-label" ? <ItemReview question={question} answer={answer} /> : <div className="native-answer-columns">
       <section><h4>Tu respuesta</h4><AnswerDisplay question={question} answer={answer} /></section>
       <section><h4>Respuesta correcta</h4><AnswerDisplay question={question} answer={correctAnswer(question)} /></section>
     </div>}
