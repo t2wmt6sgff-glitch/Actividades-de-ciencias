@@ -41,7 +41,7 @@ test('las 11 preguntas y todas las opciones proceden del Markdown con solo dos c
   assert.ok(q11Editorial,'la corrección editorial de q11 está documentada');
   assert.equal(question.prompt,Number(number)===11?'Classify each food by the group of molecules it is mainly a source of.':prompt.trim());
   const expected=Number(number)===11
-   ? [...q11Editorial.matchAll(/^### (Carbohydrates|Lipids|Proteins):\\s*\\n((?:- \\[ \\] .+\\n?)+)/gm)].flatMap(([,category,items])=>[...items.matchAll(/^- \\[ \\] (.+)$/gm)].map(m=>m[1].trim()))
+   ? [...q11Editorial.matchAll(/^### (Carbohydrates|Lipids|Proteins):\s*\n((?:- \[ \] .+\n?)+)/gm)].flatMap(([,category,items])=>[...items.matchAll(/^- \[ \] (.+)$/gm)].map(m=>m[1].trim()))
    : [...new Set([...body.matchAll(/^- \\[ \\] (.+)$/gm)].map(m=>m[1].trim().replace('Mollecules','Molecules').replace('Nuclei acid','Nucleic acids')))];
   const actual=(question.options??question.items).map(i=>i.label);
   assert.deepEqual(actual,expected,question.id);
