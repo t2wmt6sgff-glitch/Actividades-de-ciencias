@@ -121,3 +121,35 @@ La respuesta correcta es “Both”.
 ##   
   
   
+
+
+## Editorial correction for interactive q11
+
+The numbered section above preserves the supplied source transcription. The following is the editorially corrected content used by the interactive activity; it replaces ambiguous or mixed-food examples without changing the activity type or its three categories. The categories describe a food's main source in this exercise, not its exclusive composition.
+
+### Corrected prompt
+Classify each food by the group of molecules it is mainly a source of.
+
+### Carbohydrates:
+- [ ] bread
+- [ ] pasta
+- [ ] fruit
+- [ ] rice
+- [ ] sugar
+- [ ] potatoes
+
+### Lipids:
+- [ ] oil
+- [ ] olive oil
+- [ ] avocado
+- [ ] butter
+- [ ] sunflower oil
+- [ ] margarine
+
+### Proteins:
+- [ ] meat
+- [ ] fish
+- [ ] eggs
+- [ ] chicken
+- [ ] lentils
+- [ ] chickpeas
