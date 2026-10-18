@@ -55,7 +55,7 @@ export function DiagramQuestionControls({ question, answer, order, locked, onAns
     <figure className="native-diagram-figure">
       <svg className="native-flow-svg" viewBox="0 0 1000 420" role="img" aria-labelledby={titleId} aria-describedby={descriptionId}>
         <title id={titleId}>{question.scene === "chloroplast" ? "Chloroplast photosynthesis diagram" : "Mitochondrion cellular respiration diagram"}</title>
-        <desc id={descriptionId}>A large organelle illustration with numbered arrows. Each number corresponds to an answer selector below the diagram. Solid arrows show matter; dashed arrows show energy.</desc>
+        <desc id={descriptionId}>A large organelle illustration with numbered arrows. Each number corresponds to an answer selector below the diagram.</desc>
         <defs>
           <marker id={matterMarker} viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#246b67" /></marker>
           <marker id={energyMarker} viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#a86713" /></marker>
@@ -71,7 +71,7 @@ export function DiagramQuestionControls({ question, answer, order, locked, onAns
           <text x={slot.marker[0]} y={slot.marker[1] + 6} textAnchor="middle">{slot.number}</text>
         </g>)}
       </svg>
-      <figcaption><strong>{question.scene === "chloroplast" ? "Chloroplast · photosynthesis" : "Mitochondrion · cellular respiration"}</strong><br />Solid arrows show matter entering or leaving. Dashed arrows show energy entering or being released.</figcaption>
+      <figcaption><strong>{question.scene === "chloroplast" ? "Chloroplast · photosynthesis" : "Mitochondrion · cellular respiration"}</strong><br />Follow each numbered arrow and choose the label that matches that flow.</figcaption>
     </figure>
     <ol className="native-diagram-slots">
       {question.slots.map(slot => <li key={slot.id}>
@@ -87,3 +87,4 @@ export function DiagramQuestionControls({ question, answer, order, locked, onAns
     <p className="native-assigned" aria-live="polite">{selectedCount} / {question.slots.length} labels selected</p>
   </div>;
 }
+

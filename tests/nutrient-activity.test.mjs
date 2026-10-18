@@ -22,12 +22,20 @@ test('actividad de nutrición usa el ID canónico y tipos de pregunta compatible
   assert.equal(content.id, 'LUMI-1PCQ0H');
   assert.equal(content.questions.length, 8);
   assert.deepEqual(content.questions.map(question => question.kind), [
-    'matching', 'classification', 'multiple-choice', 'diagram-label', 'single-choice', 'diagram-label', 'single-choice', 'ordering',
+    'matching', 'classification', 'single-choice', 'diagram-label', 'single-choice', 'diagram-label', 'single-choice', 'ordering',
   ]);
   const nutrients = content.questions.find(question => question.id === 'heterotrophic-organic-nutrients');
-  assert.deepEqual(nutrients.correctIds, ['carbohydrates', 'proteins', 'lipids']);
-  assert.equal(gradeQuestion(nutrients, nutrients.correctIds), true);
-  assert.equal(gradeQuestion(nutrients, ['carbohydrates', 'proteins']), false);
+  assert.deepEqual(nutrients.correctIds, ['carbohydrates-proteins-lipids']);
+  assert.equal(gradeQuestion(nutrients, ['carbohydrates-proteins-lipids']), true);
+  assert.equal(gradeQuestion(nutrients, ['water-salts-co2']), false);
+});
+
+test('las pistas previas no enumeran las respuestas de clasificación ni explican los códigos visuales del flujo', () => {
+  const examples = content.questions.find(question => question.id === 'nutrition-examples');
+  assert.doesNotMatch(examples.note, /plants|algae|bacteria|animals|fungi|microorganisms/i);
+  for (const question of content.questions.filter(item => item.kind === 'diagram-label')) {
+    assert.equal(question.note, undefined);
+  }
 });
 
 test('diagramas: todas las etiquetas correctas se validan; huecos y respuestas erróneas no', () => {
@@ -59,3 +67,4 @@ test('la normalización del motor acepta espacios inocuos y mayúsculas sin acep
   assert.equal(normalizeText('ORGANIC BIOMOLECULES'), normalizeText('Organic biomolecules'));
   assert.notEqual(normalizeText('Organic matter'), normalizeText('Inorganic matter'));
 });
+

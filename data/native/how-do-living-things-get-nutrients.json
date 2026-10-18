@@ -41,7 +41,7 @@
       "id": "nutrition-examples",
       "kind": "classification",
       "prompt": "Sort these examples by their type of nutrition.",
-      "note": "The notes say plants, algae and some bacteria are autotrophs; animals, fungi and many microorganisms are heterotrophs. The words some and many matter: not all bacteria have the same type of nutrition.",
+      "note": "Decide where each example gets the organic matter it needs: does it make organic matter from inorganic substances, or obtain organic nutrients from its environment?",
       "items": [
         {
           "id": "plants",
@@ -90,47 +90,36 @@
     },
     {
       "id": "heterotrophic-organic-nutrients",
-      "kind": "multiple-choice",
-      "prompt": "Which organic nutrients can heterotrophs obtain from their environment?",
+      "kind": "single-choice",
+      "prompt": "Which list contains the organic nutrient groups named in the notes?",
       "options": [
         {
-          "id": "carbohydrates",
-          "label": "Carbohydrates"
+          "id": "carbohydrates-proteins-lipids",
+          "label": "Carbohydrates, proteins and lipids"
         },
         {
-          "id": "proteins",
-          "label": "Proteins"
+          "id": "water-salts-co2",
+          "label": "Water, mineral salts and carbon dioxide"
         },
         {
-          "id": "lipids",
-          "label": "Lipids"
+          "id": "oxygen-water-light",
+          "label": "Oxygen, water and sunlight"
         },
         {
-          "id": "water",
-          "label": "Water"
-        },
-        {
-          "id": "mineral-salts",
-          "label": "Mineral salts"
-        },
-        {
-          "id": "sunlight",
-          "label": "Sunlight"
+          "id": "chlorophyll-salts-water",
+          "label": "Chlorophyll, mineral salts and water"
         }
       ],
       "correctIds": [
-        "carbohydrates",
-        "proteins",
-        "lipids"
+        "carbohydrates-proteins-lipids"
       ],
-      "explanation": "The notes list carbohydrates, proteins and lipids as organic nutrients that heterotrophs obtain from the environment. Water and mineral salts are inorganic nutrients, and sunlight supplies energy."
+      "explanation": "The notes name carbohydrates, proteins and lipids as organic nutrients that heterotrophs obtain from the environment. Water and mineral salts are inorganic nutrients; sunlight supplies energy."
     },
     {
       "id": "photosynthesis-flow",
       "kind": "diagram-label",
       "scene": "chloroplast",
       "prompt": "Complete the photosynthesis diagram. Follow each numbered arrow and choose what enters or leaves the chloroplast.",
-      "note": "Mineral salts are inorganic nutrients absorbed by the plant, as shown in the notes. This simplified chloroplast diagram shows the materials used directly in photosynthesis; light enters as energy, not as a substance.",
       "slots": [
         {
           "id": "carbon-dioxide-in",
@@ -269,23 +258,23 @@
     {
       "id": "chlorophyll-role",
       "kind": "single-choice",
-      "prompt": "What captures the sunlight needed for photosynthesis inside chloroplasts?",
+      "prompt": "Which substance inside chloroplasts captures light energy for photosynthesis?",
       "options": [
         {
           "id": "chlorophyll",
           "label": "Chlorophyll"
         },
         {
-          "id": "mitochondria",
-          "label": "Mitochondria"
-        },
-        {
           "id": "cellulose",
           "label": "Cellulose"
         },
         {
-          "id": "nucleus",
-          "label": "The nucleus"
+          "id": "glucose",
+          "label": "Glucose"
+        },
+        {
+          "id": "water",
+          "label": "Water"
         }
       ],
       "correctIds": [
@@ -298,7 +287,6 @@
       "kind": "diagram-label",
       "scene": "mitochondrion",
       "prompt": "Complete the cellular-respiration diagram. Match each numbered arrow to the matter or energy entering or leaving the mitochondrion.",
-      "note": "The dashed golden arrow and burst represent energy. Energy is transferred for the cell to use; it is not a material substance.",
       "slots": [
         {
           "id": "organic-matter-in",
@@ -437,23 +425,23 @@
     {
       "id": "both-cell-types-respire",
       "kind": "single-choice",
-      "prompt": "Which statement about cellular respiration is correct?",
+      "prompt": "Where does cellular respiration take place in cells of both nutrition types?",
       "options": [
         {
           "id": "both",
-          "label": "Cells of autotrophs and heterotrophs carry out cellular respiration in mitochondria."
+          "label": "In mitochondria in both autotrophs and heterotrophs."
         },
         {
           "id": "heterotroph-only",
-          "label": "Only heterotrophs have mitochondria."
+          "label": "In mitochondria only in heterotrophs."
         },
         {
           "id": "plants-no-respiration",
-          "label": "Plant cells photosynthesise but do not carry out cellular respiration."
+          "label": "In chloroplasts in autotrophs, but not in heterotrophs."
         },
         {
           "id": "chloroplast-respiration",
-          "label": "Cellular respiration takes place in chloroplasts."
+          "label": "In chloroplasts in both autotrophs and heterotrophs."
         }
       ],
       "correctIds": [
@@ -493,3 +481,4 @@
     }
   ]
 }
+
