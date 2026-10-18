@@ -31,13 +31,12 @@ test('catálogo: asignatura, tema, fuente, fecha, búsqueda, filtros y recientes
  assert.equal(matchesActivityFilters(activity,{...filters,platforms:['wordwall']}),false);
 });
 
-test('las 11 preguntas y todas las opciones proceden del Markdown con solo dos correcciones',()=>{
+test('las 11 preguntas y todas las opciones coinciden con la fuente o la corrección editorial documentada',()=>{
  assert.equal(content.questions.length,11);
  const sections=[...markdown.matchAll(/^##\s+(\d+)\.\s*([^\n]+)\n([\s\S]*?)(?=^##\s|$(?![\s\S]))/gm)];
  assert.equal(sections.length,11);
  for (const [,number,prompt,body] of sections) {
   const question=q(`q${number}`);
-  const q11Editorial=markdown.split('## Editorial correction for interactive q11')[1] ?? '';
   assert.ok(q11Editorial,'la corrección editorial de q11 está documentada');
   assert.equal(question.prompt,Number(number)===11?'Classify each food by the group of molecules it is mainly a source of.':prompt.trim());
   const expected=Number(number)===11
