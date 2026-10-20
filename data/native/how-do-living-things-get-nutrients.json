@@ -119,7 +119,7 @@
       "id": "photosynthesis-flow",
       "kind": "diagram-label",
       "scene": "chloroplast",
-      "prompt": "Complete the photosynthesis diagram. Follow each numbered arrow and choose what enters or leaves the chloroplast.",
+      "prompt": "Complete the photosynthesis diagram. Follow each numbered arrow and choose what enters or leaves the plant or is needed for photosynthesis.",
       "slots": [
         {
           "id": "carbon-dioxide-in",
@@ -210,6 +210,24 @@
             850,
             285
           ]
+        },
+        {
+          "id": "mineral-salts-in",
+          "number": 6,
+          "label": "Which other inorganic nutrients does the plant absorb?",
+          "flow": "matter-in",
+          "from": [
+            25,
+            355
+          ],
+          "to": [
+            328,
+            355
+          ],
+          "marker": [
+            150,
+            355
+          ]
         }
       ],
       "options": [
@@ -251,9 +269,10 @@
         "water-in": "water",
         "light-in": "light",
         "organic-matter-out": "organic",
-        "oxygen-out": "oxygen"
+        "oxygen-out": "oxygen",
+        "mineral-salts-in": "salts"
       },
-      "explanation": "In photosynthesis, carbon dioxide and water are used to build energy-rich organic matter, and oxygen is released. Chlorophyll in the chloroplast captures light energy. Plants also absorb mineral salts as inorganic nutrients, but those salts are not shown here as direct reactants of the simplified photosynthesis equation."
+      "explanation": "Photosynthesis uses carbon dioxide and water to make sugars, releasing oxygen. Chlorophyll captures light energy in the chloroplast. Plants also absorb mineral salts through their roots; these inorganic nutrients are essential for healthy growth, but they are not reactants in the simplified photosynthesis equation. The diagram includes them as nutrients absorbed by the plant, not as a substance used directly to make sugar during photosynthesis."
     },
     {
       "id": "chlorophyll-role",
@@ -481,4 +500,3 @@
     }
   ]
 }
-
