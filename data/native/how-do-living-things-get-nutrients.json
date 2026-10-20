@@ -91,7 +91,7 @@
     {
       "id": "heterotrophic-organic-nutrients",
       "kind": "single-choice",
-      "prompt": "Which list contains the organic nutrient groups named in the notes?",
+      "prompt": "Which list contains organic nutrient groups?",
       "options": [
         {
           "id": "carbohydrates-proteins-lipids",
@@ -113,7 +113,7 @@
       "correctIds": [
         "carbohydrates-proteins-lipids"
       ],
-      "explanation": "The notes name carbohydrates, proteins and lipids as organic nutrients that heterotrophs obtain from the environment. Water and mineral salts are inorganic nutrients; sunlight supplies energy."
+      "explanation": "Carbohydrates, proteins and lipids are organic nutrients that heterotrophs obtain from the environment. Water and mineral salts are inorganic nutrients; sunlight supplies energy."
     },
     {
       "id": "photosynthesis-flow",
@@ -447,7 +447,7 @@
       "correctIds": [
         "both"
       ],
-      "explanation": "The notes state that cells of both autotrophs and heterotrophs have mitochondria, where cellular respiration releases usable energy. Plant cells photosynthesise in chloroplasts and also respire in mitochondria."
+      "explanation": "Cells of both autotrophs and heterotrophs have mitochondria, where cellular respiration releases usable energy. Plant cells photosynthesise in chloroplasts and also respire in mitochondria."
     },
     {
       "id": "oxygen-route",
