@@ -62,6 +62,8 @@ test('las 11 preguntas y todas las opciones coinciden con la fuente o la correcc
  }
  assert.deepEqual(content.questions.map(q=>q.kind),['multiple-choice',...Array(5).fill('single-choice'),'ordering','single-choice','single-choice','classification','classification']);
  assert.equal(q('q8').options.find(o=>o.id===q('q8').correctIds[0]).label,'Only in living things');
+ assert.equal(q('q8').note,undefined);
+ assert.doesNotMatch(q('q8').explanation,/simplif|outside living organisms|dead material/i);
  assert.equal(q('q9').options.find(o=>o.id===q('q9').correctIds[0]).label,'Both');
  assert.equal(q('q11').items.length,18);
  assert.equal(q('q11').kind,'classification');
