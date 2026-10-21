@@ -256,8 +256,7 @@
     {
       "id": "q8",
       "prompt": "Where are organic biomolecules?",
-      "explanation": "The supplied exercise expects “Only in living things” when referring to organic biomolecules as components of living organisms. This is a simplified classroom distinction: organic molecules can also exist outside living organisms, including in dead material. Being organic does not mean being alive.",
-      "note": "The supplied exercise uses a simplified classroom distinction. Organic molecules can also exist outside living organisms.",
+      "explanation": "Organic biomolecules are important components of living organisms and take part in their structure and vital functions.",
       "kind": "single-choice",
       "options": [
         {
