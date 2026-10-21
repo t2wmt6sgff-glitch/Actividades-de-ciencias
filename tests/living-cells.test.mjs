@@ -30,6 +30,7 @@ test('Cells: eight questions in exact source order, exact options and answer key
  const pairs=n=>q(n).left.map(i=>[i.label,q(n).right.find(r=>r.id===q(n).correctMatches[i.id]).label]);
  assert.deepEqual(pairs(7),[['unicellular','if they are made up of a single cell'],['multicellular','if they have more than one cell']]);
  assert.deepEqual(pairs(8),[['50 billion','number of fat cells in a human body'],['37 trillion','total number of cells in an adult'],['200','types of cells in a human'],['96 million','number of cells that die every day'],['18','days that a white blood cell lives']]);
+ assert.equal(q(8).note,undefined);
  for(const question of c.questions)assert.ok(question.explanation.length>30);
 });
 

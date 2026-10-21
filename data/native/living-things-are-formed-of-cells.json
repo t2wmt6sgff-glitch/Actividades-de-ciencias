@@ -77,7 +77,6 @@
       "left":[{"id":"l1","label":"50 billion"},{"id":"l2","label":"37 trillion"},{"id":"l3","label":"200"},{"id":"l4","label":"96 million"},{"id":"l5","label":"18"}],
       "right":[{"id":"r1","label":"number of fat cells in a human body"},{"id":"r2","label":"total number of cells in an adult"},{"id":"r3","label":"types of cells in a human"},{"id":"r4","label":"number of cells that die every day"},{"id":"r5","label":"days that a white blood cell lives"}],
       "correctMatches":{"l1":"r1","l2":"r2","l3":"r3","l4":"r4","l5":"r5"},
-      "note":"Match the figures from your study material. These figures should not be treated as fixed measurements for every person or every white blood cell.",
       "explanation":"In this exercise, 50 billion refers to fat cells and 37 trillion to all cells in an adult. The figure 200 describes cell types, 96 million describes cells dying per day, and 18 describes a lifetime in days. Keep the quantity, category and unit together when studying these pairs."
     }
   ]
