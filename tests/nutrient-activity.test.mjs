@@ -41,7 +41,7 @@ test('las pistas previas no enumeran las respuestas de clasificación ni explica
 test('Q6 cellular respiration explanation does not call the explanation a simplified school model', () => {
   const question = content.questions.find(item => item.id === 'cellular-respiration-flow');
   assert.doesNotMatch(question.explanation, /in the simplified school model/i);
-  assert.match(question.explanation, /^Cellular respiration uses oxygen and organic matter\\./);
+  assert.match(question.explanation, /^Cellular respiration uses oxygen and organic matter\./);
 });
 
 test('diagramas: todas las etiquetas correctas se validan; huecos y respuestas erróneas no', () => {
